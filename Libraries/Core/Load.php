@@ -2,7 +2,7 @@
      //Load
      $controller = ucwords($controller);
      $controllerFile="Controllers/".$controller.".php";
-     echo $controllerFile;
+    //echo $controllerFile;
      if (file_exists($controllerFile)) { //Validar si exite el controlador
          require_once($controllerFile);
          $controller=new $controller();
