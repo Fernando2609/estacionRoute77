@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<?= media(); ?>/js/plugins/bootstrap-switch\css\bootstrap3\bootstrap-switch.min.css">
     <!-- Fullcalendar -->
     <link rel="stylesheet" href="<?= media(); ?>/js/plugins/fullcalendarV5/main.min.css">
-
+    <link rel="stylesheet" type= "text/css" href="<?= media(); ?>/js/datepicker/jquery-ui.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="<?= media(); ?>/js/plugins/toastr/toastr.min.css">
     <!-- Bootstrap Select -->
