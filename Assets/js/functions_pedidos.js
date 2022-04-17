@@ -1,4 +1,5 @@
     let tablePedidos;
+    let rowTable;
 tablePedidos = $('#tablePedidos').dataTable({
         "aProcessing":true, 
         "aServerSide":true,
@@ -21,7 +22,7 @@ tablePedidos = $('#tablePedidos').dataTable({
                     {"data":"FECHA"},
                     {"data":"MONTO"},
                     {"data":"TIPO_PAGO"},
-                    {"data":"status"},
+                    {"data":"TIPOESTADO"},
                     {"data":"options"}
                         
                   ],
@@ -186,3 +187,146 @@ tablePedidos = $('#tablePedidos').dataTable({
                 
                 
     });
+    function fntTransaccion(idtransaccion){
+        let request = (window.XMLHttpRequest) ? 
+                        new XMLHttpRequest() : 
+                        new ActiveXObject('Microsoft.XMLHTTP');
+        let ajaxUrl = base_url+'/Pedidos/getTransaccion/'+idtransaccion;
+        divLoading.style.display = "flex";
+        request.open("GET",ajaxUrl,true);
+        request.send();
+        request.onreadystatechange = function(){
+            if(request.readyState == 4 && request.status == 200){
+                let objData = JSON.parse(request.responseText);
+                if(objData.status){   
+                    document.querySelector("#divModal").innerHTML = objData.html;
+                    $('#modalReembolso').modal('show');
+                }else{
+                    swal("Error", objData.msg , "error");
+                }
+                divLoading.style.display = "none";
+                return false;
+            }
+        }
+    }
+
+    function fntReembolsar(){
+       let idtransaccion = document.querySelector("#idtransaccion").value;
+       let observacion = document.querySelector("#txtObservacion").value;
+       if(idtransaccion=='' || observacion==''){
+           swal.fire("", "Complete los datos para continuar.", "error");
+           return false;
+       }
+        swal.fire({
+            title: "Hacer Reembolso",
+            text: "¿Realmente quiere realizar el reembolso?",
+            icon: "warning",
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            },
+            showCancelButton: true,
+            confirmButtonText: "Si, Reembolsar!",
+            cancelButtonText: "No, cancelar!",
+            closeOnConfirm: true,
+            closeOnCancel: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                 $('#modalReembolso').modal('hide');
+                 divLoading.style.display = "flex";
+                let request = (window.XMLHttpRequest) ? 
+                         new XMLHttpRequest() : 
+                         new ActiveXObject('Microsoft.XMLHTTP');
+                 let ajaxUrl = base_url+'/Pedidos/setReembolso';
+                let formData = new FormData();
+               
+                formData.append('idtransaccion',idtransaccion);
+                formData.append('observacion',observacion);
+                request.open("POST",ajaxUrl,true);
+                request.send(formData);
+                request.onreadystatechange = function(){
+                    if(request.readyState != 4) return;
+                    if(request.status == 200){
+                         let objData = JSON.parse(request.responseText);
+                        if(objData.status){  
+                            window.location.reload();
+                         }else{
+                            swal("Error", objData.msg , "error");
+                        }
+                        divLoading.style.display = "none";
+                        return false; 
+                    }
+                }
+            }
+    });
+}
+function fntEditInfo(element,idpedido){
+    rowTable = element.parentNode.parentNode.parentNode;
+    let request = (window.XMLHttpRequest) ? 
+                         new XMLHttpRequest() : 
+                         new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Pedidos/getPedido/'+idpedido;
+    divLoading.style.display = "flex";
+    request.open("GET",ajaxUrl,true);
+    request.send();
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            let objData = JSON.parse(request.responseText);
+            if(objData.status){  
+                //window.location.reload();
+                document.querySelector("#divModal").innerHTML=objData.html;
+                $('#modalFormPedido').modal('show');
+                $('select').selectpicker();
+                fntUpdateInfo();
+             }else{
+                swal("Error", objData.msg , "error");
+            }
+            divLoading.style.display = "none";
+            return false; 
+        }
+    }
+}
+
+function fntUpdateInfo(){
+    let formUpdatePedido = document.querySelector("#formUpdatePedido");
+    formUpdatePedido.onsubmit= function(e){
+        e.preventDefault();
+        let transaccion;
+        if(document.querySelector("#txtTransaccion")){
+            transaccion = document.querySelector("#txtTransaccion").value;
+            
+        }
+        let request = (window.XMLHttpRequest) ? 
+                         new XMLHttpRequest() : 
+                         new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url+'/Pedidos/setPedido/';
+    divLoading.style.display = "flex";
+    let formData = new FormData(formUpdatePedido);
+    request.open("POST",ajaxUrl,true);
+    request.send(formData);
+    request.onreadystatechange=function(){
+        if(request.readyState !=4) return;
+        if(request.status == 200){
+            let objData = JSON.parse(request.responseText);
+            if(objData.status){
+                swal.fire("",objData.msg,"success");
+                $('#modalFormPedido').modal('hide');
+                if(document.querySelector("#txtTransaccion")){
+                    rowTable.cells[1].textContent = document.querySelector("#txtTransaccion").value;
+                    rowTable.cells[4].textContent =document.querySelector("#listTipopago").selectedOptions[0].innerText;
+                    rowTable.cells[5].textContent =document.querySelector("#listEstado").selectedOptions[0].innerText;
+                }else{
+                    rowTable.cells[5].textContent =document.querySelector("#listEstado").selectedOptions[0].innerText;
+                }
+            }else{
+                swal.fire("Error", objData.msg, "error");
+            }
+            
+            divLoading.style.display="none";
+            return false;
+        }
+    }
+    }
+}
