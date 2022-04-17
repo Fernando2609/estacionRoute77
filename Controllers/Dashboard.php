@@ -5,11 +5,11 @@
             parent::__construct();
             session_start();
              //session_regenerate_id(true);
-            if (empty($_SESSION['login'])) {
+             if (empty($_SESSION['login'])) {
                 header('Location: '.base_url().'/login');
                 die();
             }
-            getPermisos(1);
+            getPermisos(1); 
             
         }
         
