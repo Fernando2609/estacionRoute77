@@ -41,7 +41,7 @@
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.templates.min.js"></script>
 <!-- Termina Datatables  & Plugins -->
-
+<script src="<?= media(); ?>/js/datepicker/jquery-ui.min.js"></script>
  <!-- Bootstrap Select -->
 <script src="<?= media(); ?>/js/bootstrap-select.min.js"></script>
  <!-- Bootstrap Switch -->
