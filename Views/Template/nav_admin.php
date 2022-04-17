@@ -136,7 +136,16 @@
           </li>
 
           <?php } ?>
-
+          <?php if(!empty($_SESSION['permisos'][9]['r'])){ ?>
+          <li class="nav-item">
+            <a href="<?= base_url();?>/inventario" class="nav-link"> 
+            <i class=" nav-icon fa-solid fa-boxes-stacked"></i>
+              <p>
+                Inventario
+              </p>
+            </a>
+          </li>
+          <?php } ?>
           <?php if(!empty($_SESSION['permisos'][7]['r'])){ ?>
           <!-- Calendario-->
           <li class="nav-item">

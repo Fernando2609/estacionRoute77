@@ -1,6 +1,9 @@
 <?php
+
+    //Fernando 
     //require_once("Models/CategoriasModel.php"); 
     //Fernadno 23/10/2021
+
 
     //Definición de constantes
     //define('BASEURL', 'http://localhost:/route77/');
@@ -58,7 +61,9 @@
 	const SECRET="EMcfARjqBsEbmiOyhEd6OfeTNC32jzMNZ3oinVbQcDJcugTC3mRZE6UlmMbTBzt4KwbSKCpyqBM9d8wE"; */
     //Zona horaria
 	date_default_timezone_set('America/Tegucigalpa');
-	
+
+   
+
 	//Datos envio de correo
 	const NOMBRE_REMITENTE = "Route 77";
 	const EMAIL_REMITENTE = "estacionroutehn@gmail.com";

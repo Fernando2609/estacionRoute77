@@ -1,0 +1,130 @@
+<div class="modal fade" id="modalFormInventario" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <!-- Div Centrar Modal -->
+  <div class="modal-dialog modal-lg bounceInDown animated" role="document">
+    <div class="modal-content">
+      <!-- Div Contenido Modal -->
+      <div class="modal-header headerRegister ">
+        <!-- Encabezado Modal -->
+        <h5 class="modal-title" id="titleModal">Registro De Nuevo Cliente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div><!-- Termina Encabezado Modal -->
+      <!-- abre Modal Body -->
+      <div class="modal-body">
+          <!-- Card -->
+        
+
+
+        <!-- formulario Modal -->
+        <form id="formInventario" name="formInventario" class="form-horizontal">
+          <input type="hidden" id="idUsuario" name="idUsuario" value="">
+          <p class="text-primary">Los campos con asterisco (<span class="required">*</span>)son obligatorios. </p>
+
+          
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="txtNombre">Nombres<span class="required"> *</span></label>
+              <input type="text" class="form-control valid validText" id="txtNombre" name="txtNombre" required="">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="txtApellido">Apellidos<span class="required"> *</span></label>
+              <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required="">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="txtTelefono">Teléfono<span class="required"> *</span></label>
+              <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="txtEmail">Email<span class="required"> *</span></label>
+              <input type="email" class="form-control valid validEmail" id="txtEmail" name="txtEmail" required="">
+            </div>
+          </div>
+
+            <div class="form-group col-md-6">
+              <label for="listStatus">Status<span class="required"> *</span></label>
+              <select class="form-control selectpicker" id="listStatus" name="listStatus" required>
+                <option value="1">Activo</option>
+                <option value="2">Inactivo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="txtPassword">Password<span class="required"> *</span></label>
+              <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+            </div>
+          </div>
+
+           <!-- /.Cierra card-body -->
+
+          <div class="card-footer">
+            <button id="btnActionForm" class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i><span id="btnText">Guardar</span></button>&nbsp;&nbsp;&nbsp;
+
+            <button class="btn btn-danger" type="button" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cerrar</button>
+          </div>
+        </form>
+
+      </div><!-- /. Cierra  Div body Modal -->
+    </div><!-- /. Cierra  Div Centrar Modal -->
+  </div><!-- /. Cierre Div Centrar Modal -->
+</div>
+<!-- Cierra Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="modalViewInventario" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <!-- Div Centrar Modal -->
+  <div class="modal-dialog bounceInDown animated" role="document">
+    <div class="modal-content">
+      <!-- Div Contenido Modal -->
+      <div class="modal-header header-primary">
+        <!-- Encabezado Modal -->
+        <h5 class="modal-title" id="titleModal">Datos del Inventario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div><!-- Termina Encabezado Modal -->
+      <!-- abre Modal Body -->
+      <div class="modal-body">
+        <!-- Card -->
+        <table class="table table-bordered">
+          <tbody>
+            
+            <tr>
+              <td>Producto</td>
+              <td id="celproducto">Jacob</td>
+            </tr>
+            <tr>
+              <td>Stock</td>
+              <td id="celstock">Jacob</td>
+            </tr>
+            <tr>
+              <td>Cantidad Vendida</td>
+              <td id="celCant_Vent">Larry</td>
+            </tr>
+            <tr>
+              <td>Cantidad Comprada</td>
+              <td id="celCant_Comp">Larry</td>
+            </tr>
+            <!-- <tr>
+              <td>Rol Usuario:</td>
+              <td id="celTipoUsuario">Larry</td>
+            </tr> -->
+            
+              <td>Cantidad Minima</td>
+              <td id="celCant_Min">Larry</td>
+            </tr>
+         
+          </tbody>
+        </table>
+
+      </div><!-- /. Cierra  Div body Modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /. Cierra  Div Centrar Modal -->
+  </div><!-- /. Cierre Div Centrar Modal -->
+</div>
+<!-- Cierra Modal -->
