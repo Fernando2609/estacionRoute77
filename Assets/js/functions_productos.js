@@ -243,7 +243,7 @@ window.addEventListener('load',function(){
                             '<span class="badge badge-danger">Inactivo</span>';
                             rowTable.cells[1].textContent = intCodigo;
                             rowTable.cells[2].textContent = strNombre;
-                            rowTable.cells[3].textContent = intStock;
+                           // rowTable.cells[3].textContent = intStock;
                             rowTable.cells[4].textContent = smony+strPrecio;
                             rowTable.cells[5].innerHTML =  htmlStatus;
                             rowTable = ""; 
@@ -404,7 +404,7 @@ function fntViewInfo(idProducto){
                 document.querySelector("#celCodigo").innerHTML = objProducto.COD_BARRA;
                 document.querySelector("#celNombre").innerHTML = objProducto.NOMBRE;
                 document.querySelector("#celPrecio").innerHTML = objProducto.PRECIO;
-                document.querySelector("#celStock").innerHTML = objProducto.STOCK;
+                document.querySelector("#celStock").innerHTML = objProducto.CANT_MINIMA;
                 document.querySelector("#celCategoria").innerHTML = objProducto.CATEGORÍA;
                 document.querySelector("#celStatus").innerHTML = estadoProducto;
                 document.querySelector("#celDescripcion").innerHTML = objProducto.DESCRIPCION;
@@ -450,7 +450,7 @@ function fntEditInfo(element,idProducto){
                 document.querySelector("#txtDescripcion").value = objProducto.DESCRIPCION;
                 document.querySelector("#txtCodigo").value = objProducto.COD_BARRA;
                 document.querySelector("#txtPrecio").value = objProducto.PRECIO;
-                document.querySelector("#txtStock").value = objProducto.STOCK;
+                document.querySelector("#txtStock").value = objProducto.CANT_MINIMA;
                 document.querySelector("#listCategoria").value = objProducto.COD_CATEGORIA;
                 document.querySelector("#listStatus").value = objProducto.COD_STATUS;
                 tinymce.activeEditor.setContent(objProducto.DESCRIPCION); 
