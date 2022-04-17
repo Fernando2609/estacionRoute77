@@ -20,7 +20,7 @@
                 $params.= $arrUrl[$i].',';
             }
             $params=trim($params,",");
-            echo $params;
+           // echo $params;
         }
     }
 
