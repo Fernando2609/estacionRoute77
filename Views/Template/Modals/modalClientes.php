@@ -50,13 +50,14 @@
                 <option value="2">Inactivo</option>
               </select>
             </div>
-          </div>
-          <div class="form-row">
+            <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtPassword">Password<span class="required"> *</span></label>
               <input type="password" class="form-control" id="txtPassword" name="txtPassword">
             </div>
           </div>
+          </div>
+          
 
            <!-- /.Cierra card-body -->
 

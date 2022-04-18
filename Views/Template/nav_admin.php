@@ -136,35 +136,50 @@
           </li>
 
           <?php } ?>
-          <?php if(!empty($_SESSION['permisos'][9]['r'])){ ?>
-          <li class="nav-item">
-            <a href="<?= base_url();?>/inventario" class="nav-link"> 
-            <i class=" nav-icon fa-solid fa-boxes-stacked"></i>
-              <p>
-                Inventario
-              </p>
-            </a>
-          </li>
-          <?php } ?>
-          <?php if(!empty($_SESSION['permisos'][7]['r'])){ ?>
-          <!-- Calendario-->
-          <li class="nav-item">
-            <a href="<?= base_url();?>/calendario" class="nav-link">
-            <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendario
-              </p>
-            </a>
-          </li>
-          <?php } ?>
+
+          
           <?php if(!empty($_SESSION['permisos'][14]['r'])){ ?>
+          
           <li class="nav-item">
-            <a href="<?= base_url();?>/empresa" class="nav-link">
-            <i class="nav-icon fa-solid fa-building"></i>
+            <a href="../widgets.html" class="nav-link">
+             <i class="nav-icon fa-solid fa-building"></i>
               <p>
                 Empresa
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url();?>/empresa" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Empresa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url();?>/telEmpresa" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Teléfonos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url();?>/redesSociales" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Redes Sociales</p>
+                </a>
+              </li>
+              <!-- Sucursales -->
+              <?php if(!empty($_SESSION['permisos'][16]['r'])){ ?>
+          <li class="nav-item">
+            <a href="<?= base_url();?>/sucursales" class="nav-link">
+           
+            <i class="far fa-circle nav-icon"></i>
+              <p>
+                Sucursales
+              </p>
+            </a>
+          </li>
+          <?php } ?>
+            </ul>
           </li>
           <?php } ?>
 
@@ -179,18 +194,55 @@
           </li>
           <?php } ?>
           
-          <?php if(!empty($_SESSION['permisos'][16]['r'])){ ?>
+        
+          
+        <?php if(!empty($_SESSION['permisos'][9]['r'])){ ?>
           <li class="nav-item">
-            <a href="<?= base_url();?>/sucursales" class="nav-link">
-           
-            <i class="nav-icon fa-solid fa-location-dot"></i>
+            <a href="<?= base_url();?>/inventario" class="nav-link"> 
+            <i class=" nav-icon fa-solid fa-boxes-stacked"></i>
               <p>
-                Sucursales
+                Inventario
               </p>
             </a>
           </li>
           <?php } ?>
-
+          <?php if(!empty($_SESSION['permisos'][17]['r'])){ ?>
+          <!-- Calendario-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="nav-icon fa-solid fa-dolly"></i>
+              <p>
+                Compras
+              </p>
+              <i class="right fas fa-angle-left"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url();?>/ordenCompra" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Compra</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url();?>/Compras" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ver Compras</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <?php } ?>
+          <?php if(!empty($_SESSION['permisos'][14]['r'])){ ?>
+          <!-- Calendario-->
+          <li class="nav-item">
+            <a href="<?= base_url();?>/calendario" class="nav-link">
+            <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                Calendario
+              </p>
+            </a>
+          </li>
+          <?php } ?>
           <!-- Logout-->
           <li class="nav-item">
             <a href="<?= base_url();?>/logout" class="nav-link">

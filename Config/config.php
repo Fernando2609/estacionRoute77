@@ -71,7 +71,8 @@
 	const WEB_EMPRESA = "http://localhost:8080/route77";
 //DATOS EMPRESA
 	const DIRECCION = "Col. Los Laureles";
-	const TELEMPRESA= "+504 9643-2601";
+	const TELEMPRESA= "+504 22634806";
+	const CELEMPRESA= "+504 9643-2601";
 	const EMAIL_EMPRESA = "estacionroutehn@gmail.com";
 	const EMAIL_PEDIDOS = "estacionroutehn@gmail.com";
 
@@ -83,6 +84,8 @@
 	const METHODENCRIPT = "AES-128-ECB";
 
 	const COSTOENVIO=10;
+	const RTN='03011972007227';
+	const emailGerente="josefortizsantos@gmail.com";
 
 
 

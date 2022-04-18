@@ -44,15 +44,18 @@
                                         echo $data['orden']['TIPO_PAGO'];
                                     }else{
                                 ?>
-                                <select name="listTipopago" id="listTipopago" class="form-control selectpicker" data-live-search="true" required=""> 
+                                 <select name="listTipopago" id="listTipopago" class="form-control selectpicker" data-live-search="true" required=""> 
                                     <?php
                                         for($i=0; $i < count($data['tipospago']); $i++){
                                             $selected="";
                                             if($data['tipospago'][$i]['COD_TIPO_PAGO']== $data['orden']['COD_TIPO_PAGO']){
                                                 $selected=" selected ";
                                             }
+                                            if($data['tipospago'][$i]['COD_TIPO_PAGO'] != 1){
                                     ?>
+                                    
                                     <option value="<?= $data['tipospago'][$i]['COD_TIPO_PAGO']?>" <?= $selected ?> ><?= $data['tipospago'][$i]['TIPO_PAGO'] ?></option>
+                                    <?php } ?>
                                     <?php }  ?>
                                 </select>
                                     <?php } ?>

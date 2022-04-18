@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded',function () {
                             exportOptions: {
 
                                 margin: [0, 20,20,20],
-                                columns: [ 0, 1, 2, 3, 4,5,6],
+                                columns: [ 0, 1, 2, 3, 4,5],
                                   modifier: {
                                   }
                               }
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded',function () {
                             exportOptions: {
                    
                                 margin: [0, 20,20,20],
-                                columns: [ 0, 1, 2, 3, 4,5,6],
+                                columns: [ 0, 1, 2, 3, 4,5],
                                   modifier: {
                                   }
                               },
@@ -82,13 +82,20 @@ document.addEventListener('DOMContentLoaded',function () {
                             pageSize:'letter',
                             title:'Reporte de Clientes',
                             customize: function ( doc ) {
-                                doc.content[1].margin = [ 0, 40, 120, 20 ]
+                                  doc.content[1].margin = [20, 40, 120, 20];
                                 doc.content[0].margin = [ 0, 20, 0, 0 ]
                                 doc.content[0].alignment = 'center'
                                 //orientacion vertical 
                                 //doc.content[1].table.widths = [ '5%', '25%', '20%', '40%', '20%', '20%', '11%']
                                 //orientacion Horizontal 
-                                doc.content[1].table.widths = [ '5%', '20%', '20%', '20%', '30%', '15%', '11%']
+                                doc.content[1].table.widths = [
+                                  "5%",
+                                  "20%",
+                                  "20%",
+                                  "40%",
+                                  "20%",
+                                  "15%",
+                                ];
                                 doc.content[1].table.body[0].forEach(function(h){
                                   //h.alignment='left';  
                                   h.fillColor = '#81ae39';
@@ -137,7 +144,7 @@ document.addEventListener('DOMContentLoaded',function () {
                             }, exportOptions: {
                             
                                 margin: [0, 20,20,20],
-                                columns: [ 0, 1, 2, 3, 4,5,6],
+                                columns: [ 0, 1, 2, 3, 4,5],
                                 modifier: {
                                 }
                             },
@@ -150,7 +157,7 @@ document.addEventListener('DOMContentLoaded',function () {
                             exportOptions: {
 
                                 margin: [0, 20,20,20],
-                                columns: [ 0, 1, 2, 3, 4,5,6],
+                                columns: [ 0, 1, 2, 3, 4,5],
                                   modifier: {
                                   }
                               }
@@ -162,7 +169,7 @@ document.addEventListener('DOMContentLoaded',function () {
                             exportOptions: {
 
                                 margin: [0, 20,20,20],
-                                columns: [ 0, 1, 2, 3, 4,5,6],
+                                columns: [ 0, 1, 2, 3, 4,5],
                                   modifier: {
 
                                   }
