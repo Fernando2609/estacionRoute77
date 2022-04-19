@@ -44,7 +44,7 @@
                                         echo $data['orden']['TIPO_PAGO'];
                                     }else{
                                 ?>
-                                 <select name="listTipopago" id="listTipopago" class="form-control selectpicker" data-live-search="true" required=""> 
+                                <select name="listTipopago" id="listTipopago" class="form-control selectpicker" data-live-search="true" required=""> 
                                     <?php
                                         for($i=0; $i < count($data['tipospago']); $i++){
                                             $selected="";

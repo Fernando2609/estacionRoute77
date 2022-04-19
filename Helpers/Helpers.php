@@ -177,7 +177,7 @@
         $request = $objLogin->sessionLogin($idpersona);
         return $request;
     }   
-    function nombreEmpresa(){
+    function datosEmpresa(){
         require_once ("Models/LoginModel.php");
         $objLogin = new LoginModel();
         $request = $objLogin->datosEmpresa();
@@ -300,26 +300,6 @@ function deleteFile(string $name){
         $cantidad = number_format($cantidad,2,SPD,SPM);
         return $cantidad;
     }
-
-function Meses()
-{
-    $meses = array(
-        "Enero",
-        "Febrero",
-        "Marzo",
-        "Abril",
-        "Mayo",
-        "Junio",
-        "Julio",
-        "Agosto",
-        "Septiembre",
-        "Octubre",
-        "Noviembre",
-        "Diciembre"
-    );
-    return $meses;
-}
-
     function img64(){
         return img64;
     }
@@ -400,7 +380,29 @@ function Meses()
     
     //https://stackoverflow.com/questions/3139879/how-do-i-get-currency-exchange-rates-via-an-api-such-as-google-finance
     //Funcion 100 request por hora
-    function convertCurrency($amount,$from_currency,$to_currency){
+
+    /* function convertCurrency($amount,$from_currency,$to_currency){
+        $apikey = '9ef98fb066a17158d3a5';
+
+        $from_Currency = urlencode($from_currency);
+        $to_Currency = urlencode($to_currency);
+        $query =  "{$from_Currency}_{$to_Currency}";
+        if (($json = @file_get_contents("https://free.currconv.com/api/v7/convert?q={$query}&compact=ultra&apiKey={$apikey}")) === false) {
+            $error = error_get_last();
+            return "NULL";
+           
+      } else {
+        $obj = json_decode($json, true);
+
+        $val = floatval($obj["$query"]);
+
+        
+        $total = $val * $amount;
+        return number_format($total, 2, '.', '');
+      } */
+
+
+      function convertCurrency($amount,$from_currency,$to_currency){
         $apikey = '9ef98fb066a17158d3a5';
 
         $from_Currency = urlencode($from_currency);
@@ -423,6 +425,9 @@ function Meses()
         //$json = file_get_contents("https://free.currconv.com/api/v7/convert?q={$query}&compact=ultra&apiKey={$apikey}");
         
       }
+
+        
+      
       
     function getRates($amount){        
         $app_id ='f07be6cae81a423fab3dac9717a16aef';
@@ -442,5 +447,27 @@ function Meses()
         return number_format($total, 2, '.', '');
     }   
 
+   function Meses(){
+     $meses = array("Enero",
+                    "Febrero",
+                    "Marzo",
+                    "Abril",
+                    "Mayo",
+                    "Junio",
+                    "Julio",
+                    "Agosto",
+                    "Septiembre",
+                    "Octubre",
+                    "Noviembre",
+                    "Diciembre");
+    return $meses;
+     }
+    function getCatFooter(){
+        require_once ("Models/CategoriasModel.php");
+        $objCategoria = new CategoriasModel();
+        $request = $objCategoria->getCategoriasFooter();
+        return $request;
+ }
+ 
     
 ?>

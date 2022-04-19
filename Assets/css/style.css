@@ -523,6 +523,9 @@ transform: scale(1.5) translate(-5px, 5px);
   /* background-color: #3fc3ee !important; */
     background-color: #055488 !important;
 }
+.colored-toast.swal2-icon-warning {
+  background-color: #f8bb86 !important;
+}
 .divmetodpago label, #divCondiciones{
   width: 100%;
   display: flex;
@@ -544,3 +547,36 @@ transform: scale(1.5) translate(-5px, 5px);
   background-color: #ff3f14;
   color: #fff;
 }
+.container-tittle{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+    
+}
+.container-tittle input{
+  border: 1px solid #CCC;
+  padding: 4px;
+  border-radius: 5px;
+  margin-right: 5px;
+ }
+   .dflex{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+   }
+
+   /* .ui-datepicker-calendar  {
+     display: none;
+        
+   } */
+
+   .inputFecha{
+    border: 1px solid #CCC;
+    padding: 4px;
+    border-radius: 5px;
+    margin-right: 5px;
+   }
+   .dt-datetime-label{
+     color:black
+   }

@@ -12,7 +12,7 @@
            /*  echo SMONEY.formatMoney($envio); */
         }else if ($subtotal<500) {
           
-         $envio=COSTOENVIO;
+         $envio=datosEmpresa()['COSTO_ENVIO'];
         /*  echo SMONEY.formatMoney($envio);   */  
         }
      }
@@ -89,9 +89,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <p> La gracia de nuestro Señor Jesucristo sea con todos vosotros. Amén.</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore alias illum commodi, est quaerat iure qui error consectetur, placeat laboriosam obcaecati laborum quo, sapiente modi. Adipisci, tempora. Iste, ipsa minus?</p>
         <br>
-        <p> Apocalipsis 22:21</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis id aperiam cupiditate, incidunt magnam adipisci libero ullam nisi soluta sunt, corrupti similique nihil necessitatibus dolorum culpa. Ut beatae perspiciatis quidem.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -188,36 +188,16 @@
 						 		<div class="row">
 									<div class="col col-md-6 form-group">
 										<label for="txtTelefono">Teléfono</label>
-										<input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
+										<input type="text" class="form-control valid" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
 									</div>
 									<div class="col col-md-6 form-group">
 										<label for="txtEmailCliente">Email</label>
-										<input type="email" class="form-control valid validEmail" id="txtEmailCliente" name="txtEmailCliente" required="">
+										<input type="email" class="form-control valid" id="txtEmailCliente" name="txtEmailCliente" required="">
 									</div>
 						 		</div>
-                                 <!-- <div class="row">
-                                    <div class="form-group col col-md-6">
-                                        <label for="listNacionalidadCliente">Nacionalidad<span class="required"> *</span></label>
-                                        <select class="form-control" data-live-search="true" id="listNacionalidadCliente" name="listNacionalidadCliente" required>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col col-md-6">
-                                        <label for="listGenero">Género<span class="required"> *</span></label>
-                                        <select class="form-control " id="listGenero" name="listGenero" required>
-                                        </select>
-                                    </div>
-                                 </div>
+                                 
                                 <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="listEstadoC">Estado Civil<span class="required"> *</span></label>
-                                    <select class="form-control" data-live-search="true" id="listEstadoC" name="listEstadoC" required>
-                                    </select>
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label for="fechaNacimiento">Fecha de Nacimiento<span class="required"> *</span></label>
-                                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
-                                </div> -->
+                                
                                 </div>
 								<button type="submit" class="btn btn-primary">Regístrate</button>
 						 	</form>

@@ -34,7 +34,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
 
           exportOptions: {
             margin: [0, 20, 20, 20],
-            columns: [0, 1, 2, 3, 4, 5, 6],
+            columns: [0, 1, 2],
             modifier: {},
           },
         },
@@ -61,7 +61,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
           ],
           exportOptions: {
             margin: [0, 20, 20, 20],
-            columns: [0, 1, 2, 3, 4, 5, 6],
+            columns: [0, 1, 2],
             modifier: {},
           },
         },
@@ -72,7 +72,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
           className: "btn btn-danger mr-1 mb-2",
           filename: "RED SOCIAL",
           download: "open",
-          orientation: "landscape",
+          //orientation: "landscape",
           pageSize: "letter",
           title: "Reporte de Red Social",
           customize: function (doc) {
@@ -170,7 +170,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
           },
           exportOptions: {
             margin: [0, 20, 20, 20],
-            columns: [0, 1, 2, 3, 4, 5, 6],
+            columns: [0, 1, 2],
             modifier: {},
           },
         },
@@ -181,7 +181,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
           className: "btn btn-info mr-1 mb-2",
           exportOptions: {
             margin: [0, 20, 20, 20],
-            columns: [0, 1, 2, 3, 4, 5, 6],
+            columns: [0, 1, 2],
             modifier: {},
           },
         },
@@ -192,7 +192,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
           className: "btn btn-warning mr-1 mb-2",
           exportOptions: {
             margin: [0, 20, 20, 20],
-            columns: [0, 1, 2, 3, 4, 5, 6],
+            columns: [0, 1, 2],
             modifier: {},
           },
         },

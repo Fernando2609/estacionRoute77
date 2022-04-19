@@ -43,7 +43,7 @@ require_once("Models/TTipoPago.php");
                     $arrData[$i]['transaccion'] = $arrData[$i]['COD_TRANSACCION_PAYPAL'];
                 }
 
-                $arrData[$i]['MONTO'] = SMONEY.formatMoney($arrData[$i]['MONTO']);
+                $arrData[$i]['MONTO'] = SMONEY.' '.formatMoney($arrData[$i]['MONTO']);
 
                 if ($_SESSION['permisosMod']['r']) {
 
@@ -67,11 +67,11 @@ require_once("Models/TTipoPago.php");
                     $btnEdit = '<button class="btn btn-warning  btn-sm" onClick="fntEditInfo(this,'. $arrData[$i]['COD_PEDIDO'] . ')
                     " title="Editar Pedido"><i class="fas fa-pencil-alt"></i></button>';
                 }
-                if ($_SESSION['permisosMod']['d']) {
+                /* if ($_SESSION['permisosMod']['d']) {
                     $btnDelete = '<button class="btn btn-danger btn-sm" onClick="fntDelInfo(' . $arrData[$i]['COD_PEDIDO'] . ')
                     " title="Eliminar Pedido"><i class="far fa-trash-alt"></i></button>';
-                }
-                $arrData[$i]['options'] = '<div class="text-center">' . $btnView . ' ' . $btnEdit . ' ' . $btnDelete . '</div>';
+                } */
+                $arrData[$i]['options'] = '<div class="text-center">' . $btnView . ' ' . $btnEdit . /* ' ' . $btnDelete .  */'</div>';
             }
             
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);

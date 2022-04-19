@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //Titulo del evento seleccionado
         $('#tituloEvento').html(calEvent.event.title);
         //Prueba de consola
-        console.log(calEvent.event);
+        console.log(calEvent.event._def.extendedProps.COD_CALENDARIO);
         //Botones, Deshabilitar Guardar,habilitar modificar y eliminar
         $('#btnGuardar').prop("disabled",true);
         $('#btnModificar').prop("disabled",false);
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
        fechaFin=arrayfechaFinal[0]+"-"+arrayfechaFinal[1]+"-"+ arrayfechaFinal[2];
        fechaInicio=arrayfechaInicio[0]+"-"+arrayfechaInicio[1]+"-"+ arrayfechaInicio[2]; */
        //Enviar a los inputs del formulario los datos
-       $('#id').val(calEvent.event.id);
+       $('#id').val(calEvent.event._def.extendedProps.COD_CALENDARIO);
        $('#title').val(calEvent.event.title);
        $('#descripcion').val(calEvent.event.extendedProps.descripcion);
        $('#end').val(final);
@@ -94,12 +94,15 @@ document.addEventListener('DOMContentLoaded', function() {
        //Cuanndo se de click al boton modificar 
        $("#btnModificar").click(function(){
         //Se envia los parametros a update eventos
-        updateEvento(calEvent.event.id,calEvent.event.title);
+        updateEvento(
+          calEvent.event._def.extendedProps.COD_CALENDARIO,
+          calEvent.event.title
+        );
       });
       //Cuanndo se de click al boton modificar 
       $("#btnEliminar").click(function(){
         //Se envia los parametros a update eventos
-        deleteEvento(calEvent.event.id,calEvent.event.title);
+        deleteEvento(calEvent.event._def.extendedProps.COD_CALENDARIO,calEvent.event.title);
       });
         
    },
@@ -115,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
        fechaFin=arrayfechaFinal[0]+"-"+arrayfechaFinal[1]+"-"+ arrayfechaFinal[2];
        fechaInicio=arrayfechaInicio[0]+"-"+arrayfechaInicio[1]+"-"+ arrayfechaInicio[2]; */
         //Enviar a los inputs del formulario los datos
-       $('#id').val(calEvent.event.id);
+       $("#id").val(calEvent.event._def.extendedProps.COD_CALENDARIO);
        $('#title').val(calEvent.event.title);
        $('#descripcion').val(calEvent.event.extendedProps.descripcion);
        $('#end').val(final);
@@ -124,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
        $('#colorText').val(calEvent.event.textColor);
        $('#start').val(calEvent.event.start);
         //Funcion Actualiazr eventos (Parametro ID del evento)
-       updateEvento(calEvent.event.id,calEvent.event.title);
+       updateEvento(calEvent.event._def.extendedProps.COD_CALENDARIO,calEvent.event.title);
    },
    select:function(info,jsEvent,view) {
      //Botones, habilitar Guardar,Deshabilitar modificar y eliminar

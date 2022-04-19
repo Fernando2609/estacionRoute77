@@ -14,7 +14,7 @@
         }
 
         a {
-            color: #3b74d7;
+            color: #055488;
             font-family: arial;
             text-decoration: none;
             text-align: center;
@@ -78,7 +78,7 @@
         }
 
         .x_link_blue {
-            background-color: #84f861;
+            background-color: #81B031;
         }
 
         .x_textwhite {
@@ -87,6 +87,9 @@
             padding: 10px;
             font-size: 15px;
             line-height: 20px;
+        }
+        .img{
+            width: 40%;
         }
     </style>
 </head>
@@ -97,7 +100,8 @@
             <tr>
                 <td>
                     <div class="x_sgwrap x_title_blue">
-                        <h1><?= NOMBRE_EMPESA ?></h1>
+                  <!--       <h1><?= NOMBRE_EMPESA ?></h1> -->
+                        <img class="img" src="<?=  base_url()  ?>/images/logoAmarillo.png" alt="">
                     </div>
                 </td>
             </tr>
@@ -106,12 +110,13 @@
                     <div class="x_sgwrap">
                         <p>Hola <?= $data['nombreUsuario']; ?></p>
                     </div>
-                    <p>Bienvenido a nuestra Tienda en Línea.</p>
+                    <p>Bienvenido a nuestra Tienda en Línea <b> Estación Route 77</b></p>
                     <p>Ahora puedes realizar tus compras en línea sin salir de casa.</p>
                     <p>Accede a tu cuenta con tus credenciales:</p>
                     <p>Usuario: <strong><?= $data['email']; ?></strong></p>
                     <p>Contraseña: <strong><?= $data['password']; ?></strong></p>
-                    <a href="<?= BASE_URL; ?>" target="_blank" class="x_button_link x_link_blue"></a>
+                    <p><I> Recuerda Cambiar la contraseña en el apartado de perfil una vez accedas al sistema</I></p>
+                    <a href="<?= BASE_URL; ?>/login" target="_blank" class="x_button_link x_link_blue">INICIAR SESIÓN</a>
 
                     <p class="x_title_gray"><a href="<?= WEB_EMPRESA; ?>" target="_blanck"><?= WEB_EMPRESA; ?></a></p>
                 </td>

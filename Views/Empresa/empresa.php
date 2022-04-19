@@ -50,7 +50,7 @@ getModal('modalEmpresa', $data);
                                         <th>ID</th>
                                         <th>Nombre Empresa</th>
                                         <th>Dirección</th>
-                                        <th>Razon Social</th>
+                                        <th>Costo de Envío</th>
                                         <th>Email</th>
                                         <!--   <th>Rol</th> -->
                                         <th>Gerente General</th>

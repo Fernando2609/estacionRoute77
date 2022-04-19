@@ -5,11 +5,11 @@
             parent::__construct();
             session_start();
              //session_regenerate_id(true);
-             if (empty($_SESSION['login'])) {
+            if (empty($_SESSION['login'])) {
                 header('Location: '.base_url().'/login');
                 die();
             }
-            getPermisos(1); 
+            getPermisos(1);
             
         }
         
@@ -44,6 +44,33 @@
             }
                
            }
+        public function getProductos()
+        {
+            if($_SESSION['permisosMod']['r']){
+            
+                $arrData = $this->model->selectProductos();
+               
+                $arrNotificaciones=array();
+                for ($i=0; $i < count($arrData); $i++) { 
+                    $arrinfoProducto=array(
+                        'nombre'=>$arrData[$i]['NOMBRE'],
+                        'categoria'=>$arrData[$i]['CATEGORÍA'],
+                        'stock'=>$arrData[$i]['STOCK'],
+                        'cant_minima'=>$arrData[$i]['CANT_MINIMA']);
+                        
+                        array_push($arrNotificaciones,$arrinfoProducto);
+                    }
+                    $_SESSION['notificaciones']=$arrNotificaciones;
+
+                 $htmlNotifi = getFile('Template/Modals/notificaciones',$_SESSION['notificaciones']);
+                 $arrResponse = array("status" => true, "msg" => 'Producto Eliminado',"htmlNotifi"=>$htmlNotifi,);
+                 
+             }else{
+                 $arrResponse=array("status"=>false,"msg"=>'Datos Incorrectoss');
+             }
+             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            die();
+        }
         public function tipoPagoMes(){
             if($_POST){
                 $grafica = "tipoPagoMes";

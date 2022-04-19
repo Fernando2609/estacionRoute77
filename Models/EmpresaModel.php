@@ -56,9 +56,10 @@ class EmpresaModel extends Mysql{
 
         /*$sql = "SELECT idUsuario, dni, nombres, apellidos, telefono, email, status
 					FROM usuarios */
-        $sql = "CALL CRUD_EMPRESA(null,null,null,null,null,'V',null)";
+        $sql = "CALL CRUD_EMPRESA(null,null,null,null,null,null,null,null,null,null,null,null,'V',null)";
         //WHERE idRol = 7 and status != 0";
         $request = $this->select_all($sql);
+		
         return $request;
     }
 
@@ -79,22 +80,30 @@ class EmpresaModel extends Mysql{
 			INNER JOIN estadocivil e on u.idEstadoCivil = e.idEstado 
 			WHERE u.idUsuario = $this->intIdUsuario"; */
 
-		$sql = "CALL CRUD_EMPRESA(null,null,null,null,null,'R',$this->intIdUsuario)";
+			$sql = "CALL CRUD_EMPRESA(null,null,null,null,null,null,null,null,null,null,null,null,'R',$this->intIdUsuario)";
 
 		$request = $this->select($sql);
 
 		return $request;
 	}
 
-	public function updateEmpresa(int $idUsuario, string $NombreEmpresa, string $Direccion, string $RazonSocial, string $email, string $GerenteGeneral)
+	public function updateEmpresa(int $idUsuario, string $NombreEmpresa, string $Direccion, string $RazonSocial, string $email, string $GerenteGeneral, int $costoEnvio, string $RTN, string $strEmailPedidos,string $strTelEmpresa,string $strCelEmpresa,string $strCatSlider, string $strCatBanner)
 	{
-
 		$this->intIdUsuario = $idUsuario;
 		$this->strNombreEmpresa = $NombreEmpresa;
 		$this->strDireccion = $Direccion;
 		$this->strRazonSocial = $RazonSocial;
 		$this->strEmail = $email;
 		$this->strGerenteGeneral = $GerenteGeneral;
+		
+
+		$this->intCostoEnvio = $costoEnvio;
+		$this->strRTN = $RTN;
+		$this->strEmailPedidos = $strEmailPedidos;
+		$this->strTelEmpresa = $strTelEmpresa;
+		$this->strCelEmpresa = $strCelEmpresa;
+		$this->strCatSlider = $strCatSlider;
+		$this->strCatBanner = $strCatBanner;
 
 
 		//$sql = "SELECT * FROM tbl_personas WHERE (email = '{$this->strEmail}' AND COD_PERSONA != $this->intIdUsuario)";
@@ -111,13 +120,21 @@ class EmpresaModel extends Mysql{
 			
 				/* $sql = "UPDATE usuarios SET dni=?,nombres=?,apellidos=?,email=?,contraseña=?,idNacionalidad=?,idGenero=?,idEstadoCivil=?,idRol=?,idSucursal=?,fechaNacimiento=?,status=?,telefono=?,datemodificado=?
 							WHERE idUsuario = $this->intIdUsuario "; */
-				$sql = "CALL CRUD_EMPRESA(?,?,?,?,?,'U',$this->intIdUsuario)";
+				$sql = "CALL CRUD_EMPRESA(?,?,?,?,?,?,?,?,?,?,?,?,'U',$this->intIdUsuario)";
 				$arrData = array(
 					$this->strNombreEmpresa,
 					$this->strDireccion,
 					$this->strRazonSocial,
 					$this->strEmail,
 					$this->strGerenteGeneral,
+					$this->intCostoEnvio,
+					$this->strRTN,
+					$this->strEmailPedidos,
+					$this->strTelEmpresa,
+					$this->strCelEmpresa,
+					$this->strCatSlider,
+					$this->strCatBanner
+
 				);
 			
 			

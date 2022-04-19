@@ -17,14 +17,18 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
+    
     <section class="material-half-bg">
       <div class="cover"></div>
       <div class="cover2"></div>
     </section>
     <section class="login-content">
+   
     <div class="logo d-flex justify-content-center">
+    <a href="<?= base_url();?>" class="nav-link">
         <img src="<?= media(); ?>/images//Logo.png" class="imagenLogin" alt="" >
     </div>
+    </a>
       <div class="login-box">
         <div id="divLoading">
           <div>

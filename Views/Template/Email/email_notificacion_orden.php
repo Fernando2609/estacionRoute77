@@ -39,17 +39,18 @@ $detalle = $data['pedido']['detalle'];
 		<hr>
 		<br>
 		<table>
-			<tr>
+		<tr style="background-color: #F3DE2E; color: black;">
 				<td width="33.33%">
 					<img class="logo" src="<?= media (); ?>/tienda/images/icons/logo3.png" alt="Logo">
 				</td>
 				<td width="33.33%">
 					<div class="text-center">
-						<h4><strong><?= NOMBRE_EMPESA?></strong></h4>
+						<h4><strong><?= datosEmpresa()['NOMBRE_EMPRESA'] ?></strong></h4>
 						<p>
-							<?= DIRECCION?> <br>
-							<?= TELEMPRESA?> <br>
-							<?= EMAIL_EMPRESA?>
+							<?= datosEmpresa()['RTN'] ?> <br>
+							<?= datosEmpresa()['DIRECCION_FACTURA']?> <br>
+							<?= datosEmpresa()['TEL_EMPRESA'] ?> <br>
+							<?= datosEmpresa()['EMAIL_EMPRESA'] ?>
 						</p>
 					</div>
 				</td>
@@ -88,7 +89,7 @@ $detalle = $data['pedido']['detalle'];
 		</table>
 		<table>
 		  <thead class="table-active">
-		    <tr>
+		  <tr style="background-color:#055488; color: whitesmoke;">
 		      <th>Descripción</th>
 		      <th class="text-right">Precio</th>
 		      <th class="text-center">Cantidad</th>
@@ -123,7 +124,7 @@ $detalle = $data['pedido']['detalle'];
 		  			<th colspan="3" class="text-right">Envío:</th>
 		  			<td class="text-right"><?= SMONEY.' '.formatMoney($orden['COSTOENVIO']) ?></td>
 		  		</tr>
-		  		<tr>
+				  <tr style="color: #81B031; font-weight: bold; text-decoration: underline;">
 		  			<th colspan="3" class="text-right">Total:</th>
 		  			<td class="text-right"><?= SMONEY.' '.formatMoney($orden['MONTO']); ?></td>
 		  		</tr>

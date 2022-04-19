@@ -103,10 +103,19 @@ class LoginModel extends Mysql{
             public function datosEmpresa(){
                 
              
-                $sql = "SELECT * FROM empresa";
+                $sql = "call CRUD_EMPRESA(null,null,null,null,null,null,null,null,null,null,null,null,'V',null)";
                 $request = $this->select($sql);
                 return $request;
               
             }  
+            public function selectProductos(){
+			
+                $sql= 'call CRUD_PRODUCTOS(null,null,null,null,null,null,null,null,null,null,"H",null)';
+                $request = $this->select_all($sql);
+
+
+                 
+        return $request;
+    }	
         }
 ?>

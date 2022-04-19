@@ -25,8 +25,9 @@ class Empresa extends Controllers{
         }
 
     public function setEmpresa(){ {
+       
             if ($_POST) {
-                if (empty($_POST['txtNombreEmpresa']) || empty($_POST['txtDireccion']) || empty($_POST['txtRazonSocial']) || empty($_POST['txtEmail']) || empty($_POST['txtGerenteGeneral'])) {
+                if (empty($_POST['txtNombreEmpresa']) || empty($_POST['txtDireccion']) || empty($_POST['txtRazonSocial']) || empty($_POST['txtEmail']) || empty($_POST['txtGerenteGeneral'])|| empty($_POST['txtCostoEnvio'])|| empty($_POST['txtRTN']) || empty($_POST['txtEmailPedidos'])|| empty($_POST['txtTelEmpresa'])|| empty($_POST['txtCelEmpresa'])|| empty($_POST['txtCatSlider'])|| empty($_POST['txtCatBanner'])) {
                     $arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
                 } else {
                     $idUsuario = intval($_POST['idUsuario']);
@@ -35,6 +36,15 @@ class Empresa extends Controllers{
                     $strRazonSocial = ucwords(strClean($_POST['txtRazonSocial']));
                     $strEmail = strtolower(strClean($_POST['txtEmail']));
                     $strGerenteGeneral = ucwords(strClean($_POST['txtGerenteGeneral']));
+
+                    $intCostoEnvio = ucwords(strClean($_POST['txtCostoEnvio']));
+                    $strRTN = ucwords(strClean($_POST['txtRTN']));
+                    $strEmailPedidos = strtolower(strClean($_POST['txtEmailPedidos']));
+                    $strTelEmpresa = ucwords(strClean($_POST['txtTelEmpresa']));
+                    $strCelEmpresa = ucwords(strClean($_POST['txtCelEmpresa']));
+                    $strCatSlider = ucwords(strClean($_POST['txtCatSlider']));
+                    $strCatBanner = strtolower(strClean($_POST['txtCatBanner']));
+        
                     
                     if ($idUsuario == 0) {
                         $option = 1;
@@ -60,7 +70,13 @@ class Empresa extends Controllers{
                                 $strRazonSocial,
                                 $strEmail,
                                 $strGerenteGeneral,
-                                
+                                $intCostoEnvio,
+                                $strRTN,
+                                $strEmailPedidos,
+                                $strTelEmpresa,
+                                $strCelEmpresa,
+                                $strCatSlider,
+                                $strCatBanner
                             );
                         } 
                     }

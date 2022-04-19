@@ -122,7 +122,7 @@
                 }
 
                 if($_SESSION['permisosMod']['r']){
-                    $btnView = '<button class="btn btn-info btn-sm btnViewUsuario" onClick="fntViewUsuario('.$arrData[$i]['COD_PERSONA'].')" title="Ver usuario"><i class="far fa-eye"></i></button>';
+                    $btnView = '<button class="btn  btn-info btn-sm btnViewUsuario" onClick="fntViewUsuario('.$arrData[$i]['COD_PERSONA'].')" title="Ver usuario"><i class="far fa-eye"></i></button>';
                 }
 
                 if($_SESSION['permisosMod']['u']){
@@ -206,35 +206,48 @@
         public function putPerfil()
         {
             if ($_POST) {
-                if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) )
+                if(empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) )
 				{
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
 				}else{
                     $idUsuario = $_SESSION['idUser'];
-					$strIdentificacion = strClean($_POST['txtIdentificacion']);
+                    $strIdentificacion =  empty($_POST['txtIdentificacion']) ? "":  strClean($_POST['txtIdentificacion']);
+                   
+					/* $strIdentificacion = strClean($_POST['txtIdentificacion']); */
 					$strNombre = ucwords(strClean($_POST['txtNombre']));
 					$strApellido = ucwords(strClean($_POST['txtApellido']));
 					$intTelefono = intval(strClean($_POST['txtTelefono']));
-                    
-                    $intGenero = intval(strClean($_POST['listGenero']));
-                   
-                    $intSucursal = intval(strClean($_POST['listSucursal']));
+             
+                    $intGenero =  empty($_POST['listGenero']) ? "":   intval(strClean($_POST['listGenero']));
+                   /*  $intGenero = intval(strClean($_POST['listGenero'])); */
+                   $intSucursal =  empty($_POST['listSucursal']) ? "": intval(strClean($_POST['listSucursal']));
+                    /* $intSucursal = intval(strClean($_POST['listSucursal'])); */
                     $user=intval($_SESSION['idUser']);
                     $strPassword = "";
                     if(!empty($_POST['txtPassword'])){
 						$strPassword = hash("SHA256",$_POST['txtPassword']);
 					}
-                    $request_user = $this->model->updatePerfil($idUsuario,
-																$strIdentificacion, 
-																$strNombre,
-																$strApellido, 
-																$intTelefono,
-                                                               
-                                                                $intGenero,
-                                                               
-                                                                $intSucursal,
-                                                                
-																$strPassword,$user);
+                  
+                   if ($_SESSION['userData']['COD_ROL']==RCLIENTES) {
+                     
+                    $request_user = $this->model->updatePerfilCliente($idUsuario, 
+                    $strNombre,
+                    $strApellido, 
+                    $intTelefono,
+                    $strPassword,$user);
+                   }else{
+                        $request_user = $this->model->updatePerfil($idUsuario,
+                        $strIdentificacion, 
+                        $strNombre,
+                        $strApellido, 
+                        $intTelefono,
+                        $intGenero,
+                        $intSucursal,
+                        $strPassword,$user);
+                   }
+                   
+                   
+                   
                     if($request_user)
 					{
 						sessionUser($_SESSION['idUser']);

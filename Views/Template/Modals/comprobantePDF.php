@@ -70,18 +70,18 @@
 <body>
    <table class="tbl-hader">
        <tbody>
-       <tr>
+           <tr>
                <td class="wd33">
                <img src="<?= media() ?>/tienda/images/icons/logo3.png"width="125"_alt="Logo">
                 </td>
             <td class="text-center">
                 <h4>Estación <strong><?= NOMBRE_EMPESA ?></strong></h4>
                 
-                <p>RTN: <?= RTN ?> <br>
-                    <?= DIRECCION ?> <br>
-                Teléfono: <?= TELEMPRESA ?> <br>
-                Celular: <?= CELEMPRESA ?> <br>
-                Email: <?= EMAIL_EMPRESA ?></p>
+                <p>RTN: <?= datosEmpresa()['RTN'] ?> <br>
+                    <?= datosEmpresa()['DIRECCION_FACTURA'] ?> <br>
+                Teléfono: <?= datosEmpresa()['TEL_EMPRESA'] ?> <br>
+                Celular: <?= datosEmpresa()['CEL_EMPRESA'] ?> <br>
+                Email: <?= datosEmpresa()['EMAIL_EMPRESA'] ?></p>
             </td>
             <td class="text-right wd38">
                 <p>No. Orden <strong><?= $orden['COD_PEDIDO'] ?></strong><br>

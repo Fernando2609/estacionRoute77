@@ -127,7 +127,7 @@
                                       echo SMONEY.formatMoney($envio);
                                   }else if ($subtotal<500) {
                                     
-                                   $envio=COSTOENVIO;
+                                   $envio=datosEmpresa()['COSTO_ENVIO'];
                                    echo SMONEY.formatMoney($envio);    
                                   }
                                  

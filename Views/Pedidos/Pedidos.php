@@ -43,6 +43,20 @@ headerAdmin($data);
                         </div>
                         <!-- /.card-body -->
                         <div class="card-body">
+                        <div class="form-group ">
+                            <div class="input-group d-flex justify-content-between">
+                            <div class="form-group">
+
+                            <label for="" >Fecha Inicio</label>
+                            <input class="fecha inputFecha" id="min" name="min" >
+                            </div>
+                            <div class="form-group">
+
+                            <label for="">Fecha Final</label>
+                            <input class="fecha inputFecha" id="max" name="max" >
+                            </div>
+                            </div>
+                        </div>
                             <!-- Tabla -->
                             <table id="tablePedidos" class="table table-hover table-bordered table-striped dataTable dtr-inline collapsed" role="grid">
                                 <!-- Encabezado de la tabla-->

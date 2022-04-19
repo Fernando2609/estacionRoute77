@@ -14,9 +14,6 @@
             <!-- abre Modal Body -->
             <div class="modal-body">
                 <!-- Card -->
-
-
-
                 <!-- formulario Modal -->
                 <form id="formEmpresa" name="formEmpresa" class="form-horizontal">
                     <input type="hidden" id="idUsuario" name="idUsuario" value="">
@@ -26,7 +23,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtNombreEmpresa">Nombre Empresa<span class="required"> *</span></label>
-                            <input type="text" class="form-control valid validText" id="txtNombreEmpresa" name="txtNombreEmpresa" required="">
+                            <input type="text" class="form-control valid" id="txtNombreEmpresa" name="txtNombreEmpresa" required="">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtDireccion">Dirección<span class="required"> *</span></label>
@@ -44,10 +41,46 @@
                             <input type="email" class="form-control valid validEmail" id="txtEmail" name="txtEmail" required="">
                         </div>
                     </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="txtGerenteGeneral">Gerente General<span class="required"> *</span></label>
-                        <input type="text" class="form-control valid validText" id="txtGerenteGeneral" name="txtGerenteGeneral" required="">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="txtGerenteGeneral">Gerente General<span class="required"> *</span></label>
+                            <input type="text" class="form-control valid validText" id="txtGerenteGeneral" name="txtGerenteGeneral" required="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtCostoEnvio">Costo de Envío<span class="required"> *</span></label>
+                            <input type="text" class="form-control valid validNumber" id="txtCostoEnvio" name="txtCostoEnvio" required="" onkeypress="return controlTag(event)";>
+                        </div>
+                        
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="txtRTN">RTN<span class="required"> *</span></label>
+                            <input type="text" class="form-control valid validNumber" id="txtRTN" name="txtRTN" required="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtEmailPedidos">Email Para Pedidos<span class="required"> *</span></label>
+                            <input type="email" class="form-control valid validEmail" id="txtEmailPedidos" name="txtEmailPedidos" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="txtTelEmpresa">Teléfono Empresa<span class="required"> *</span></label>
+                            <input type="text" class="form-control valid " id="txtTelEmpresa" name="txtTelEmpresa" required="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtCelEmpresa">Celular Empresa<span class="required"> *</span></label>
+                            <input type="text" class="form-control valid " id="txtCelEmpresa" name="txtCelEmpresa" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="txtCatSlider">Categorías Slider<span class="required">*</span><i>(Códigos separado por comas)</i></label>
+                            <input type="text" class="form-control valid" placeholder="Separados por Comas" id="txtCatSlider" name="txtCatSlider" required="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtCatBanner">Categorías Banner<span class="required">* </span><i>(Códigos separado por comas)</i></label>
+                            <input type="text" class="form-control valid " placeholder="Separados por Comas" id="txtCatBanner" name="txtCatBanner" required="">
+                        </div>
                     </div>
 
             </div>
@@ -90,7 +123,7 @@
                             <td id="celNombreEmpresa">Despensa</td>
                         </tr>
                         <tr>
-                            <td>Dirección:</td>
+                            <td>Direccion Factura (Factura)</td>
                             <td id="celDireccion">Torocagua</td>
                         </tr>
                         <tr>
@@ -105,7 +138,35 @@
                             <td>Gerente General</td>
                             <td id="celGerenteGeneral">Nery</td>
                         </tr>
-
+                        <tr>
+                            <td>Costo de Envío</td>
+                            <td id="celCostoEnvio">Nery</td>
+                        </tr>
+                        <tr>
+                            <td>RTN</td>
+                            <td id="celRTN">Nery</td>
+                        </tr>
+                        <tr>
+                            <td>Email Pedidos</td>
+                            <td id="celEmailPedidos">Nery</td>
+                        </tr>
+                        <tr>
+                            <td>Teléfono Empresa (Factura)</td>
+                            <td id="celTelefonoEmpresa">Nery</td>
+                        </tr>
+                        <tr>
+                            <td>Celular Empresa (Factura)</td>
+                            <td id="celCelularEmpresa">Nery</td>
+                        </tr>
+                       
+                        <tr>
+                            <td>Categorías Slider (Códigos de la categorías)</td>
+                            <td id="celCatSlider">Nery</td>
+                        </tr>
+                        <tr>
+                            <td>Categorías Bannere (Códigos de la categorías)</td>
+                            <td id="celCatBanner">Nery</td>
+                        </tr>
                     </tbody>
                 </table>
 

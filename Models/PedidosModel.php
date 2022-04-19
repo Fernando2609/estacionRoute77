@@ -16,7 +16,7 @@
              $sql = "SELECT p.COD_PEDIDO,
                     p.REFERENCIA_COBRO,
                     p.COD_TRANSACCION_PAYPAL,
-                    DATE_FORMAT(p.FECHA, '%d/%m/%Y') as FECHA,
+                    DATE_FORMAT(p.FECHA, '%Y/%m/%d') as FECHA,
                     p.MONTO,
                     tp.TIPO_PAGO,
                     tp.COD_TIPO_PAGO,
@@ -67,21 +67,23 @@
                    
                     if (!empty($requestPedido)) {
                         $idpersona = $requestPedido['COD_PERSONA'];
-                        $sql_cliente = "SELECT tp.COD_PERSONA,
+                        $sql_cliente = "CALL CRUD_CLIENTE(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'C',$idpersona)";
+                        /* $sql_cliente = "SELECT tp.COD_PERSONA,
                                                     tp.NOMBRES,
                                                     tp.APELLIDOS,
                                                     tp.EMAIL,
                                                     tp.TELEFONO
-                                        FROM tbl_personas tp WHERE  tp.COD_PERSONA= $idpersona ";
+                                        FROM tbl_personas tp WHERE  tp.COD_PERSONA= $idpersona ";  */
                         $requestcliente = $this->select($sql_cliente);
-                        $sql_detalle = "SELECT p.COD_PRODUCTO,
+                        /* $sql_detalle = "SELECT p.COD_PRODUCTO,
                                                p.NOMBRE as producto,
                                                d.PRECIO,
                                                d.CANTIDAD
                                         FROM tbl_detalle_pedido d
                                         INNER JOIN tbl_productos p
                                         ON d.COD_PRODUCTO = p.COD_PRODUCTO
-                                        WHERE d.COD_PEDIDO = $idpedido";
+                                        WHERE d.COD_PEDIDO = $idpedido"; */
+                        $sql_detalle = "CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'G',$idpedido)";
                         $requestProductos = $this->select_all($sql_detalle);
                         $request = array('cliente'=> $requestcliente,
                                         'orden'=> $requestPedido,
@@ -91,12 +93,19 @@
         }
         public function selectTransPaypal(string $idtransaccion, $idpersona = NULL){
 			$busqueda = "";
+            $requestData="";
+            
+           
 			if($idpersona != NULL){
 				$busqueda = " AND COD_PERSONA =".$idpersona;
-			}
-			$objTransaccion = array();
-			$sql = "SELECT DATOS_PAYPAL FROM TBL_PEDIDO WHERE COD_TRANSACCION_PAYPAL = '{$idtransaccion}' ".$busqueda;
-			$requestData = $this->select($sql);
+
+			//$objTransaccion = array(); */
+            //FALTA
+			//$sql = "CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,NULL, $idtransaccion,NULL,NULL,'F',$idpersona)";
+            $sql = "SELECT DATOS_PAYPAL FROM TBL_PEDIDO WHERE COD_TRANSACCION_PAYPAL = '{$idtransaccion}' ".$busqueda;
+			/* dep($sql);
+            exit; */
+            $requestData = $this->select($sql);
 			if(!empty($requestData)){
 				$objData = json_decode($requestData['DATOS_PAYPAL']);
 				//$urlTransaccion = $objData->purchase_units[0]->payments->captures[0]->links[0]->href;
@@ -105,10 +114,11 @@
 			}
 			return $objTransaccion;
 		}
-        public function reembolsoPaypal(string $idtransaccion, string $observacion)
-        {
+     }
+    public function reembolsoPaypal(string $idtransaccion, string $observacion){
             $response = false;
-            $sql= "SELECT COD_PEDIDO, DATOS_PAYPAL FROM TBL_PEDIDO  WHERE COD_TRANSACCION_PAYPAL = '{$idtransaccion}' ";
+            $sql="CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,NULL,$idtransaccion,NULL,NULL,'C',null)";
+            //$sql= "SELECT COD_PEDIDO, DATOS_PAYPAL FROM TBL_PEDIDO  WHERE COD_TRANSACCION_PAYPAL = '{$idtransaccion}' ";
             $requestData= $this-> select($sql);
             if(!empty($requestData)){
                 $objData= json_decode($requestData['DATOS_PAYPAL']);

@@ -16,18 +16,18 @@ $('.gallery-lb').each(function() { // the containers for all your galleries
         mainClass: 'mfp-fade'
     });
 });
-$('.js-addwish-b2').on('click', function(e){
-    e.preventDefault();
+$(".js-addcart-detail").on("click", function (e) {
+  e.preventDefault();
 });
 
-$('.js-addwish-b2').each(function(){
-    var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-    $(this).on('click', function(){
-        swal.fire(nameProduct, "is added to wishlist !", "success");
 
-        $(this).addClass('js-addedwish-b2');
-        $(this).off('click');
-    });
+$('.js-addwish-b2').each(function(){
+	var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+	$(this).on('click', function(){
+		swal.fire(nameProduct, "¡Se agrego al carrito!", "success");
+		//$(this).addClass('js-addedwish-b2');
+		//$(this).off('click');
+	});
 });
 
 $('.js-addwish-detail').each(function(){
@@ -44,15 +44,21 @@ $('.js-addwish-detail').each(function(){
 /*---------------------------------------------*/
 
 $('.js-addcart-detail').each(function(){
-    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-    $(this).on('click', function(){
-        let id=this.getAttribute('id');
-        let cant= document.querySelector('#cant-product').value;
+	let nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+	let cant = 1;
+	$(this).on('click', function(){
+		let id = this.getAttribute('id');
+		if(document.querySelector('#cant-product')){
+			cant = document.querySelector('#cant-product').value;
+		}
+		if(this.getAttribute('pr')){
+			cant = this.getAttribute('pr');
+		}
 
-        if (isNaN(cant) || cant  < 1) {
-            swal.fire("","La cantidad debe se mayor o igual que 1","error");
-            return;
-        }
+		if(isNaN(cant) || cant < 1){
+			swal.fire ("","La cantidad debe ser mayor o igual que 1" , "error");
+			return;
+		} 
         let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 	    let ajaxUrl = base_url+'/Tienda/addCarrito'; 
 	    let formData = new FormData();
@@ -150,13 +156,13 @@ if (document.querySelector("#formRegister")) {
         let strEmail = document.querySelector('#txtEmailCliente').value;
         let intTelefono = document.querySelector('#txtTelefono').value;
         /* let intTipousuario = document.querySelector('#listRolid').value; */
-        let intNacionalidad = document.querySelector('#listNacionalidadCliente').value;
+       /*  let intNacionalidad = document.querySelector('#listNacionalidadCliente').value;
         let intGenero = document.querySelector('#listGenero').value;
         let intEstadoC = document.querySelector('#listEstadoC').value;
         let strFechaN = document.querySelector('#fechaNacimiento').value;
-        
+         */
 
-        if(strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == ''|| intNacionalidad == '' || intGenero == ''/* || intEstadoC == '' || strFechaN == ''|| strPassword == '' || intStatus == '' */)
+        if(strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '')
             {
                 swal.fire("Atención", "Todos los campos son obligatorios." , "error");
                 return false;
@@ -197,7 +203,7 @@ if (document.querySelector("#formRegister")) {
         }
     }
 };
-//Funcion para traer la nacionalidad 
+/* //Funcion para traer la nacionalidad 
 function fntNacionalidadCliente(){
     
     let ajaxUrl = base_url+'/Tienda/getSelectNacionalidadCliente';
@@ -246,7 +252,7 @@ function fnEstadoCCliente(){
         }
     }
 
-};
+}; */
 if(document.querySelector(".methodpago")){
 
 	let optmetodo = document.querySelectorAll(".methodpago");
@@ -454,4 +460,53 @@ if(document.querySelector("#btnComprar")){
 		}
 
 	},false);
+   
 }
+
+    if(document.querySelector("#frmSuscripcion")){
+        let frmSuscripcion = document.querySelector("#frmSuscripcion");
+        frmSuscripcion.addEventListener('submit',function(e) { 
+            e.preventDefault();
+    
+            let nombre = document.querySelector("#nombreSuscripcion").value;
+            let email = document.querySelector("#emailSuscripcion").value;
+           
+    
+            if(nombre == ""){
+                swal.fire("", "El nombre es obligatorio" ,"error");
+                return false;
+            }
+    
+            if(!fntEmailValidate(email)){
+                swal.fire("", "El email no es válido." ,"error");
+                return false;
+            }	
+            
+            divLoading.style.display = "flex";
+            let request = (window.XMLHttpRequest) ? 
+                        new XMLHttpRequest() : 
+                        new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url+'/Tienda/suscripcion';
+            let formData = new FormData(frmSuscripcion);
+            request.open("POST",ajaxUrl,true);
+            request.send(formData);
+            request.onreadystatechange = function(){
+                if(request.readyState != 4) return;
+                if(request.status == 200){
+                    let objData = JSON.parse(request.responseText);
+                    if(objData.status){
+                        swal.fire("", objData.msg , "success");
+                        document.querySelector("#frmSuscripcion").reset();
+                    }else{
+                        swal.fire("", objData.msg , "error");
+                    }
+                }
+                divLoading.style.display = "none";
+                return false;
+            
+            } 
+    
+        },false);
+    }
+
+

@@ -35,7 +35,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtTelefono">Teléfono<span class="required"> *</span></label>
-              <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
+              <input type="text" class="form-control valid validNumberTel" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
             </div>
             <div class="form-group col-md-6">
               <label for="txtEmail">Email<span class="required"> *</span></label>
@@ -57,7 +57,7 @@
             </div>
           </div>
           </div>
-          
+         
 
            <!-- /.Cierra card-body -->
 
@@ -122,8 +122,16 @@
               <td id="celFechaRegistro">Larry</td>
             </tr>
             <tr>
+              <td>Creado por:</td>
+              <td id="celCreadoPor">Larry</td>
+            </tr>
+            <tr>
               <td>Ult. Vez Modificado: </td>
               <td id="celDateModificado">Larry</td>
+            </tr>
+            <tr>
+              <td>Modificado por:</td>
+              <td id="celModPor">Larry</td>
             </tr>
             <tr>
               <td>Ult. Vez Login:</td>

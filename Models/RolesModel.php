@@ -15,11 +15,13 @@
         public function SelectRoles()
         {
 			$whereAdmin = "";
+			$idUser=$_SESSION['idUser'];
 			if($_SESSION['idUser'] != 1){
 				$whereAdmin = " and COD_ROL != 1 ";
 			}
 			// Extraer roles
-			$sql = "SELECT * FROM tbl_roles WHERE COD_STATUS != 0 and COD_ROL!=2".$whereAdmin;
+			//$sql = "SELECT * FROM tbl_roles WHERE COD_STATUS != 0".$whereAdmin;
+			$sql="CALL CRUD_ROLES(null, null, null,'V',$idUser)";
 			$request = $this->select_all($sql); 
 			return $request;
 
@@ -167,9 +169,6 @@
     }   
 
 	
-   
-
-
 ?>
     
    

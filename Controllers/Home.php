@@ -1,18 +1,35 @@
 <?php  
+    require_once("Models/Tcategoria.php");
+    require_once("Models/Tproducto.php");
     class Home extends Controllers{
+        use Tcategoria, Tproducto;
         public function __construct()
         {
+            session_start();
             parent::__construct();
-            
+            /* session_start();
+            if (empty($_SESSION['login'])) {
+                header('Location: '.base_url().'/login');
+                die();
+            } */
         }
         
         public function home()
         {
-            $data['page_id']=1;
-            $data['page_tag']="Estación Route 77";
-            $data['page_title']="BIENVENIDOS A ESTACIÓN ROUTE 77";
-            $data['page_name']="home";
-            $data['page_content']="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint labore pariatur voluptates consequuntur debitis et? Facere doloribus rerum distinctio explicabo itaque nihil minima commodi ab laudantium numquam, nam, dolor quisquam.";
+            /* dep($this->getCategoriasT(CAT_SLIDER));
+            exit; */
+            /* dep($this->selectProductos());
+            exit; */
+
+            $data['page_tag']=datosEmpresa()['NOMBRE_EMPRESA'];
+            $data['page_title']=datosEmpresa()['NOMBRE_EMPRESA'];
+            $data['page_name']=datosEmpresa()['NOMBRE_EMPRESA'];
+            $data['slider'] = $this->getCategoriasT(datosEmpresa()['CATEGORIAS_SLIDER']);
+            $data['banner'] = $this->getCategoriasT(datosEmpresa()['CATEGORIAS_BANNER']);
+            $data['categorias'] = $this->getCategorias();
+            
+            $data['productos'] = $this->getProductosT();
+             /* dep($data); exit; */ 
             $this->views->getView($this,"home",$data);
         }
         
@@ -40,3 +57,4 @@
     }
 
 ?>
+

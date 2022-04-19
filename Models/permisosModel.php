@@ -71,7 +71,11 @@
 					INNER JOIN modulo m
 					ON p.moduloid = m.idmodulo
 					WHERE p.rolid = $this->intRolid"; */
-			$sql="SELECT p.COD_ROL, p.COD_MODULO, m.NOMBRE as modulo, p.r, p.w, p.u, p.d FROM tbl_permisos p INNER JOIN tbl_modulo m ON p.COD_MODULO = m.COD_MODULO WHERE p.COD_ROL = $this->intRolid";
+			/* $sql="SELECT p.COD_ROL, p.COD_MODULO, m.NOMBRE as modulo, p.r, p.w, p.u, p.d FROM tbl_permisos p INNER JOIN tbl_modulo m ON p.COD_MODULO = m.COD_MODULO WHERE p.COD_ROL = $this->intRolid";
+			 */
+			//VALIDACIÓN
+			$sql="CALL CRUD_PERMISOS(null,null,null,null,null,null,'A',$this->intRolid)";
+			
 			$request = $this->select_all($sql);
 			$arrPermisos = array();
 

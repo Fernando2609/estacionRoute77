@@ -280,7 +280,21 @@ require_once("Libraries/Core/Mysql.php");
         }
         return $request;
     }
-
+	public function setSuscripcion(string $nombre, string $email){
+		$this->con = new Mysql();
+		$sql = 	"SELECT * FROM tbl_suscripciones WHERE EMAIL = '{$email}'";
+		$request = $this->con->select_all($sql);
+		if(empty($request)){
+			$query_insert  = "INSERT INTO tbl_suscripciones(NOMBRE,EMAIL) 
+							  VALUES(?,?)";
+			$arrData = array($nombre,$email);
+			$request_insert = $this->con->insert($query_insert,$arrData);
+			$return = $request_insert;
+		}else{
+			$return = false;
+		}
+		return $return;
+	}
 
 
 

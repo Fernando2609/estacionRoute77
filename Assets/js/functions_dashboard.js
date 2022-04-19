@@ -9,7 +9,7 @@ $('.date-picker').datepicker( {
     changeYear: true,
     showButtonPanel: true,
     dateFormat: 'MM yy',
-    showDays: false,
+    showDays: true,
     onClose: function(dateText, inst) {
         $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
     }
@@ -41,9 +41,7 @@ function fntSearchPagos(){
         }
     }
 }
-
-
-function fntSearchVmes() {
+function fntSearchVmes(){
     let fecha = document.querySelector(".ventasMes").value;
     if (fecha == ""){ 
         swal.fire("", "Seleccione mes y año" , "error");

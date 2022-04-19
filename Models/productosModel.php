@@ -37,61 +37,62 @@
 					 
 			return $request;
 		}	
-        public function insertProducto(string $nombre, string $descripcion, int $codigo, int $categoriaid, string $precio, int $stock,string $ruta, int $status, int $user){
-			
-			$this->strNombre =  $nombre;
-			$this->strDescripcion = $descripcion;
-			$this->intCodigo = $codigo;
-			$this->intCategoriaId = $categoriaid;
-			$this->strPrecio = $precio;
-			$this->intStock = $stock;
-			$this->strRuta = $ruta;
-			$this->intStatus = $status;
-			$this->intUser = $user;
-			
-			$return = 0;
-			//validación
-			/* $sql = "SELECT * FROM tbl_productos WHERE COD_BARRA = '{$this->intCodigo}'or NOMBRE = '{$this->strNombre}'";
-			 */
-			$sql= "CALL CRUD_PRODUCTOS(null,'{$this->intCodigo}','{$this->strNombre}',null,null,null,null,null,null,'A',null)";
-			/* dep($sql);
-			exit; */
-			$request = $this->select_all($sql);
-			if(empty($request))
-			{
-			/* 	$query_insert  = "INSERT INTO producto(categoriaid,
-														codigo,
-														nombre,
-														descripcion,
-														precio,
-														stock,
-														ruta,
-														status) 
-								  VALUES(?,?,?,?,?,?,?,?)"; */
-				$query_insert = "CALL CRUD_PRODUCTOS(?,?,?,?,?,?,?,?,?,?,?,?);";		  
-	        	$arrData = array($this->intCategoriaId,
-        						$this->intCodigo,
-        						$this->strNombre,
-        						$this->strDescripcion,
-        						$this->strPrecio,
-								$this->strRuta,
-								$this->intUser,
-								0,
-        						$this->intStatus,
-        						 $this->intStock, 
-								'I',
-								"NULL" );
-	        	$request_insert = $this->insert($query_insert,$arrData);
-				$sql = "SELECT Last_insert_id()";
-				$request_id = $this-> select($sql);
+
+			public function insertProducto(string $nombre, string $descripcion, int $codigo, int $categoriaid, string $precio, int $stock,string $ruta, int $status, int $user){
 				
-	        	$return = $request_id["Last_insert_id()"];
+				$this->strNombre =  $nombre;
+				$this->strDescripcion = $descripcion;
+				$this->intCodigo = $codigo;
+				$this->intCategoriaId = $categoriaid;
+				$this->strPrecio = $precio;
+				$this->intStock = $stock;
+				$this->strRuta = $ruta;
+				$this->intStatus = $status;
+				$this->intUser = $user;
 				
-			}else{ 
-				$return = false;
+				$return = 0;
+				//validación
+				/* $sql = "SELECT * FROM tbl_productos WHERE COD_BARRA = '{$this->intCodigo}'or NOMBRE = '{$this->strNombre}'";
+				*/
+				$sql= "CALL CRUD_PRODUCTOS(null,'{$this->intCodigo}','{$this->strNombre}',null,null,null,null,null,null,null,'A',null)";
+				/* dep($sql);
+				exit; */
+				$request = $this->select_all($sql);
+				if(empty($request))
+				{
+				/* 	$query_insert  = "INSERT INTO producto(categoriaid,
+															codigo,
+															nombre,
+															descripcion,
+															precio,
+															stock,
+															ruta,
+															status) 
+									VALUES(?,?,?,?,?,?,?,?)"; */
+					$query_insert = "CALL CRUD_PRODUCTOS(?,?,?,?,?,?,?,?,?,?,?,?);";		  
+					$arrData = array($this->intCategoriaId,
+									$this->intCodigo,
+									$this->strNombre,
+									$this->strDescripcion,
+									$this->strPrecio,
+									$this->strRuta,
+									$this->intUser,
+									0,
+									$this->intStatus,
+									$this->intStock, 
+									'I',
+									"NULL" );
+					$request_insert = $this->insert($query_insert,$arrData);
+					$sql = "SELECT Last_insert_id()";
+					$request_id = $this-> select($sql);
+					
+					$return = $request_id["Last_insert_id()"];
+					
+				}else{ 
+					$return = false;
+				}
+				return $return;
 			}
-	        return $return;
-		}
 		public function updateProducto(int $idproducto, string $nombre, string $descripcion, int $codigo, int $categoriaid, string $precio, int $stock, string $ruta, int $status, int $user){
 			$this->intIdProducto = $idproducto;
 			$this->strNombre = $nombre;
@@ -107,9 +108,8 @@
 			//VALIDACIÓN
 			/* $sql = "SELECT * FROM TBL_PRODUCTOS WHERE COD_BARRA = '{$this->intCodigo}' AND COD_PRODUCTO != $this->intIdProducto or NOMBRE = '{$this->strNombre}' AND COD_PRODUCTO != $this->intIdProducto";
 			 */
-			$sql= "CALL CRUD_PRODUCTOS(null,'{$this->intCodigo}','{$this->strNombre}',null,null,null,null,null,null,'B',$this->intIdProducto)";
-		     /* dep($sql);
-			 exit; */
+			$sql= "CALL CRUD_PRODUCTOS(null,'{$this->intCodigo}','{$this->strNombre}',null,null,null,null,null,null,null,'B',$this->intIdProducto)";
+
 			$request = $this->select_all($sql);
 			if(empty($request))
 			{
@@ -208,7 +208,7 @@
 			$this->intIdProducto = $idproducto;
 			/* $sql = "UPDATE TBL_PRODUCTOS SET status = ? WHERE COD_PRODUCTO = $this->intIdProducto ";
 			$arrData = array(0); */
-			$sql ="call CRUD_PRODUCTOS(null,null,null,null,null,null,null,null,null,?,{$this->intIdProducto})";
+			$sql ="call CRUD_PRODUCTOS(null,null,null,null,null,null,null,null,null,null,?,{$this->intIdProducto})";
 			$arrData = array('D');
 			
 			$request = $this->update($sql,$arrData);

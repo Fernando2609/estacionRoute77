@@ -43,6 +43,22 @@
                             $this->model->sessionUpdate($_SESSION['idUser']);
 							$arrData = $this->model->sessionLogin($_SESSION['idUser']);
                             sessionUser($_SESSION['idUser']);
+
+                            $arrData = $this->model->selectProductos();
+               
+                            $arrNotificaciones=array();
+                            for ($i=0; $i < count($arrData); $i++) { 
+                            $arrinfoProducto=array(
+                            'nombre'=>$arrData[$i]['NOMBRE'],
+                            'categoria'=>$arrData[$i]['CATEGORÍA'],
+                            'stock'=>$arrData[$i]['STOCK'],
+                            'cant_minima'=>$arrData[$i]['CANT_MINIMA']
+                            );
+                                array_push($arrNotificaciones,$arrinfoProducto);
+                            }
+                         $_SESSION['notificaciones']=$arrNotificaciones;
+
+                         $htmlNotifi = getFile('Template/Modals/notificaciones',$_SESSION['notificaciones']);
                             
 							$arrResponse = array('status' => true, 'msg' => 'ok'); 
 						}else{

@@ -44,6 +44,7 @@
                     <thead>
                       <tr>
                       <th>COD</th>
+                      <th>Cod Barra</th>
                         <th>Producto</th>
                         <th>Stock</th>
                         <th>Ventas</th>

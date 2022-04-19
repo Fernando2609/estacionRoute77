@@ -289,20 +289,20 @@ document.addEventListener('DOMContentLoaded',function () {
         let formPerfil=document.querySelector("#formPerfil");
         formPerfil.onsubmit=function(e){
             e.preventDefault();
-            let strIdentificacion = document.querySelector('#txtIdentificacion').value;
+           // let strIdentificacion = document.querySelector('#txtIdentificacion').value;
             let strNombre = document.querySelector('#txtNombre').value;
             let strApellido = document.querySelector('#txtApellido').value;
   
             let intTelefono = document.querySelector('#txtTelefono').value;
            
            
-            let intGenero = document.querySelector('#listGenero').value;
+            //let intGenero = document.querySelector('#listGenero').value;
          
             let strPassword = document.querySelector('#txtPassword').value;
             let strPasswordConfirm = document.querySelector('#txtPasswordConfirm').value;
            
     
-            if(strIdentificacion == '' || strApellido == '' || strNombre == '' ||  intTelefono == '')
+            if(strApellido == '' || strNombre == '' ||  intTelefono == '')
                 {
                     swal.fire("Atención", "Todos los campos son obligatorios." , "error");
                     return false;
@@ -325,9 +325,6 @@ document.addEventListener('DOMContentLoaded',function () {
                     return false;
                 }
             }
-            
-            
-
 
             divLoading.style.display="flex";   
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -413,6 +410,7 @@ function fntNacionalidadUsuario(){
     }
 
 } */
+ if (document.querySelector("#listGenero")) {
 //Funcion para traer el genero
 function fntGeneroUsuario(){
   
@@ -428,7 +426,7 @@ function fntGeneroUsuario(){
         }
     }
 
-}
+}}
 /* //Funcion para traer el Estado Civil
 function fnEstadoCUsuario(){
   
@@ -476,6 +474,14 @@ function fntViewUsuario(idpersona){
             console.log(objData);
             if(objData.status)
             {
+              let CREADO_POR =
+                objData.data.CREADO_POR == null
+                  ? "Registro en Tienda"
+                  : objData.data.CREADO_POR;
+              let MODIFICADO_POR =
+                objData.data.MODIFICADO_POR == null
+                  ? "Sin Modificar"
+                  : objData.data.MODIFICADO_POR;
                let estadoUsuario = objData.data.COD_STATUS == 1 ? 
                 '<span class="badge badge-success">Activo</span>' : 
                 '<span class="badge badge-danger">Inactivo</span>';
@@ -491,7 +497,9 @@ function fntViewUsuario(idpersona){
                 document.querySelector("#celSucursal").innerHTML = objData.data.SUCURSAL;
                 document.querySelector("#celEstado").innerHTML = estadoUsuario;
                 document.querySelector("#celFechaRegistro").innerHTML = objData.data.FECHA_CREACION;
-                document.querySelector("#celDateModificado").innerHTML = objData.data.FECHA_MODIFICACION; 
+                document.querySelector("#celCreadoPor").innerHTML = objData.data.CREADO_POR;
+                document.querySelector("#celDateModificado").innerHTML = objData.data.FECHA_MODIFICACION;
+                document.querySelector("#celModPor").innerHTML = objData.data.MODIFICADO_POR; 
                 document.querySelector("#celDateLogin").innerHTML = objData.data.DATE_LOGIN;  
                 $('#modalViewUser').modal('show');
             }else{

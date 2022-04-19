@@ -7,7 +7,15 @@
            parent::__construct();
            
         }
+        public function selectProductos(){
+			
+					$sql= 'call CRUD_PRODUCTOS(null,null,null,null,null,null,null,null,null,null,"H",null)';
+					$request = $this->select_all($sql);
 
+
+					 
+			return $request;
+		}	
         public function cantUsuarios(){
             $sql = "SELECT COUNT(*) as total from tbl_usuarios u
             INNER JOIN tbl_personas p on p.COD_PERSONA=u.COD_PERSONA

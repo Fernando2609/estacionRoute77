@@ -25,7 +25,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtIdentificacion">DNI</label>
-              <input type="text" class="form-control valid validNumber" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return controlTag(event);">
+              <input type="text" class="form-control valid validNumberDni" id="txtIdentificacion" name="txtIdentificacion" required="" onkeypress="return controlTag(event);">
             </div>
             <div class="form-group col-md-6">
               <label for="txtEmail">Email</label>
@@ -45,7 +45,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtTelefono">Teléfono</label>
-              <input type="text" class="form-control valid validNumber" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
+              <input type="text" class="form-control valid validNumberTel" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
             </div>
             <div class="form-group col-md-6">
               <label for="listRolid">Tipo usuario</label>
@@ -162,8 +162,16 @@
               <td id="celFechaRegistro">Larry</td>
             </tr>
             <tr>
+              <td>Creado Por:</td>
+              <td id="celCreadoPor">Larry</td>
+            </tr>
+            <tr>
               <td>Ult. Vez Modificado: </td>
               <td id="celDateModificado">Larry</td>
+            </tr>
+            <tr>
+              <td>Modificado Por:</td>
+              <td id="celModPor">Larry</td>
             </tr>
             <tr>
               <td>Ult. Vez Login:</td>
