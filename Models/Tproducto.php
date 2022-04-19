@@ -106,7 +106,7 @@ trait Tproducto{
                    FROM tbl_productos p 
                    INNER JOIN tbl_categoria c
                    ON p.COD_CATEGORIA = c.COD_CATEGORIA
-                   WHERE p.COD_STATUS != 0 AND p.COD_CATEGORIA = $this->intIdcategoria AND c.RUTA = '{$this->strRuta}'
+                   WHERE p.COD_STATUS = 1 AND p.COD_CATEGORIA = $this->intIdcategoria AND c.RUTA = '{$this->strRuta}'
                    ORDER BY p.COD_PRODUCTO DESC ".$where;
                    $request = $this->con->select_all($sql);
             if(count($request) > 0){

@@ -565,18 +565,20 @@ transform: scale(1.5) translate(-5px, 5px);
   align-items: center;
 
    }
+   .ui-datepicker-calendar  {
+    display: none;
+       
+  }
 
-   /* .ui-datepicker-calendar  {
-     display: none;
-        
-   } */
-
-   .inputFecha{
-    border: 1px solid #CCC;
-    padding: 4px;
-    border-radius: 5px;
-    margin-right: 5px;
-   }
-   .dt-datetime-label{
-     color:black
-   }
+  .inputFecha{
+   border: 1px solid #CCC;
+   padding: 4px;
+   border-radius: 5px;
+   margin-right: 5px;
+  }
+  .dt-datetime-label{
+    color:black
+  }
+  .dropdown-menu-lg {
+    min-width: 370px;
+  }

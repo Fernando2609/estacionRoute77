@@ -94,9 +94,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <p> La gracia de nuestro Señor Jesucristo sea con todos vosotros. Amén.</p>
+        <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit minima culpa dolores quaerat aut accusamus placeat libero distinctio veniam saepe nam voluptatem voluptates, nobis rem enim voluptatum animi sit necessitatibus?</p>
         <br>
-        <p> Apocalipsis 22:21</p>
+        <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis delectus minus perspiciatis, illo unde voluptas consectetur odio ab mollitia, numquam sed veritatis quis recusandae ex reprehenderit maxime suscipit provident aspernatur.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

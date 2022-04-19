@@ -225,27 +225,27 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 [ Top bar ]*/
 .top-bar {
   height: 40px;
-  background-color: #222;
+  background-color: #81B031;
 }
 
 /*---------------------------------------------*/
 .left-top-bar {
   font-family: Poppins-Regular;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.8;
-  color: #b2b2b2;
+  color: whitesmoke;
 }
 
 
 /*---------------------------------------------*/
 .right-top-bar a {
   font-family: Poppins-Regular;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.8;
 
   height: 100%;
-  color: #b2b2b2;
-  border-right: 1px solid rgba(255,255,255,0.3);
+  color: whitesmoke;
+  border-right: 1px solid rgb(255, 255, 255);
 }
 
 .right-top-bar a:first-child {
@@ -259,10 +259,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .topbar-mobile li {
-  padding: 8px 20px;
+  padding: 8px 9px;
   border-top: 1px solid rgba(255,255,255,0.05);
   background-color: #222;
 }
+
 
 
 
@@ -3401,4 +3402,13 @@ input.num-product::-webkit-inner-spin-button {
     padding: 20px;
   }
 
+}
+.main-menu > li.active-menu > a{
+  color: #055488;
+}
+.main-menu > li:hover > a{
+  color: #055488;
+}
+.container ul, .container ol{
+  margin-bottom: 8px;
 }
