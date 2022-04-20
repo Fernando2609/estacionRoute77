@@ -97,7 +97,7 @@
 		
 		//validación update
 		 /* $sql = "SELECT * FROM TBL_PERSONAS p
-		LEFT JOIN tbl_cliente c on p.COD_PERSONA=c.COD_PERSONA
+		LEFT JOIN TBL_CLIENTE c on p.COD_PERSONA=c.COD_PERSONA
 		WHERE p.EMAIL = '{$this->strEmail}' AND p.COD_PERSONA !=$this->intIdUsuario";  */
 		$sql="CALL CRUD_CLIENTE(null,null,'{$this->strEmail}',null,null,null,null,null,null,'B',$this->intIdUsuario)";
 		/* dep($sql);

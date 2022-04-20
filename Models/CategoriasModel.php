@@ -25,7 +25,7 @@
 
 			//validación 
 
-			/* $sql = "SELECT * FROM tbl_categoria WHERE nombre = '{$this->strCategoria}' "; */
+			/* $sql = "SELECT * FROM TBL_CATEGORIA WHERE nombre = '{$this->strCategoria}' "; */
 			$sql="CALL CRUD_CATEGORIA(null,null,'{$this->strCategoria}',null,null,null,null,'A',null)";
 			$request = $this->select_all($sql);
             /* dep($sql);
@@ -94,7 +94,7 @@
 			$this->intUser = $user;
 			
 			//Validación update
-			/* $sql = "SELECT * FROM tbl_categoria WHERE nombre = '{$this->strCategoria}' AND COD_CATEGORIA != $this->intIdcategoria";
+			/* $sql = "SELECT * FROM TBL_CATEGORIA WHERE nombre = '{$this->strCategoria}' AND COD_CATEGORIA != $this->intIdcategoria";
 			 */
 			$sql="CALL CRUD_CATEGORIA(null,null,'{$this->strCategoria}',null,null,null,null,'B',$this->intIdcategoria)";
 			/* dep($sql);
@@ -133,7 +133,7 @@
 		{
 			$this->intIdcategoria = $idcategoria;
 			$sql="CALL CRUD_CATEGORIA(null,null,null,null,null,null,null,'F','$this->intIdcategoria')";
-			//$sql = "SELECT * FROM tbl_productos WHERE COD_CATEGORIA = $this->intIdcategoria";
+			//$sql = "SELECT * FROM TBL_PRODUCTOS WHERE COD_CATEGORIA = $this->intIdcategoria";
 			$request = $this->select_all($sql);
 			if(empty($request))
 			{
@@ -160,7 +160,7 @@
 
 		public function getCategoriasFooter(){
 			$sql = "SELECT COD_CATEGORIA, NOMBRE, DESCRIPCION, PORTADA, RUTA
-					FROM tbl_categoria WHERE  COD_STATUS = 1 AND COD_CATEGORIA IN (".CAT_FOOTER.")";
+					FROM TBL_CATEGORIA WHERE  COD_STATUS = 1 AND COD_CATEGORIA IN (".CAT_FOOTER.")";
 			$request = $this->select_all($sql);
 			if(count($request) > 0){
 				for ($c=0; $c < count($request) ; $c++) { 

@@ -20,7 +20,7 @@ class redesSocialesModel extends Mysql{
 			$return = 0;
             //validación
 
-			/*  $sql = "SELECT * from tbl_redes_sociales where ENLACE ='$this->strEnlace' or DESCRIPCION='$this->strDescripcion'";
+			/*  $sql = "SELECT * from TBL_REDES_SOCIALES where ENLACE ='$this->strEnlace' or DESCRIPCION='$this->strDescripcion'";
            */
             $sql="CALL CRUD_REDES_SOCIALES(null,'$this->strDescripcion','$this->strEnlace','A',null)";
 			/* dep($sql);
@@ -85,12 +85,12 @@ class redesSocialesModel extends Mysql{
         $this->strEnlace = $enlace;
 
 
-        //$sql = "SELECT * FROM tbl_personas WHERE (email = '{$this->strEmail}' AND COD_PERSONA != $this->intIdUsuario)";
+        //$sql = "SELECT * FROM TBL_PERSONAS WHERE (email = '{$this->strEmail}' AND COD_PERSONA != $this->intIdUsuario)";
         //Areglar despues
         //OR (DNI = '{$this->strIdentificacion}' AND COD_PERSONA != $this->intIdUsuario)
 
-        /* $sql = "SELECT * FROM tbl_personas p
-			LEFT JOIN tbl_empresa u on p.COD_PERSONA=u.COD_PERSONA
+        /* $sql = "SELECT * FROM TBL_PERSONAS p
+			LEFT JOIN TBL_EMPRESA u on p.COD_PERSONA=u.COD_PERSONA
 			WHERE p.EMAIL = '{$this->strEmail}' AND p.COD_PERSONA !=$this->intIdUsuario OR u.DNI = '{$this->strIdentificacion}' AND p.COD_PERSONA != $this->intIdUsuario";
 
 		$request = $this->select_all($sql); */

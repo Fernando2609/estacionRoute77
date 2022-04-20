@@ -1,5 +1,5 @@
 <?php
-class telEmpresaModel extends Mysql{  
+class TelEmpresaModel extends Mysql{  
 
 		private $intIdUsuario;
 		private $intTelefono;
@@ -13,7 +13,7 @@ class telEmpresaModel extends Mysql{
 			$this->intTelefono = $telEmpresa;
 			$return = 0;
             //VALIDAR
-		    /*  $sql = "SELECT * from tbl_telefono_empresa where TELEFONO=$this->intTelefono"; */
+		    /*  $sql = "SELECT * from TBL_TELEFONO_EMPRESA where TELEFONO=$this->intTelefono"; */
 			$sql= "CALL CRUD_TELEFONO_EMPRESA(null,$this->intTelefono,'A',null)";
 			 $request = $this->select_all($sql); 
 
@@ -61,7 +61,7 @@ class telEmpresaModel extends Mysql{
 		
 		//VALIDAR
 
-		/*  $sql = "SELECT * from tbl_telefono_empresa where TELEFONO =$this->intTelefono and COD_TELEFONO_EMPRESA!=$this->intIdUsuario";
+		/*  $sql = "SELECT * from TBL_TELEFONO_EMPRESA where TELEFONO =$this->intTelefono and COD_TELEFONO_EMPRESA!=$this->intIdUsuario";
 		 */
 		$sql = "CALL CRUD_TELEFONO_EMPRESA(null,$this->intTelefono,'B',$this->intIdUsuario)";
 		/* dep($sql);

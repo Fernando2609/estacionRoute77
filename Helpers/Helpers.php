@@ -155,7 +155,7 @@
     }
 
     function getPermisos(int $idmodulo){
-        require_once ("Models/permisosModel.php");
+        require_once ("Models/PermisosModel.php");
         $objPermisos = new PermisosModel();
         //$idrol = $_SESSION['userData']['Id_Rol'];
         $idrol = $_SESSION['userData']['COD_ROL'];

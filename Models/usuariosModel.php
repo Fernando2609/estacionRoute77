@@ -126,8 +126,8 @@
 
 			//Validación
 
-			/* $sql="SELECT * FROM tbl_personas p
-			LEFT JOIN tbl_usuarios u on p.COD_PERSONA=u.COD_PERSONA
+			/* $sql="SELECT * FROM TBL_PERSONAS p
+			LEFT JOIN TBL_USUARIOS u on p.COD_PERSONA=u.COD_PERSONA
 			WHERE p.EMAIL = '{$this->strEmail}' AND p.COD_PERSONA !=$this->intIdUsuario OR u.DNI = '{$this->strIdentificacion}' AND p.COD_PERSONA != $this->intIdUsuario";
  */         
             //Validación

@@ -33,7 +33,7 @@ trait Tproducto{
                     for ($c=0; $c < count($request) ; $c++) { 
                         $intIdProducto = $request[$c]['COD_PRODUCTO'];
                         /* $sqlImg = "SELECT IMG
-                                FROM tbl_img_producto
+                                FROM TBL_IMG_PRODUCTO
                                 WHERE COD_PRODUCTO = $intIdProducto"; */
                         $sqlImg =  "CALL CRUD_TPRODUCTO(null,null,null,null,'H',$intIdProducto)";    
                         $arrImg = $this->con->select_all($sqlImg);
@@ -58,7 +58,7 @@ trait Tproducto{
                     for ($c=0; $c < count($request) ; $c++) { 
                         $intIdProducto = $request[$c]['COD_PRODUCTO'];
                         $sqlImg = "SELECT IMG
-                                FROM tbl_img_producto
+                                FROM TBL_IMG_PRODUCTO
                                 WHERE COD_PRODUCTO = $intIdProducto";
                         $arrImg = $this->con->select_all($sqlImg);
                         if(count($arrImg) > 0){
@@ -83,8 +83,8 @@ trait Tproducto{
         $this->con = new Mysql();
 
         $sql_cat="CALL CRUD_TPRODUCTO(null,null,null,null,'G','{$this->intIdcategoria}')";
-        //$sql_cat = "SELECT COD_CATEGORIA, NOMBRE FROM tbl_CATEGORIA WHERE COD_CATEGORIA = '{$this->intIdcategoria}'";
-        /* $sql_cat = "SELECT COD_CATEGORIA, NOMBRE, RUTA FROM tbl_CATEGORIA WHERE COD_CATEGORIA = '{$this->intIdcategoria}'"; */
+        //$sql_cat = "SELECT COD_CATEGORIA, NOMBRE FROM TBL_CATEGORIA WHERE COD_CATEGORIA = '{$this->intIdcategoria}'";
+        /* $sql_cat = "SELECT COD_CATEGORIA, NOMBRE, RUTA FROM TBL_CATEGORIA WHERE COD_CATEGORIA = '{$this->intIdcategoria}'"; */
 
         $request = $this->con->select($sql_cat);
            // $sql="CALL CRUD_TPRODUCTO({$this->intIdcategoria},'{$this->strRuta}',null,null,'C',null)";
@@ -103,8 +103,8 @@ trait Tproducto{
                            p.PRECIO,
                            p.RUTA
                         
-                   FROM tbl_productos p 
-                   INNER JOIN tbl_categoria c
+                   FROM TBL_PRODUCTOS p 
+                   INNER JOIN TBL_CATEGORIA c
                    ON p.COD_CATEGORIA = c.COD_CATEGORIA
                    WHERE p.COD_STATUS = 1 AND p.COD_CATEGORIA = $this->intIdcategoria AND c.RUTA = '{$this->strRuta}'
                    ORDER BY p.COD_PRODUCTO DESC ".$where;
@@ -115,7 +115,7 @@ trait Tproducto{
                     $intIdProducto = $request[$c]['COD_PRODUCTO'];
                     $sqlImg = "CALL CRUD_TPRODUCTO(null,null,null,null,'H',$intIdProducto)"; 
                     /* $sqlImg = "SELECT IMG
-                            FROM tbl_img_producto
+                            FROM TBL_IMG_PRODUCTO
                             WHERE COD_PRODUCTO = $intIdProducto"; */
                     $arrImg = $this->con->select_all($sqlImg);
                     if(count($arrImg) > 0){
@@ -212,13 +212,13 @@ trait Tproducto{
                     p.PRECIO,
                     i.STOCK,
                     p.RUTA
-                        FROM tbl_productos p 
-                        INNER JOIN tbl_categoria c ON p.COD_CATEGORIA = c.COD_CATEGORIA
-                        INNER JOIN tbl_inventario i ON p.COD_PRODUCTO = i.COD_PRODUCTO
+                        FROM TBL_PRODUCTOS p 
+                        INNER JOIN TBL_CATEGORIA c ON p.COD_CATEGORIA = c.COD_CATEGORIA
+                        INNER JOIN TBL_INVENTARIO i ON p.COD_PRODUCTO = i.COD_PRODUCTO
                         WHERE p.COD_STATUS != 0  AND p.COD_CATEGORIA = $this->intIdCategoria
                         ORDER BY $this->option LIMIT $this->cant"; */
 
-            $sql="CALL CRUD_PRODUCTOSTIENDA($this->intIdCategoria, $this->cant, '$option', 'V')";
+            //$sql="CALL CRUD_PRODUCTOSTIENDA($this->intIdCategoria, $this->cant, '$option', 'V')";
            
 
             $request = $this->con->select_all($sql);
@@ -292,7 +292,7 @@ trait Tproducto{
         }
          
 		$this->con = new Mysql();
-		$sql = "SELECT COUNT(*) as total_registro FROM tbl_productos WHERE COD_STATUS = 1 ".$where;
+		$sql = "SELECT COUNT(*) as total_registro FROM TBL_PRODUCTOS WHERE COD_STATUS = 1 ".$where;
 		$result_register = $this->con->select($sql);
 		$total_registro = $result_register;
 		return $total_registro;
@@ -301,7 +301,7 @@ trait Tproducto{
      
 	public function cantProdSearch($busqueda){
 		$this->con = new Mysql();
-		$sql = "SELECT COUNT(*) as total_registro FROM tbl_productos WHERE NOMBRE LIKE '%$busqueda%' AND COD_STATUS = 1 ";
+		$sql = "SELECT COUNT(*) as total_registro FROM TBL_PRODUCTOS WHERE NOMBRE LIKE '%$busqueda%' AND COD_STATUS = 1 ";
 		$result_register = $this->con->select($sql);
 		$total_registro = $result_register;
 		return $total_registro;
@@ -319,8 +319,8 @@ trait Tproducto{
 						p.PRECIO,
 						p.RUTA
 					
-				FROM tbl_productos p 
-				INNER JOIN tbl_categoria c
+				FROM TBL_PRODUCTOS p 
+				INNER JOIN TBL_CATEGORIA c
 				ON p.COD_CATEGORIA = c.COD_CATEGORIA
 				WHERE p.COD_STATUS = 1 AND p.NOMBRE LIKE '%$busqueda%' ORDER BY p.COD_PRODUCTO DESC LIMIT $desde,$porpagina";
 			

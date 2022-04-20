@@ -212,11 +212,14 @@ document.addEventListener('DOMContentLoaded',function () {
                     return false;
                 }
             }
-             //longitud de la contraseña   
+             if(strPassword != ""){
+                //longitud de la contraseña   
                 if(strPassword.length < 6 ){
                     swal.fire("Atención", "La contraseña debe tener un mínimo de 6 caracteres." , "info");
                     return false;
                 }
+             }
+            
             divLoading.style.display="flex";
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             let ajaxUrl = base_url+'/Clientes/setCliente'; 

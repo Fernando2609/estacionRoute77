@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       
       ajax: {
-        url: " " + base_url + "/telEmpresa/gettelEmpresas",
+        url: " " + base_url + "/TelEmpresa/gettelEmpresas",
         dataSrc: "",
       },
 
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
           download: "open",
           //orientation: "landscape",
           pageSize: "letter",
-          title: "Reporte de Telefono_Empresa",
+          title: "Reporte de Telefono Empresa",
           customize: function (doc) {
             doc.content[1].margin = [0, 40, 120, 20];
             doc.content[0].margin = [0, 20, 0, 0];
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             divLoading.style.display="flex";
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = base_url+'/telEmpresa/settelEmpresa'; 
+            let ajaxUrl = base_url+'/TelEmpresa/settelEmpresa'; 
             let formData = new FormData(formtelEmpresa);
             request.open("POST",ajaxUrl,true);
             request.send(formData);
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function fntViewInfo(idpersona){
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'/telEmpresa/gettelEmpresa/'+idpersona;
+    let ajaxUrl = base_url+'/TelEmpresa/gettelEmpresa/'+idpersona;
     request.open("GET",ajaxUrl,true);
     request.send();
     $('#modalViewtelEmpresa').modal('show');
@@ -294,7 +294,7 @@ function fntEditInfo(element,idUsuario){
     document.querySelector('#btnActionForm').classList.replace("btn-success", "btn-warning");
     document.querySelector('#btnText').innerHTML ="Actualizar";
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'/telEmpresa/gettelEmpresa/'+idUsuario;
+    let ajaxUrl = base_url+'/TelEmpresa/gettelEmpresa/'+idUsuario;
     request.open("GET",ajaxUrl,true);
     request.send();
     request.onreadystatechange = function(){
@@ -334,7 +334,7 @@ function fntDelInfo(idUsuario){
     }).then((result) => {
         if (result.isConfirmed) {
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = base_url + '/telEmpresa/deltelEmpresa/';
+            let ajaxUrl = base_url + '/TelEmpresa/deltelEmpresa/';
             let strData = "idUsuario=" + idUsuario;
             request.open("POST", ajaxUrl, true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

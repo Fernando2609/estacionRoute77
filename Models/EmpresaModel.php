@@ -106,12 +106,12 @@ class EmpresaModel extends Mysql{
 		$this->strCatBanner = $strCatBanner;
 
 
-		//$sql = "SELECT * FROM tbl_personas WHERE (email = '{$this->strEmail}' AND COD_PERSONA != $this->intIdUsuario)";
+		//$sql = "SELECT * FROM TBL_PERSONAS WHERE (email = '{$this->strEmail}' AND COD_PERSONA != $this->intIdUsuario)";
 		//Areglar despues
 		//OR (DNI = '{$this->strIdentificacion}' AND COD_PERSONA != $this->intIdUsuario)
 
-		/* $sql = "SELECT * FROM tbl_personas p
-			LEFT JOIN tbl_empresa u on p.COD_PERSONA=u.COD_PERSONA
+		/* $sql = "SELECT * FROM TBL_PERSONAS p
+			LEFT JOIN TBL_EMPRESA u on p.COD_PERSONA=u.COD_PERSONA
 			WHERE p.EMAIL = '{$this->strEmail}' AND p.COD_PERSONA !=$this->intIdUsuario OR u.DNI = '{$this->strIdentificacion}' AND p.COD_PERSONA != $this->intIdUsuario";
 
 		$request = $this->select_all($sql); */

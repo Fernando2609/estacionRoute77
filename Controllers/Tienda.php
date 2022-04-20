@@ -649,7 +649,8 @@
 										'email' => EMAIL_SUSCRIPCION,
 										'nombreSuscriptor' => $nombre,
 										'emailSuscriptor' => $email );
-					// sendEmail($dataUsuario,"email_suscripcion");
+					sendEmail($dataUsuario,"email_suscripcion");
+                   
 				}else{
 					$arrResponse = array('status' => false, 'msg' => "El email ya fue registrado.");
 				}

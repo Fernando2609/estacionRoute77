@@ -33,8 +33,8 @@ class ProveedoresModel extends Mysql{
 
 			$return = 0;
 			//validación
-			/* $sql="SELECT * FROM tbl_personas p
-			left join tbl_proveedores pr on p.COD_PERSONA=pr.COD_PERSONA
+			/* $sql="SELECT * FROM TBL_PERSONAS p
+			left join TBL_PROVEEDORES pr on p.COD_PERSONA=pr.COD_PERSONA
 			WHERE p.email =  '{$this->strEmail}' or pr.RTN = '{$this->strRTN}'";
              */
 
@@ -105,8 +105,8 @@ class ProveedoresModel extends Mysql{
 			$this->intIdProveedores = $idProveedores;
 			
 			//VALIDACIÓN
-			/* $sql="SELECT * FROM tbl_personas p
-			left join tbl_proveedores pr on p.COD_PERSONA=pr.COD_PERSONA
+			/* $sql="SELECT * FROM TBL_PERSONAS p
+			left join TBL_PROVEEDORES pr on p.COD_PERSONA=pr.COD_PERSONA
 			WHERE  p.email =  '{$this->strEmail}' and p.COD_PERSONA !=$this->intIdProveedores or pr.RTN = '{$this->strRTN}' AND p.COD_PERSONA !=$this->intIdProveedores";
 			 */
 			$sql="CALL CRUD_PROVEEDOR(null,null,'{$this->strEmail}',null,null,null,null,'{$this->strRTN}',null,null,null,'B',$this->intIdProveedores)";

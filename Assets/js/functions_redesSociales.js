@@ -11,7 +11,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
       },
       
       ajax: {
-        url: " " + base_url + "/redesSociales/getredesSociales",
+        url: " " + base_url + "/RedesSociales/getredesSociales",
         dataSrc: "",
       },
 
@@ -235,7 +235,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
             
             divLoading.style.display="flex";
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = base_url+'/redesSociales/setredesSocial'; 
+            let ajaxUrl = base_url+'/RedesSociales/setredesSocial'; 
             let formData = new FormData(formredesSociales);
             request.open("POST",ajaxUrl,true);
             request.send(formData);
@@ -277,7 +277,7 @@ tableredesSociales = $("#tableredesSociales").dataTable({
 function fntViewInfo(idpersona){
     
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'/redessociales/getredsocial/'+idpersona;
+    let ajaxUrl = base_url+'/RedesSociales/getredsocial/'+idpersona;
     request.open("GET",ajaxUrl,true);
     request.send();
      request.onreadystatechange = function(){
@@ -344,7 +344,7 @@ function fntDelInfo(idUsuario){
     }).then((result) => {
         if (result.isConfirmed) {
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = base_url + '/redesSociales/delredSocial/';
+            let ajaxUrl = base_url + '/RedesSociales/delredSocial/';
             let strData = "idUsuario=" + idUsuario;
             request.open("POST", ajaxUrl, true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

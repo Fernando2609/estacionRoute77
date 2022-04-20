@@ -52,7 +52,7 @@
 				
 				$return = 0;
 				//validación
-				/* $sql = "SELECT * FROM tbl_productos WHERE COD_BARRA = '{$this->intCodigo}'or NOMBRE = '{$this->strNombre}'";
+				/* $sql = "SELECT * FROM TBL_PRODUCTOS WHERE COD_BARRA = '{$this->intCodigo}'or NOMBRE = '{$this->strNombre}'";
 				*/
 				$sql= "CALL CRUD_PRODUCTOS(null,'{$this->intCodigo}','{$this->strNombre}',null,null,null,null,null,null,null,'A',null)";
 				/* dep($sql);

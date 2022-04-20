@@ -26,13 +26,13 @@
    
     <div class="logo d-flex justify-content-center">
     <a href="<?= base_url();?>" class="nav-link">
-        <img src="<?= media(); ?>/images//Logo.png" class="imagenLogin" alt="" >
+        <img src="<?= media(); ?>/images/Logo.png" class="imagenLogin" alt="" >
     </div>
     </a>
       <div class="login-box">
         <div id="divLoading">
           <div>
-            <img src="<?=media();?>/images//loadingRoute.gif" alt="Loading">
+            <img src="<?=media();?>/images/loadingRoute.gif" alt="Loading">
           </div>
         </div>
         <form class="login-form" name="formLogin" id="formLogin" action="">

@@ -1,5 +1,5 @@
 <?php
-class telEmpresa extends Controllers{
+class TelEmpresa extends Controllers{
         public function __construct()
         {
             parent::__construct();
@@ -12,7 +12,7 @@ class telEmpresa extends Controllers{
             getPermisos(14);
         }
         
-        public function telEmpresa()
+        public function TelEmpresa()
         {
             if(empty($_SESSION['permisosMod']['r'])){
                 header('Location: '.base_url().'/dashboard');
@@ -20,8 +20,8 @@ class telEmpresa extends Controllers{
             $data['page_tag']= "telEmpresa";
             $data['page_title']="Teléfonos <small>Route 77</small>";
             $data['page_name']="telempresa";
-            $data['page_functions_js']="functions_telempresa.js";
-            $this->views->getView($this,"telempresa",$data);
+            $data['page_functions_js']="functions_telEmpresa.js";
+            $this->views->getView($this,"telEmpresa",$data);
         }
 
     public function settelEmpresa()

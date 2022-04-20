@@ -21,7 +21,7 @@ class Proveedores extends Controllers{
         $data['page_title']="PROVEEDORES <small>Route 77</small>";
         $data['page_name']="Proveedores";
         $data['page_functions_js']="functions_Proveedores.js";
-        $this->views->getView($this,"Proveedores",$data);
+        $this->views->getView($this,"proveedores",$data);
     }
 
     public function setProveedores()

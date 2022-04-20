@@ -26,7 +26,7 @@
 			if(empty($request))
 			{
 				//$query_insert  = "INSERT INTO calendario(idUsuario,title,descripcion,start,end,color,textColor) VALUES(?,?,?,?,?,?,?)";
-				$query_insert  = "INSERT INTO tbl_calendario(COD_PERSONA,title,descripcion,start,end,color,textColor) VALUES(?,?,?,?,?,?,?)";
+				$query_insert  = "INSERT INTO TBL_CALENDARIO(COD_PERSONA,title,descripcion,start,end,color,textColor) VALUES(?,?,?,?,?,?,?)";
 	        	$arrData = array($this->intIdUsuario,
 								 $this->strtitle,
                                 $this->strdescripcion,
@@ -47,7 +47,7 @@
 			//DATE_ADD(c.end, interval 1 day) as end
 			$this->intIdUsuario = $idUsuario;
 			//$sql = "SELECT  c.id, c.title,c.descripcion,c.start,c.end, c.color,c.textColor from calendario c WHERE idUsuario=$this->intIdUsuario";
-			$sql = "SELECT * FROM tbl_calendario where COD_PERSONA=$this->intIdUsuario";
+			$sql = "SELECT * FROM TBL_CALENDARIO where COD_PERSONA=$this->intIdUsuario";
 					$request = $this->select_all($sql);
            
 					return $request;
@@ -72,7 +72,7 @@
             
 			if(empty($request))
 			{
-				$sql = "UPDATE tbl_calendario SET title=?,descripcion=?,start=?,end=?,color=?,textColor=?,dateModificado=? where COD_CALENDARIO=$this->idEvento";
+				$sql = "UPDATE TBL_CALENDARIO SET title=?,descripcion=?,start=?,end=?,color=?,textColor=?,dateModificado=? where COD_CALENDARIO=$this->idEvento";
 	        	$arrData = array($this->strtitle,
                                 $this->strdescripcion,
                                 $this->strstart,
@@ -99,7 +99,7 @@
             
 			if(empty($request))
 			{
-				$sql = "DELETE FROM tbl_calendario where COD_CALENDARIO=$this->idEvento";
+				$sql = "DELETE FROM TBL_CALENDARIO where COD_CALENDARIO=$this->idEvento";
 	        
 				$request = $this->delete($sql);
 	        	

@@ -14,7 +14,7 @@
         }
         public function selectModulos()
 		{
-			/* $sql = "SELECT * FROM tbl_modulo WHERE COD_STATUS != 0"; */
+			/* $sql = "SELECT * FROM TBL_MODULO WHERE COD_STATUS != 0"; */
 			$sql = "CALL CRUD_MODULOS(null, null, null, null, 'V', null)";
 			$request = $this->select_all($sql);
 			/* dep($request);
@@ -24,7 +24,7 @@
         public function selectPermisosRol(int $idrol)
 		{
 			$this->intRolid = $idrol;
-			/* $sql = "SELECT * FROM tbl_permisos WHERE COD_ROL = $this->intRolid"; */
+			/* $sql = "SELECT * FROM TBL_PERMISOS WHERE COD_ROL = $this->intRolid"; */
 			$sql = "CALL CRUD_PERMISOS($this->intRolid,null,null,null,null,null,'R',null)";
 			$request = $this->select_all($sql);
 			/* dep($request);
@@ -34,7 +34,7 @@
 		public function deletePermisos(int $idrol)
 		{
 			$this->intRolid = $idrol;
-			/* $sql = "DELETE FROM tbl_permisos WHERE COD_ROL = $this->intRolid"; */
+			/* $sql = "DELETE FROM TBL_PERMISOS WHERE COD_ROL = $this->intRolid"; */
 			$sql = "CALL CRUD_PERMISOS($this->intRolid,null,null,null,null,null,'D',null)";
 			$request = $this->delete($sql);
 			/* dep($request);
@@ -48,7 +48,7 @@
 			$this->w = $w;
 			$this->u = $u;
 			$this->d = $d;
-			/* $query_insert  = "INSERT INTO tbl_permisos(COD_ROL,COD_MODULO,R,W,U,D) VALUES(?,?,?,?,?,?)"; */
+			/* $query_insert  = "INSERT INTO TBL_PERMISOS(COD_ROL,COD_MODULO,R,W,U,D) VALUES(?,?,?,?,?,?)"; */
 			$query_insert = "CALL CRUD_PERMISOS($this->intRolid,$this->intModuloid,?,?,?,?,'I',null)";
         	$arrData = array($this->r, $this->w, $this->u, $this->d);
         	$request_insert = $this->insert($query_insert,$arrData);
@@ -71,7 +71,7 @@
 					INNER JOIN modulo m
 					ON p.moduloid = m.idmodulo
 					WHERE p.rolid = $this->intRolid"; */
-			/* $sql="SELECT p.COD_ROL, p.COD_MODULO, m.NOMBRE as modulo, p.r, p.w, p.u, p.d FROM tbl_permisos p INNER JOIN tbl_modulo m ON p.COD_MODULO = m.COD_MODULO WHERE p.COD_ROL = $this->intRolid";
+			/* $sql="SELECT p.COD_ROL, p.COD_MODULO, m.NOMBRE as modulo, p.r, p.w, p.u, p.d FROM TBL_PERMISOS p INNER JOIN TBL_MODULO m ON p.COD_MODULO = m.COD_MODULO WHERE p.COD_ROL = $this->intRolid";
 			 */
 			//VALIDACIÓN
 			$sql="CALL CRUD_PERMISOS(null,null,null,null,null,null,'A',$this->intRolid)";

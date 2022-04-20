@@ -17,8 +17,8 @@
 			return $request;
 		}	
         public function cantUsuarios(){
-            $sql = "SELECT COUNT(*) as total from tbl_usuarios u
-            INNER JOIN tbl_personas p on p.COD_PERSONA=u.COD_PERSONA
+            $sql = "SELECT COUNT(*) as total from TBL_USUARIOS u
+            INNER JOIN TBL_PERSONAS p on p.COD_PERSONA=u.COD_PERSONA
             WHERE p.COD_STATUS!=0";
             $request = $this->select($sql);
             $total = $request['total'];
@@ -26,8 +26,8 @@
         }
     public function cantClientes()
     {
-        $sql = "SELECT COUNT(*) as total from tbl_cliente u
-        INNER JOIN tbl_personas p on p.COD_PERSONA=u.COD_PERSONA
+        $sql = "SELECT COUNT(*) as total from TBL_CLIENTE u
+        INNER JOIN TBL_PERSONAS p on p.COD_PERSONA=u.COD_PERSONA
         WHERE p.COD_STATUS!=0";
         $request = $this->select($sql);
         $total = $request['total'];
@@ -35,7 +35,7 @@
     }
     public function cantProductos()
     {
-        $sql = "SELECT COUNT(*) as total FROM tbl_productos WHERE COD_STATUS != 0";
+        $sql = "SELECT COUNT(*) as total FROM TBL_PRODUCTOS WHERE COD_STATUS != 0";
         $request = $this->select($sql);
         $total = $request['total'];
         return $total;
@@ -49,7 +49,7 @@
          }
           
     
-        $sql = "SELECT COUNT(*) as total FROM tbl_pedido".$where;
+        $sql = "SELECT COUNT(*) as total FROM TBL_PEDIDO".$where;
         $request = $this->select($sql);
         $total = $request['total'];
         return $total;
@@ -65,10 +65,10 @@
           
 
 
-        $sql = "SELECT p.COD_PEDIDO, CONCAT(pr.nombres,' ',pr.apellidos) as nombre, p.monto, s.DESCRIPCION as Estado FROM tbl_pedido p
-        INNER JOIN tbl_personas pr
+        $sql = "SELECT p.COD_PEDIDO, CONCAT(pr.nombres,' ',pr.apellidos) as nombre, p.monto, s.DESCRIPCION as Estado FROM TBL_PEDIDO p
+        INNER JOIN TBL_PERSONAS pr
         ON p.COD_PERSONA = pr.COD_PERSONA
-        INNER JOIN tbl_tipo_estado s 
+        INNER JOIN TBL_TIPO_ESTADO s 
         ON p.COD_ESTADO = s.COD_ESTADO
         $where
         ORDER BY p.COD_Pedido DESC LIMIT 10 ";
@@ -78,8 +78,8 @@
 
     public function selectPagosMes(int $anio, int $mes){
     $sql = "SELECT p.COD_TIPO_PAGO, tp.TIPO_PAGO, COUNT(p.COD_TIPO_PAGO) as cantidad, SUM(p.MONTO) as total 
-    FROM tbl_pedido p 
-    INNER JOIN tbl_tipo_pago tp 
+    FROM TBL_PEDIDO p 
+    INNER JOIN TBL_TIPO_PAGO tp 
     ON p.COD_TIPO_PAGO = tp.COD_TIPO_PAGO 
     WHERE MONTH (p.FECHA) = $mes AND YEAR (p.FECHA) = $anio GROUP BY COD_TIPO_PAGO";
     $pagos = $this->select_all($sql);
@@ -104,7 +104,7 @@
             $date = date_create($anio."-".$mes."-".$n_dia);
             $fechaVenta = date_format($date,"Y-m-d");
             $sql = "SELECT DAY(FECHA) as Dia, COUNT(COD_PEDIDO) as Cantidad, SUM(MONTO) as Total 
-            FROM tbl_pedido 
+            FROM TBL_PEDIDO 
             WHERE DATE(FECHA) = '$fechaVenta' AND COD_ESTADO = 3".$where;
             $ventaDia = $this->select($sql);
             $ventaDia['Dia'] = $n_dia;
@@ -124,7 +124,7 @@
         for ($i=1; $i <= 12; $i++) {
             $arrData = array ('anio'=>'','No_mes'=>'','venta'=>'');
             $sql="SELECT $anio as Anio, $i as mes,  SUM(MONTO) AS venta  
-            FROM tbl_pedido
+            FROM TBL_PEDIDO
             WHERE MONTH(FECHA) = $i and YEAR(FECHA)= $anio AND COD_ESTADO = 3
             GROUP BY MONTH(FECHA)";
             $ventaMes = $this->select($sql);
@@ -152,7 +152,7 @@
     }
 
 public function productosTen(){ 
-    $sql= "SELECT * FROM tbl_productos WHERE COD_STATUS = 1 ORDER BY COD_PRODUCTO DESC LIMIT 0,10";
+    $sql= "SELECT * FROM TBL_PRODUCTOS WHERE COD_STATUS = 1 ORDER BY COD_PRODUCTO DESC LIMIT 0,10";
     $request = $this->select_all($sql);
     return $request;    
 }   

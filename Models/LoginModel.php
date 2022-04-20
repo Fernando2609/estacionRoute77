@@ -18,7 +18,7 @@ class LoginModel extends Mysql{
             email = '$this->strUsuario' and
             contraseña = '$this->strPassword' and
             status !=0"; */
-            /* $sql="SELECT COD_PERSONA, COD_STATUS FROM tbl_personas WHERE email =  '$this->strUsuario' and contraseña = '$this->strPassword' and COD_STATUS !=0"; */
+            /* $sql="SELECT COD_PERSONA, COD_STATUS FROM TBL_PERSONAS WHERE email =  '$this->strUsuario' and contraseña = '$this->strPassword' and COD_STATUS !=0"; */
             $sql="CALL LOGIN('$this->strUsuario','$this->strPassword',null,'V',null)";
            
             $request = $this->select($sql);
@@ -50,7 +50,7 @@ class LoginModel extends Mysql{
             $this->intIdUsuario = $iduser;
 			
 			//$sql = "UPDATE usuarios SET datelogin = ? WHERE idUsuario = $this->intIdUsuario ";
-			/* $sql = "UPDATE tbl_personas SET DATE_LOGIN = ? WHERE COD_PERSONA = $this->intIdUsuario "; */
+			/* $sql = "UPDATE TBL_PERSONAS SET DATE_LOGIN = ? WHERE COD_PERSONA = $this->intIdUsuario "; */
             $sql="CALL LOGIN(null,null,null,'L',?)";
 			$arrData = array($this->intIdUsuario);
 			$request = $this->update($sql,$arrData);

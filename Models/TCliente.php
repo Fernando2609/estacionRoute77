@@ -22,7 +22,7 @@ require_once("Libraries/Core/Mysql.php");
      private $productoid;
       private $stock; 
      
-    public function insertCliente(string $nombre, string $apellido,  string $email, string $password, int $tipoid, int $status, int $telefono, ){
+    public function insertCliente(string $nombre, string $apellido,  string $email, string $password, int $tipoid, int $status, int $telefono){
         $this->con = new Mysql();
         $this->strNombre = $nombre;
         $this->strApellido = $apellido;
@@ -45,7 +45,7 @@ require_once("Libraries/Core/Mysql.php");
                 email = '{$this->strEmail}' ";
         $request =$this->con->select_all($sql); */
         $sql = "SELECT * FROM TBL_PERSONAS p 
-			left join tbl_cliente c on p.COD_PERSONA=c.COD_PERSONA
+			left join TBL_CLIENTE c on p.COD_PERSONA=c.COD_PERSONA
 			WHERE p.email =  '{$this->strEmail}' ";
 			$request = $this-> con->select_all($sql);
 
@@ -74,7 +74,7 @@ require_once("Libraries/Core/Mysql.php");
            /* dep($arrData);
            exit; */
             $request_insert = $this->con->insert($query_insert,$arrData);
-            $sql = "SELECT MAX(COD_PERSONA) FROM tbl_personas";
+            $sql = "SELECT MAX(COD_PERSONA) FROM TBL_PERSONAS";
             $request_ID = $this-> con ->select($sql);
             $return =$request_ID ["MAX(COD_PERSONA)"];
 
@@ -282,10 +282,10 @@ require_once("Libraries/Core/Mysql.php");
     }
 	public function setSuscripcion(string $nombre, string $email){
 		$this->con = new Mysql();
-		$sql = 	"SELECT * FROM tbl_suscripciones WHERE EMAIL = '{$email}'";
+		$sql = 	"SELECT * FROM TBL_SUSCRIPCIONES WHERE EMAIL = '{$email}'";
 		$request = $this->con->select_all($sql);
 		if(empty($request)){
-			$query_insert  = "INSERT INTO tbl_suscripciones(NOMBRE,EMAIL) 
+			$query_insert  = "INSERT INTO TBL_SUSCRIPCIONES(NOMBRE,EMAIL) 
 							  VALUES(?,?)";
 			$arrData = array($nombre,$email);
 			$request_insert = $this->con->insert($query_insert,$arrData);

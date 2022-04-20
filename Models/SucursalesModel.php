@@ -44,7 +44,7 @@
 			
 
 			$sql="CALL CRUD_SUCURSAL(null,null,'V', null)";
-			//$sql="Select * from tbl_sucursal";
+			//$sql="Select * from TBL_SUCURSAL";
 			$request = $this->select_all($sql);
 			/* dep($request);
 			exit; */
@@ -72,7 +72,7 @@
 		
 		//validar
 
-		/* $sql="SELECT * FROM tbl_sucursal
+		/* $sql="SELECT * FROM TBL_SUCURSAL
 		WHERE NOMBRE='$this->strNombre'  and COD_SUCURSAL!='$this->intIdSucursal'";
  */
         $sql="CALL CRUD_SUCURSAL('$this->strNombre',null,'B',$this->intIdSucursal)";

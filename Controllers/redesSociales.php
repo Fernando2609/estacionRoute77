@@ -1,5 +1,5 @@
 <?php
-class redesSociales extends Controllers{
+class RedesSociales extends Controllers{
         public function __construct()
         {
             parent::__construct();

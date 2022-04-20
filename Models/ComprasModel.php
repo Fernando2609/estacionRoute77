@@ -25,7 +25,7 @@
 
 			//validación 
 
-			/* $sql = "SELECT * FROM tbl_categoria WHERE nombre = '{$this->strCategoria}' "; */
+			/* $sql = "SELECT * FROM TBL_CATEGORIA WHERE nombre = '{$this->strCategoria}' "; */
 			$sql="CALL CRUD_CATEGORIA(null,null,'{$this->strCategoria}',null,null,null,null,'A',null)";
 			$request = $this->select_all($sql);
             /* dep($sql);
@@ -81,9 +81,9 @@
 			$request = $this->select($sql);
 			 */
             $request = array();
-            $sql = "SELECT oc.*,p.NOMBRE_EMPRESA,date_format( oc.FECHA_COMPRA,'%d-%m-%Y') as 'FECHA_COMPRA' FROM tbl_orden_compra oc 
-            INNER JOIN tbl_proveedores p on p.COD_PROVEEDOR=oc.COD_PROVEEDOR
-            INNER JOIN tbl_detalle_compra dc on dc.COD_ORDEN=oc.COD_ORDEN  WHERE oc.COD_ORDEN =  $idCompra"; 
+            $sql = "SELECT oc.*,p.NOMBRE_EMPRESA,date_format( oc.FECHA_COMPRA,'%d-%m-%Y') as 'FECHA_COMPRA' FROM TBL_ORDEN_COMPRA oc 
+            INNER JOIN TBL_PROVEEDORES p on p.COD_PROVEEDOR=oc.COD_PROVEEDOR
+            INNER JOIN TBL_DETALLE_COMPRA dc on dc.COD_ORDEN=oc.COD_ORDEN  WHERE oc.COD_ORDEN =  $idCompra"; 
             /* $sql= "CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'R',)"; */
                         $requestPedido = $this->select($sql);
                       
@@ -94,7 +94,7 @@
                                                         tp.APELLIDOS,
                                                         tp.EMAIL,
                                                         tp.TELEFONO
-                                            FROM tbl_personas tp WHERE  tp.COD_PERSONA= $idpersona ";
+                                            FROM TBL_PERSONAS tp WHERE  tp.COD_PERSONA= $idpersona ";
                             $requestVendedor = $this->select($sql_cliente);
                             
                             $sql_detalle = "SELECT p.COD_PRODUCTO,
@@ -103,10 +103,10 @@
                             c.NOMBRE as CATEGORIA,
                              d.CANT_COMPRA,
                              p.COD_BARRA
-                            FROM tbl_detalle_compra d
-                            INNER JOIN tbl_productos p
+                            FROM TBL_DETALLE_COMPRA d
+                            INNER JOIN TBL_PRODUCTOS p
                             ON d.COD_PRODUCTO = p.COD_PRODUCTO
-                            INNER JOIN tbl_categoria c
+                            INNER JOIN TBL_CATEGORIA c
                             ON c.COD_CATEGORIA = p.COD_CATEGORIA
                             WHERE d.COD_ORDEN = $idCompra";
                             $requestProductos = $this->select_all($sql_detalle);
@@ -130,7 +130,7 @@
 			$this->intUser = $user;
 			
 			//Validación update
-			/* $sql = "SELECT * FROM tbl_categoria WHERE nombre = '{$this->strCategoria}' AND COD_CATEGORIA != $this->intIdcategoria";
+			/* $sql = "SELECT * FROM TBL_CATEGORIA WHERE nombre = '{$this->strCategoria}' AND COD_CATEGORIA != $this->intIdcategoria";
 			 */
 			$sql="CALL CRUD_CATEGORIA(null,null,'{$this->strCategoria}',null,null,null,null,'B',$this->intIdcategoria)";
 			/* dep($sql);
@@ -168,7 +168,7 @@
 		public function deleteCategoria(int $idcategoria)
 		{
 			$this->intIdcategoria = $idcategoria;
-			$sql = "SELECT * FROM tbl_productos WHERE COD_CATEGORIA = $this->intIdcategoria";
+			$sql = "SELECT * FROM TBL_PRODUCTOS WHERE COD_CATEGORIA = $this->intIdcategoria";
 			$request = $this->select_all($sql);
 			if(empty($request))
 			{

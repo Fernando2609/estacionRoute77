@@ -26,10 +26,10 @@
                         p.DIRECCION_ENVIO,
                         te.DESCRIPCION as status,
                         p.COD_ESTADO
-                        FROM tbl_pedido as p
-                        INNER JOIN tbl_tipo_pago tp
+                        FROM TBL_PEDIDO as p
+                        INNER JOIN TBL_TIPO_PAGO tp
                         ON p.COD_TIPO_PAGO= tp.COD_TIPO_PAGO
-                        INNER JOIN tbl_tipo_estado te
+                        INNER JOIN TBL_TIPO_ESTADO te
                         ON p.COD_ESTADO = te.COD_ESTADO 
                         WHERE p.COD_PEDIDO =  $idpedido ".$busqueda;
                     $requestPedido = $this->select($sql);
@@ -40,14 +40,14 @@
                                                     tp.APELLIDOS,
                                                     tp.EMAIL,
                                                     tp.TELEFONO
-                                        FROM tbl_personas tp WHERE  tp.COD_PERSONA= $idpersona ";
+                                        FROM TBL_PERSONAS tp WHERE  tp.COD_PERSONA= $idpersona ";
                         $requestcliente = $this->select($sql_cliente);
                         $sql_detalle = "SELECT p.COD_PRODUCTO,
                                                p.NOMBRE as producto,
                                                d.PRECIO,
                                                d.CANTIDAD
-                                        FROM tbl_detalle_pedido d
-                                        INNER JOIN tbl_productos p
+                                        FROM TBL_DETALLE_PEDIDO d
+                                        INNER JOIN TBL_PRODUCTOS p
                                         ON d.COD_PRODUCTO = p.COD_PRODUCTO
                                         WHERE d.COD_PEDIDO = $idpedido";
                         $requestProductos = $this->select_all($sql_detalle);
