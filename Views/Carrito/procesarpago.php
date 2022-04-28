@@ -24,6 +24,8 @@
      }
      /* dep($conversion);
      dep($totalPaypal); */
+     $tituloTerminos=!empty(getInfoPage(PTERMINOS)) ? getInfoPage(PPREGUNTAS)['TITULO'] : "";
+     $infoTerminos=!empty(getInfoPage(PTERMINOS)) ? getInfoPage(PPREGUNTAS)['CONTENIDO'] : "";
 
 ?>
 <script src="https://www.paypal.com/sdk/js?client-id=<?=IDCLIENTE?>&currency=<?=CURRENCY?>">
@@ -83,15 +85,13 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Términos y Condiciones</h5>
+        <h5 class="modal-title"><?=  $tituloTerminos  ?></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore alias illum commodi, est quaerat iure qui error consectetur, placeat laboriosam obcaecati laborum quo, sapiente modi. Adipisci, tempora. Iste, ipsa minus?</p>
-        <br>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis id aperiam cupiditate, incidunt magnam adipisci libero ullam nisi soluta sunt, corrupti similique nihil necessitatibus dolorum culpa. Ut beatae perspiciatis quidem.</p>
+        <?=  $infoTerminos  ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -162,7 +162,7 @@
 						  	<form id="formLogin">
 							  <div class="form-group">
 							    <label for="txtEmail">Usuario</label>
-							    <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+							    <input type="email" class="form-control validEmail" id="txtEmail" name="txtEmail">
 							  </div>
 							  <div class="form-group">
 							    <label for="txtPassword">Contraseña</label>
@@ -188,11 +188,11 @@
 						 		<div class="row">
 									<div class="col col-md-6 form-group">
 										<label for="txtTelefono">Teléfono</label>
-										<input type="text" class="form-control valid" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
+										<input type="text" class="form-control valid validNumberTel" id="txtTelefono" name="txtTelefono" required="" onkeypress="return controlTag(event);">
 									</div>
 									<div class="col col-md-6 form-group">
 										<label for="txtEmailCliente">Email</label>
-										<input type="email" class="form-control valid" id="txtEmailCliente" name="txtEmailCliente" required="">
+										<input type="email" class="form-control valid validEmail" id="txtEmailCliente" name="txtEmailCliente" required="">
 									</div>
 						 		</div>
                                  

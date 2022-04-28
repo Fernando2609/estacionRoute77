@@ -20,17 +20,19 @@
             exit; */
             /* dep($this->selectProductos());
             exit; */
-
+            $pageContent=getPageRout('inicio');
+            
             $data['page_tag']=datosEmpresa()['NOMBRE_EMPRESA'];
             $data['page_title']=datosEmpresa()['NOMBRE_EMPRESA'];
             $data['page_name']=datosEmpresa()['NOMBRE_EMPRESA'];
             $data['slider'] = $this->getCategoriasT(datosEmpresa()['CATEGORIAS_SLIDER']);
             $data['banner'] = $this->getCategoriasT(datosEmpresa()['CATEGORIAS_BANNER']);
             $data['categorias'] = $this->getCategorias();
-            
+            $data['page']=$pageContent;
             $data['productos'] = $this->getProductosT();
              /* dep($data); exit; */ 
             $this->views->getView($this,"home",$data);
+         
         }
         
         /* public function insertar(){

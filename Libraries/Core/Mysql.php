@@ -4,7 +4,7 @@
         private $conexion;
 		private $strquery;
 		private $arrValues;
-
+		
 		function __construct()
 		{
 			$this->conexion = new Conexion();

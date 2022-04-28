@@ -17,7 +17,7 @@
                     <!-- Div Text -->
                     <div class="form-group">
                         <label for="exampleInputNombre">Nombre  (<span class="required">*</span>)</label>
-                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre del Producto" required>
+                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre del Producto" required onkeypress="return controlTagLetraNumero(event);">
                     </div>
                     <!-- Cierra Text -->
 
@@ -33,7 +33,7 @@
                     <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Código </label>
-                        <input class="form-control" id="txtCodigo" name="txtCodigo" type="text" placeholder="Código de barra" >
+                        <input class="form-control" id="txtCodigo" name="txtCodigo" type="text" placeholder="Código de barra" onkeypress="return controlTag(event);">
                          <br>
                         <div id="divBarCode" class="notBlock textcenter">
                             <div id="printCode">
@@ -45,11 +45,11 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="control-label">Precio <span class="required">*</span></label>
-                            <input class="form-control validNumberPrecio" id="txtPrecio" name="txtPrecio" type="text" required="" onkeypress="return controlTagPrecio(event);">
+                            <input class="form-control valid validNumberPrecio" id="txtPrecio" name="txtPrecio" type="text" required="" onkeypress="return controlTagPrecio(event);">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Stock Mínimo  <span class="required">*</span></label>
-                            <input class="form-control" id="txtStock" name="txtStock" type="text" required="">
+                            <input class="form-control valid validNumber" id="txtStock" name="txtStock" type="text" required="" onkeypress="return controlTag(event);">
                         </div>
                     </div>
                     <div class="row">

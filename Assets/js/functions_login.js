@@ -1,4 +1,5 @@
 $('.login-content [data-toggle="flip"]').click(function() {
+	document.querySelector("#txtEmail").classList.remove("is-invalid");
     $('.login-box').toggleClass('flipped');
     return false;
 });
@@ -16,7 +17,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
             let strEmail = document.querySelector('#txtEmail').value;
             let strPassword = document.querySelector('#txtPassword').value;
-        
+            
+            let elementsValid = document.getElementsByClassName("valid");
+            for (let i = 0; i < elementsValid.length; i++) {
+                if (elementsValid[i].classList.contains('is-invalid')) {
+                    swal.fire("Atención", "Por favor verifique los campos en rojo.", "error");
+                    return false;
+                }
+            }
+
+
             if(strEmail=="" || strPassword=="")
             {
                 swal.fire("Por favor", "Escribe usuario y contraseña.", "error");
@@ -60,6 +70,16 @@ document.addEventListener('DOMContentLoaded', function(){
 			e.preventDefault();
 
             let strEmail = document.querySelector('#txtEmailReset').value;
+			let elementsValid = document.getElementsByClassName("valid");
+
+			
+            for (let i = 0; i < elementsValid.length; i++) {
+                if (elementsValid[i].classList.contains('is-invalid')) {
+                    swal.fire("Atención", "Por favor verifique los campos en rojo.", "error");
+                    return false;
+                }
+            }
+
 			if(strEmail == "")
 			{
 				swal.fire("Por favor", "Escribe tu correo electrónico.", "error");
@@ -118,14 +138,31 @@ document.addEventListener('DOMContentLoaded', function(){
 				swal.fire("Por favor", "Escribe la nueva contraseña." , "error");
 				return false;
 			}else{
-				if(strPassword.length < 3 ){
-					swal.fire("Atención", "La contraseña debe tener un mínimo de 3 caracteres." , "info");
+				if (strPassword != strPasswordConfirm) {
+          swal.fire("Atención", "Las contraseñas no son iguales.", "error");
+          return false;
+        }
+
+
+				let contraseñaValid = document.querySelector("#txtPassword");
+				let contraseñaValidConfirm = document.querySelector("#txtPasswordConfirm");
+
+				if (
+					contraseñaValid.classList.contains("is-invalid") ||
+					contraseñaValidConfirm.classList.contains("is-invalid")
+				) {
+					swal.fire(
+						"Atención",
+						"La contraseña debe de contener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número, un caracter especial y sin espacios",
+						"error"
+					);
 					return false;
 				}
-				if(strPassword != strPasswordConfirm){
-					swal.fire("Atención", "Las contraseñas no son iguales." , "error");
+				if(strPassword.length < 8 ){
+					swal.fire("Atención", "La contraseña debe tener un mínimo de 8 caracteres." , "info");
 					return false;
 				}
+				
 				divLoading.style.display="flex";
 				var request = (window.XMLHttpRequest) ? 
 							new XMLHttpRequest() : 

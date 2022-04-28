@@ -24,7 +24,7 @@
    
 
 
-	const BASE_URL="http://localhost:8080/route77";
+	const BASE_URL="http://localhost:8080/estacionRoute77";
 
 
 	//Para envío de correo
@@ -106,12 +106,26 @@
 	const MCLIENTES = 2;
 	const MPEDIDOS = 5;
 	const MSUSCRIPTORES= 18;
+	const MCONTACTO= 19;
+	const MPÁGINAS= 20;
 
 	//Roles
 	const RADMINISTRADOR = 1;
 	const RCLIENTES = 2;
 
 	const STATUS= array('PENDIENTE','APROBADO','COMPLETO','REEMBOLSADO','CANCELADO','ENTREGADO');	
+	
+	//Páginas
+	const PINICIO=1;
+	const PTIENDA=2;
+	const PCARRITO=3;
+	const PNOSOTROS=4;
+	const PCONTACTO=5;
+	const PPREGUNTAS=6;
+	const PTERMINOS=7;
+	const PSUCURSALES=8;
+	const PERROR=9;
+
 
 
 

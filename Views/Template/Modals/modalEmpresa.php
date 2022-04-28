@@ -23,7 +23,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtNombreEmpresa">Nombre Empresa<span class="required"> *</span></label>
-                            <input type="text" class="form-control valid" id="txtNombreEmpresa" name="txtNombreEmpresa" required="">
+                            <input type="text" class="form-control valid" id="txtNombreEmpresa" name="txtNombreEmpresa" required="" onkeypress="return controlTagLetraNumero(event);">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtDireccion">Dirección<span class="required"> *</span></label>
@@ -55,7 +55,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtRTN">RTN<span class="required"> *</span></label>
-                            <input type="text" class="form-control valid validNumber" id="txtRTN" name="txtRTN" required="">
+                            <input type="text" class="form-control valid validNumberRtn" id="txtRTN" name="txtRTN" required="">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtEmailPedidos">Email Para Pedidos<span class="required"> *</span></label>
@@ -65,21 +65,21 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtTelEmpresa">Teléfono Empresa<span class="required"> *</span></label>
-                            <input type="text" class="form-control valid " id="txtTelEmpresa" name="txtTelEmpresa" required="">
+                            <input type="text" class="form-control valid " id="txtTelEmpresa" name="txtTelEmpresa" required="" onkeypress="return controlTagNumeroEmpresa(event)";>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtCelEmpresa">Celular Empresa<span class="required"> *</span></label>
-                            <input type="text" class="form-control valid " id="txtCelEmpresa" name="txtCelEmpresa" required="">
+                            <input type="text" class="form-control valid " id="txtCelEmpresa" name="txtCelEmpresa" required="" onkeypress="return controlTagNumeroEmpresa(event)";>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="txtCatSlider">Categorías Slider<span class="required">*</span><i>(Códigos separado por comas)</i></label>
-                            <input type="text" class="form-control valid" placeholder="Separados por Comas" id="txtCatSlider" name="txtCatSlider" required="">
+                            <input type="text" class="form-control valid validImg" placeholder="Separados por Comas" id="txtCatSlider" name="txtCatSlider" required="" onkeypress="return controlTagImagenes(event)";>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="txtCatBanner">Categorías Banner<span class="required">* </span><i>(Códigos separado por comas)</i></label>
-                            <input type="text" class="form-control valid " placeholder="Separados por Comas" id="txtCatBanner" name="txtCatBanner" required="">
+                            <input type="text" class="form-control valid validImg" placeholder="Separados por Comas" id="txtCatBanner" name="txtCatBanner" required="" onkeypress="return controlTagImagenes(event)";>
                         </div>
                     </div>
 

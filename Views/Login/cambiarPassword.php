@@ -37,10 +37,10 @@
           <input type="hidden" id="txtToken" name="txtToken" value="<?= $data['token']; ?>" required > 
           <h3 class="login-head"><i class="fas fa-key"></i> Cambiar contraseña</h3>
           <div class="form-group">
-            <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Nueva contraseña" required >
+            <input id="txtPassword" name="txtPassword" class="form-control valid ValidContra" type="password" placeholder="Nueva contraseña" required >
           </div>
           <div class="form-group">
-            <input id="txtPasswordConfirm" name="txtPasswordConfirm" class="form-control" type="password" placeholder="Confirmar contraseña" required >
+            <input id="txtPasswordConfirm" name="txtPasswordConfirm" class="form-control valid ValidContra" type="password" placeholder="Confirmar contraseña" required >
           </div>
           <div class="form-group btn-container">
             <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>REINICIAR</button>
@@ -56,6 +56,7 @@
 <!--     <script src="<?= media(); ?>/js/plugins/popper/popper.min.js"></script>-->
     <script src="<?= media(); ?>/js/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?= media(); ?>/js/main.js"></script>
+    <script src="<?= media(); ?>/js/funtions_admin.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/sweetalert2/sweetalert2.min.js"></script>
     <script src="<?= media(); ?>/js/<?= $data['page_functions_js'] ?>"></script>
     <!-- The javascript plugin to display page loading on top-->

@@ -42,14 +42,14 @@
 			
 
 			//Validación
-            $sql="CALL CRUD_USUARIO(null,null,'{$this->strEmail}',null,null,null,null,null,null,'{$this->strIdentificacion}',null,null,'A',null)";
+            $sql="CALL CRUD_USUARIO(null,null,'{$this->strEmail}',null,null,null,null,null,null,'{$this->strIdentificacion}',null,null,null,'A',null)";
 			 
 			$request = $this->select_all($sql);
 
 			if(empty($request))
 			{
 				
-				$query_insert="CALL CRUD_USUARIO(?,?,?,?,?,?,?,?,?,?,?,null,'I',null)";
+				$query_insert="CALL CRUD_USUARIO(?,?,?,?,?,?,?,?,?,?,?,null,?,'I',null)";
 	        	$arrData = array($this->strNombre,
 									$this->strApellido,
 									$this->strEmail,
@@ -60,7 +60,7 @@
 									$this->intSucursal,
 									$this->intGenero,
 									$this->strIdentificacion,
-									$this->intUser);
+									$this->intUser, NOW());
 									
 	        	$request_insert = $this->insert($query_insert,$arrData);
 				$sql = "SELECT last_insert_id()";
@@ -80,7 +80,7 @@
 			if($_SESSION['idUser'] != 1){
 				$whereAdmin = " and P.COD_PERSONA !=1";
 			}
-		   $sql="CALL CRUD_USUARIO(null,null,null,null,null,null,null,null,null,null,null,null,'V',$idUser)";
+		   $sql="CALL CRUD_USUARIO(null,null,null,null,null,null,null,null,null,null,null,null,NULL,'V',$idUser)";
 			
 			/*  $sql="SELECT P.COD_PERSONA,U.COD_USUARIO, P.COD_ROL, R.NOM_ROL AS ROL, U.DNI, P.NOMBRES, P.APELLIDOS, P.EMAIL,ST.DESCRIPCION AS STATUS , P.TELEFONO, S.NOMBRE AS SUCURSAL, G.DESCRIPCION AS GENERO,
 			P.FECHA_CREACION, P.FECHA_MODIFICACION, P.DATE_LOGIN,P.COD_STATUS
@@ -99,7 +99,7 @@
 			$this->intIdUsuario = $idUsuario;
 			
 
-			$sql="CALL CRUD_USUARIO(null,null,null,null,null,null,null,null,null,null,null,null,'R',$this->intIdUsuario)";
+			$sql="CALL CRUD_USUARIO(null,null,null,null,null,null,null,null,null,null,null,null,NULL,'R',$this->intIdUsuario)";
 			
 			$request = $this->select($sql);
 			
@@ -131,7 +131,7 @@
 			WHERE p.EMAIL = '{$this->strEmail}' AND p.COD_PERSONA !=$this->intIdUsuario OR u.DNI = '{$this->strIdentificacion}' AND p.COD_PERSONA != $this->intIdUsuario";
  */         
             //Validación
-            $sql="CALL CRUD_USUARIO(null,null,'{$this->strEmail}',null,null,null,null,null,null,'{$this->strIdentificacion}',null,null,'B',$this->intIdUsuario)";
+            $sql="CALL CRUD_USUARIO(null,null,'{$this->strEmail}',null,null,null,null,null,null,'{$this->strIdentificacion}',null,null,NULL,'B',$this->intIdUsuario)";
 			/* dep($sql);
 			exit; */
 			$request = $this->select_all($sql);
@@ -141,7 +141,7 @@
 				if($this->strPassword  != "")
 				{
 					
-					$sql="CALL CRUD_USUARIO(?,?,?,?,?,?,?,?,?,?,null,?,'U',$this->intIdUsuario)";
+					$sql="CALL CRUD_USUARIO(?,?,?,?,?,?,?,?,?,?,null,?,?,'U',$this->intIdUsuario)";
 					$arrData = array(
 									$this->strNombre,
 									$this->strApellido,
@@ -153,12 +153,12 @@
 									$this->intSucursal,
 									$this->intGenero,
 									$this->strIdentificacion,
-									$this->intUser
+									$this->intUser, NOW()
 									);
 							
 				}else{
 					
-					$sql="CALL CRUD_USUARIO(?,?,?,null,?,?,?,?,?,?,null,?,'S',$this->intIdUsuario)";
+					$sql="CALL CRUD_USUARIO(?,?,?,null,?,?,?,?,?,?,null,?,?,'S',$this->intIdUsuario)";
 					$arrData = array(
 									$this->strNombre,
 									$this->strApellido,
@@ -170,7 +170,7 @@
 									$this->intSucursal,
 									$this->intGenero,
 									$this->strIdentificacion,
-									$this->intUser
+									$this->intUser, NOW()
 									);
 				}
 				$request = $this->update($sql,$arrData);
@@ -187,7 +187,7 @@
 		{
 			$this->intIdUsuario = $intIdUser;
 			
-			$sql="CALL CRUD_USUARIO(null,null,null,null,null,null,null,null,null,null,null,null,'D',?)";
+			$sql="CALL CRUD_USUARIO(null,null,null,null,null,null,null,null,null,null,null,null,NULL,'D',?)";
 			$arrData = array($this->intIdUsuario);
 			$request = $this->update($sql,$arrData);
 			return $request;
@@ -211,7 +211,7 @@
 			if($this->strPassword != "")
 			{
 				
-				$sql="CALL CRUD_USUARIO(?,?,null,?,null,null,?,?,?,?,null,?,'P',$this->intIdUsuario)";
+				$sql="CALL CRUD_USUARIO(?,?,null,?,null,null,?,?,?,?,null,?,?,'P',$this->intIdUsuario)";
 				$arrData = array(
 								$this->strNombre,
 								$this->strApellido,
@@ -222,11 +222,11 @@
 								$this->intSucursal,
 								$this->intGenero,
 								$this->strIdentificacion,
-								$this->intUser
+								$this->intUser,NOW()
 								);
 			}else{
 				
-				$sql="CALL CRUD_USUARIO(?,?,null,null,null,null,?,?,?,?,null,?,'H',$this->intIdUsuario)";
+				$sql="CALL CRUD_USUARIO(?,?,null,null,null,null,?,?,?,?,null,?,?,'H',$this->intIdUsuario)";
 				
 				$arrData = array(
 								$this->strNombre,
@@ -238,7 +238,7 @@
 								$this->intSucursal,
 								$this->intGenero,
 								$this->strIdentificacion,
-								$this->intUser
+								$this->intUser, NOW()
 								);
 								
 			}
@@ -269,7 +269,7 @@
 								);
 			}else{
 				
-				$sql="CALL CRUD_USUARIO(?,?,null,null,null,null,?,null,null,null,null,?,'M',$this->intIdUsuario)";
+				$sql="CALL CRUD_USUARIO(?,?,null,null,null,null,?,null,null,null,null,?,?,'M',$this->intIdUsuario)";
 				$arrData = array(
 								$this->strNombre,
 								$this->strApellido,
@@ -277,7 +277,7 @@
 								//$this->strPassword,
 								
 								$this->intTelefono,
-								$this->intUser
+								$this->intUser, NOW()
 								);
 			}
 			$request = $this->update($sql,$arrData);

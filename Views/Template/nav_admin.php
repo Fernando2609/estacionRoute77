@@ -181,7 +181,7 @@
               <!-- Sucursales -->
               <?php if(!empty($_SESSION['permisos'][16]['r'])){ ?>
           <li class="nav-item">
-            <a href="<?= base_url();?>/sucursales" class="nav-link">
+            <a href="<?= base_url();?>/adminsucursales" class="nav-link">
            
             <i class="far fa-circle nav-icon"></i>
               <p>
@@ -263,6 +263,26 @@
             <i class="nav-icon fas fa-user-tie"></i>
               <p>
                 Suscriptores
+              </p>
+            </a>
+          </li>
+         <?php } ?>
+         <?php if(!empty($_SESSION['permisos'][MCONTACTO]['r'])){ ?>
+            <li class="nav-item">
+            <a href="<?= base_url();?>/contactos" class="nav-link">
+            <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Mensajes
+              </p>
+            </a>
+          </li>
+         <?php } ?>
+         <?php if(!empty($_SESSION['permisos'][MPÁGINAS]['r'])){ ?>
+            <li class="nav-item">
+            <a href="<?= base_url();?>/paginas" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Páginas
               </p>
             </a>
           </li>

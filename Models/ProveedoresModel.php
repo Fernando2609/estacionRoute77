@@ -38,7 +38,7 @@ class ProveedoresModel extends Mysql{
 			WHERE p.email =  '{$this->strEmail}' or pr.RTN = '{$this->strRTN}'";
              */
 
-			$sql= "CALL CRUD_PROVEEDOR(null,null,'{$this->strEmail}',null,null,null,null,'{$this->strRTN}',null,null,null,'A',null)";
+			$sql= "CALL CRUD_PROVEEDOR(null,null,'{$this->strEmail}',null,null,null,null,'{$this->strRTN}',null,null,null,null,'A',null)";
 			/* dep($sql);
 			exit; */
 			$request = $this->select_all($sql);
@@ -47,7 +47,7 @@ class ProveedoresModel extends Mysql{
 			{
 /* $query_insert  = "INSERT INTO usuarios(nombres,apellidos,email,status,rol,telefono,empresa,rtn,ubicacion,creado_por,modificado_por,modo,cod) 
 								  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"; */
-				$query_insert="CALL CRUD_PROVEEDOR(?,?,?,?,?,?,?,?,?,?,null,'I',null)";
+				$query_insert="CALL CRUD_PROVEEDOR(?,?,?,?,?,?,?,?,?,?,null,?,'I',null)";
 	        	$arrData = array($this->strNombre,
 									$this->strApellido,
 									$this->strEmail,
@@ -57,7 +57,7 @@ class ProveedoresModel extends Mysql{
 									$this->strEmpresa,
 									$this->strRTN,
 									$this->strUbicacion,
-									$this->intUser);
+									$this->intUser, NOW());
 									
 	        	$request_insert = $this->insert($query_insert,$arrData);
 				$sql = "SELECT last_insert_id()";
@@ -75,7 +75,7 @@ class ProveedoresModel extends Mysql{
 			
 			/*$sql = "SELECT idUsuario, dni, nombres, apellidos, telefono, email, status
 					FROM usuarios */
-            $sql = "CALL CRUD_PROVEEDOR(null,null,null,null,null,null,null,null,null,null,null,'V',null)";
+            $sql = "CALL CRUD_PROVEEDOR(null,null,null,null,null,null,null,null,null,null,null,null,'V',null)";
 			//WHERE idRol = 7 and status != 0";
 			    $request = $this->select_all($sql);
 				return $request;
@@ -83,7 +83,7 @@ class ProveedoresModel extends Mysql{
 
 		public function selectProveedor(int $idProveedores){
 			$this->intIdProveedores = $idProveedores;
-		    $sql= "CALL CRUD_PROVEEDOR(null,null,null,null,null,null,null,null,null,null,null,'R',$this->intIdProveedores)";
+		    $sql= "CALL CRUD_PROVEEDOR(null,null,null,null,null,null,null,null,null,null,null,null,'R',$this->intIdProveedores)";
 			$request = $this->select($sql);
 		
 			return $request;
@@ -109,7 +109,7 @@ class ProveedoresModel extends Mysql{
 			left join TBL_PROVEEDORES pr on p.COD_PERSONA=pr.COD_PERSONA
 			WHERE  p.email =  '{$this->strEmail}' and p.COD_PERSONA !=$this->intIdProveedores or pr.RTN = '{$this->strRTN}' AND p.COD_PERSONA !=$this->intIdProveedores";
 			 */
-			$sql="CALL CRUD_PROVEEDOR(null,null,'{$this->strEmail}',null,null,null,null,'{$this->strRTN}',null,null,null,'B',$this->intIdProveedores)";
+			$sql="CALL CRUD_PROVEEDOR(null,null,'{$this->strEmail}',null,null,null,null,'{$this->strRTN}',null,null,null,null,'B',$this->intIdProveedores)";
 			/* dep($sql);
 			exit; */
 			$request = $this->select_all($sql);
@@ -117,7 +117,7 @@ class ProveedoresModel extends Mysql{
 			if (empty($request)) 
 			{	
 				             //(nombres,apellidos,email,status,rol,telefono,empresa,rtn,ubicacion,creado_por,modificado_por,modo,cod) 
-				$sql="CALL CRUD_PROVEEDOR(?,?,?,?,?,?,?,?,?,null,?,'U',?)";
+				$sql="CALL CRUD_PROVEEDOR(?,?,?,?,?,?,?,?,?,null,?,?,'U',?)";
 	        	$arrData = array($this->strNombre,
 				$this->strApellido,
 				$this->strEmail,
@@ -127,7 +127,7 @@ class ProveedoresModel extends Mysql{
 				$this->strEmpresa,
 				$this->strRTN,
 				$this->strUbicacion,
-				$this->intUser,
+				$this->intUser, NOW(),
 				$this->intIdProveedores);
 	
 				
@@ -147,7 +147,7 @@ class ProveedoresModel extends Mysql{
 		{
 			$this->intIdProveedores = $intIdProveedores;
 			//$sql = "UPDATE usuarios SET status = ? WHERE idUsuario = $intIdUser";
-			$sql="CALL CRUD_PROVEEDOR(null,null,null,null,null,null,null,null,null,null,null,'D',?)";
+			$sql="CALL CRUD_PROVEEDOR(null,null,null,null,null,null,null,null,null,null,null,NULL,'D',?)";
 			$arrData = array($this->intIdProveedores);
 			$request = $this->update($sql, $arrData);
 			return $request;

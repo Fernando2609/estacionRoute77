@@ -1,75 +1,90 @@
-<?php 
-    headerAdmin($data); 
-    getModal('modalSucursales', $data);
+<?php
+headerTienda($data);
+//$banner=media()."/tienda/images/bg-01.jpg";
+$banner = $data["page"]["PORTADA"];
+$idpagina = $data["page"]["COD_POST"];
 ?>
-    <!-- Content Header (Sección de Encabezado) -->
-    <div class="content-wrapper">
-      <section class="content-header">
-        <div class="container-fluid"><!-- Div Container-Fluid -->
-          <div class="row mb-2"> <!-- Div row y margen abajo de 2-->
-            <div class="col-sm-6 d-flex"><!-- Div 6 columnas derecha-->
-              <!--Titulo-->
-              <h1><i class="fas fa-user-tag"></i> <?= $data['page_title'] ?> </h1>
-              <!--Boton Nuevo-->
-              <?php if($_SESSION['permisosMod']['w']){ ?>
-              <button type="button" class="btn btn-success btn-nuevo" onclick="openModal();"><i class="fas fa-plus-square"></i>  Nuevo</button>
-              <?php } ?> 
-            </div><!-- / termina Div 6 columnas derecha-->
-            <div class="col-sm-6"> <!-- Div 6 columnas Izquierda-->
-              <ol class="breadcrumb float-sm-right">
-                <!--Icono Casa-->
-              <li class="breadcrumb-item"><a href="<?=base_url();?>/sucursales"><i class="fas fa-home casa"></i></a></li>
-              <li> / <?= $data['page_title'] ?></li>
-              </ol>
-            </div><!-- Termina Div 6 columnas Izquierda-->
-          </div><!-- termina Div row y margen abajo de 2-->
-        </div><!-- /. Termina container-fluid -->
-      </section><!-- / Content Header (/. Sección de Encabezado) -->
-      
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12"><!-- div 12 -->
-              <div class="card"><!-- div card -->
-                <!-- Encabezado -->
-                <div class="card-header">
-                  <h2 class="card-title">Tabla de Sucursales</h2>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-body">
-                  <!-- Tabla -->
-                  <table id="tableSucursal" class="table table-hover table-bordered  dataTable dtr-inline collapsed" role="grid">
-                    <!-- Encabezado de la tabla-->
-                    <thead>
-                      <tr>
-                        <th>Código</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <!--Termina Encabezado -->
-                    <tbody>
-                  
-                    </tbody>
-                    
-                  </table>
-                  
-                <!-- termina Tabla -->
-                </div>
-                <!-- /.termina card-body -->
-              </div>
-              <!-- /.termina card -->
-            </div>
-            <!-- /.termina col -->
-          </div>
-          <!-- /. termina ow -->
-        </div>
-        <!-- /. termina container-fluid -->
-      </section>
-      <!-- /. termina content -->
+<script>
+    document.querySelector("header").classList.add("header-v4")
+</script>
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url(<?=  $banner  ?>);">
+		<h2 class="ltext-105 cl0 txt-center">
+			<?=  
+				$data["page"]["TITULO"];
+			?>
+
+		</h2>
+	</section>	
+  <!-- <section class="py-5 text-center">
+    <div class="container">
+      <p>Visitanos en nuestras sucursales, y disfruta de la variedad de productos que tenemos.</p>
+      <a href="" class="btn btn-info">VER PRODUCTOS</a>
     </div>
-    <!-- /.content-wrapper / Div Principal -->
- 
-  <?php footerAdmin($data); ?>
+</section>
+<div class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="<?= media() ?>/tienda/images/SantaLucia.jpg" alt="Sucural uno">
+          <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat necessitatibus eligendi, soluta ipsa natus, at earum qui enim, illum doloremque, accusantium autem nemo est esse nulla neque eaque repellendus amet.</p>
+            <p>Dirección: Santa Lucia frente a la Laguna<br>
+              Teléfono: 4654645 <br>
+              Correo: info@abelosh.com
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="<?= media() ?>/tienda/images/SantaLucia.jpg" alt="Sucural uno">
+          <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat necessitatibus eligendi, soluta ipsa natus, at earum qui enim, illum doloremque, accusantium autem nemo est esse nulla neque eaque repellendus amet.</p>
+            <p>Dirección: Col. Los Laureles, Calle principal <br>
+              Teléfono: 4654645 <br>
+              Correo: info@abelosh.com
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <img src="<?= media() ?>/tienda/images/SantaLucia.jpg" alt="Sucural uno">
+          <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat necessitatibus eligendi, soluta ipsa natus, at earum qui enim, illum doloremque, accusantium autem nemo est esse nulla neque eaque repellendus amet.</p>
+            <p>Dirección: Residecial Las Hadas <br>
+              Teléfono: 4654645 <br>
+              Correo: info@abelosh.com
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+	<?php 
+		if(viewPage($idpagina)) {
+			echo $data["page"]["CONTENIDO"];
+
+		}else{		
+	?>
+		<div>
+			<div class="container-fluid py-5 text-center">
+				<img src="<?= media(); ?>/tienda/images/construction.png" alt="En Construcción" srcset="">
+				<h3>Estamos trabajando para usted</h3>
+			</div>
+		</div>
+
+
+
+
+
+ <?php
+ }
+	footerTienda($data);
+?>
+	

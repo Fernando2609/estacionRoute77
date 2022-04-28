@@ -33,7 +33,7 @@
                    $strPassword = hash("SHA256", $_POST['txtPassword']);
                    $requestUser = $this->model->loginUser($strUsuario, $strPassword);
                    if(empty($requestUser)){
-                    $arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña es incorrecto.' ); 
+                    $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.' ); 
                 }else{
                     $arrData = $requestUser;
                     

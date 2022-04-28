@@ -26,7 +26,7 @@
                     <!-- Div Text -->
                     <div class="form-group">
                         <label for="exampleInputNombre">Nombre  (<span class="required">*</span>)</label>
-                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre de la Categoría" required="">
+                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre de la Categoría" required="" onkeypress="return controlTagLetraNumero(event);">
                     </div>
                     <!-- Cierra Text -->
 

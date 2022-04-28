@@ -135,17 +135,88 @@ if(document.querySelector(".num-product")){
 		});
 	});
 };
-window.addEventListener('load', function() {
-   if(document.querySelector('#txtEmail')){
-   if (nombre=='procesarpago') {
-       fntNacionalidadCliente();
-       fntGeneroCliente();
-        fnEstadoCCliente();
-   }
-}
-    /*fnSucursalUsuario(); */
 
-}, false);
+/* REGISTRO POR MODAL */
+if (document.querySelector("#formRegisterModal")) {
+    let formRegisterModal = document.querySelector("#formRegisterModal");
+    formRegisterModal.onsubmit=function(e){
+        e.preventDefault();
+      
+        let strNombre = document.querySelector("#txtNombreModal").value;
+        let strApellido = document.querySelector("#txtApellidoModal").value;
+        let strEmail = document.querySelector("#txtEmailClienteModal").value;
+        let intTelefono = document.querySelector("#txtTelefonoModal").value;
+        /* let intTipousuario = document.querySelector('#listRolid').value; */
+       /*  let intNacionalidad = document.querySelector('#listNacionalidadCliente').value;
+        let intGenero = document.querySelector('#listGenero').value;
+        let intEstadoC = document.querySelector('#listEstadoC').value;
+        let strFechaN = document.querySelector('#fechaNacimiento').value;
+         */
+
+        if(strApellido == '' || strNombre == '' || strEmail == '' || intTelefono == '')
+            {
+                swal.fire("Atención", "Todos los campos son obligatorios." , "error");
+                return false;
+        }
+
+        let elementsValid = document.getElementsByClassName("valid");
+        for (let i = 0; i < elementsValid.length; i++) {
+            if (elementsValid[i].classList.contains('is-invalid')) {
+                swal.fire("Atención", "Por favor verifique los campos en rojo.", "error");
+                return false;
+            }
+        }
+        
+        divLoading.style.display="flex";
+        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        let ajaxUrl = base_url + "/Tienda/registroModal"; 
+        let formData = new FormData(formRegisterModal);
+        request.open("POST",ajaxUrl,true);
+        request.send(formData);
+        request.onreadystatechange = function(){ 
+            if(request.readyState == 4 && request.status == 200){
+               /*  console.log(request.responseText); */
+                let objData = JSON.parse(request.responseText); 
+                
+                if(objData.status)
+                { 
+
+                    $("#modalRegistro").modal("hide");
+
+                    /* //window.location.reload(false);
+                     swal.fire("Revisa tu Correo","Hemos enviado una contraseña a tu correo, verifica e inicia sesión con ella" , "success"); */
+                    
+                    swal
+                      .fire({
+                        title: "Revisa tu Correo",
+                        text: "Hemos enviado una contraseña a tu correo, verifica e inicia sesión con ella",
+                        icon: "success",
+                        /* showCancelButton: true,
+                                confirmButtonText: "Si, eliminar!",
+                                cancelButtonText: "No, cancelar!", */
+                        //closeOnConfirm: false,
+                        //closeOnCancel: true,
+                      })
+                      .then((result) => {
+                        if (result.isConfirmed) {
+                          location.reload();
+                        }
+                      });
+                      
+                }else{
+                    swal.fire("Error", objData.msg , "error");
+                }
+            
+            }else{
+                console.log('Error');
+            }
+            divLoading.style.display = "none";
+            return false;
+        }
+    }
+};
+
+
 if (document.querySelector("#formRegister")) {
     let formRegister=document.querySelector("#formRegister");
     formRegister.onsubmit=function(e){
@@ -188,9 +259,30 @@ if (document.querySelector("#formRegister")) {
                 let objData = JSON.parse(request.responseText); 
                 
                 if(objData.status)
-                { 
+                {
+                  //window.location.reload(false);
+                  /* swal.fire(
+                    "Revisa tu Correo",
+                    "Se ha enviado una contraseña a tu correo, verifica e inicia sesión con ella para continuar con el pedido.",
+                    "success"
+                  ); */
 
-                    window.location.reload(false);    
+                  swal
+                    .fire({
+                      title: "Revisa tu Correo",
+                      text: "Hemos enviado una contraseña a tu correo, verifica e inicia sesión con ella",
+                      icon: "success",
+                      /* showCancelButton: true,
+                                confirmButtonText: "Si, eliminar!",
+                                cancelButtonText: "No, cancelar!", */
+                      //closeOnConfirm: false,
+                      //closeOnCancel: true,
+                    })
+                    .then((result) => {
+                      if (result.isConfirmed) {
+                        location.reload();
+                      }
+                    });
                 }else{
                     swal.fire("Error", objData.msg , "error");
                 }
@@ -509,4 +601,140 @@ if(document.querySelector("#btnComprar")){
         },false);
     }
 
+//FUncion de entero y longitud Telefono
+function testEnteroTel(intCant) {
+    var intCantidad = new RegExp(/^([0-9]{8})$/);
+    if (intCantidad.test(intCant)){
+        return true;
+    }else{
+        return false;
+    }
+}
 
+function fntEmailValidate(email) {
+    var stringEmail = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})$/);
+    if (stringEmail.test(email) == false){
+        return false;
+    }else{
+        return true;
+    }  
+}
+function testText(txtString) {
+  var stringText = new RegExp(
+    /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü]+(\s[a-zA-ZÑñÁáÉéÍíÓóÚúÜü]+)*$/
+  );
+  if (stringText.test(txtString)) {
+    return true;
+  } else {
+    return false;
+  }
+}function fntValidText() {
+  let validText = document.querySelectorAll(".validText");
+  validText.forEach(function (validText) {
+    validText.addEventListener("keyup", function () {
+      let inputValue = this.value;
+      if (!testText(inputValue)) {
+        this.classList.add("is-invalid");
+        /*  this.classList.remove('is-valid'); */
+      } else {
+        this.classList.remove("is-invalid");
+        /*       this.classList.add('is-valid'); */
+      }
+    });
+  });
+}
+function fntValidEmail() {
+  let validEmail = document.querySelectorAll(".validEmail");
+  validEmail.forEach(function (validEmail) {
+    validEmail.addEventListener("keyup", function () {
+      let inputValue = this.value;
+      if (!fntEmailValidate(inputValue)) {
+        this.classList.add("is-invalid");
+      } else {
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+      }
+    });
+  });
+}
+//Funcion validacion telefono
+function fntValidNumberTel(){
+    let validNumberTel = document.querySelectorAll(".validNumberTel");
+    validNumberTel.forEach(function(validNumberTel) {
+        validNumberTel.addEventListener('keyup', function (){
+            let inputValue = this.value;
+            if (!testEnteroTel(inputValue)){
+                this.classList.add('is-invalid');
+            }else{
+                this.classList.remove('is-invalid');
+            
+            }
+        });
+    });
+}
+
+   if (document.querySelector("#frmContacto")) {
+     let frmContacto = document.querySelector("#frmContacto");
+     frmContacto.addEventListener(
+       "submit",
+       function (e) {
+         e.preventDefault();
+
+         let nombre = document.querySelector("#nombreContacto").value;
+         let email = document.querySelector("#emailContacto").value;
+         let mensaje = document.querySelector("#mensaje").value;
+
+         if (nombre == "") {
+           swal.fire("", "El nombre es obligatorio", "error");
+           return false;
+         }
+
+         if (!fntEmailValidate(email)) {
+           swal.fire("", "El email no es válido.", "error");
+           return false;
+         }
+        if (nombre=="") {
+            swal.fire("", "Porfavor Escribe el mensaje", "error");
+            return false;
+        }
+         divLoading.style.display = "flex";
+         let request = window.XMLHttpRequest
+           ? new XMLHttpRequest()
+           : new ActiveXObject("Microsoft.XMLHTTP");
+         let ajaxUrl = base_url + "/Tienda/contacto";
+         let formData = new FormData(frmContacto);
+         request.open("POST", ajaxUrl, true);
+         request.send(formData);
+         request.onreadystatechange = function () {
+           if (request.readyState != 4) return;
+           if (request.status == 200) {
+             let objData = JSON.parse(request.responseText);
+             if (objData.status) {
+               swal.fire("", objData.msg, "success");
+               document.querySelector("#frmContacto").reset();
+             
+             } else {
+               swal.fire("", objData.msg, "error");
+             }
+            
+           }
+           divLoading.style.display = "none";
+           return false;
+         };
+       },
+       false
+     );
+   }
+   
+window.addEventListener(
+  "load",
+  function () {
+    /*fnSucursalUsuario(); */
+
+    fntEmailValidate();
+    fntValidEmail();
+    fntValidNumberTel();
+    fntValidText();
+  },
+  false
+);

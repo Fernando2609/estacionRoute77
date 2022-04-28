@@ -24,7 +24,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="txttelEmpresa">Teléfono<span class="required"> *</span></label>
-                            <input type="text" class="form-control valid validNumber" id="txttelEmpresa" name="txttelEmpresa" required="" onkeypress="return controlTag(event);">
+                            <input type="text" class="form-control valid validNumberTel" id="txttelEmpresa" name="txttelEmpresa" required="" onkeypress="return controlTag(event);">
                         </div>
                     </div>
 

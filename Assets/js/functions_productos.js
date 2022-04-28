@@ -209,6 +209,17 @@ window.addEventListener('load',function(){
                 swal.fire("Atención", "Todos los campos son obligatorios." , "error");
                 return false;
             }
+             let elementsValid = document.getElementsByClassName("valid");
+             for (let i = 0; i < elementsValid.length; i++) {
+               if (elementsValid[i].classList.contains("is-invalid")) {
+                 swal.fire(
+                   "Atención",
+                   "Por favor verifique los campos en rojo.",
+                   "error"
+                 );
+                 return false;
+               }
+             }
             if(intCodigo.length < 5){
                 swal.fire("Atención", "El código debe ser mayor que 5 dígitos." , "error");
                 return false;

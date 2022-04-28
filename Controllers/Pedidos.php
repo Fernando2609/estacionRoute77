@@ -178,6 +178,8 @@ require_once("Models/TTipoPago.php");
                         $idpedido = !empty($_POST['idpedido']) ? intval($_POST['idpedido']) : "";
                         $estado = !empty($_POST['listEstado']) ? intval($_POST['listEstado']) : "";
                         $idtipopago =  !empty($_POST['listTipopago']) ? intval($_POST['listTipopago']) : "";
+                        $user=$_SESSION['idUser'];
+                        
                         $transaccion = !empty($_POST['txtTransaccion']) ? strClean($_POST['txtTransaccion']) : "";
         
                         if($idpedido == ""){
@@ -187,7 +189,7 @@ require_once("Models/TTipoPago.php");
                                 if($estado == ""){
                                     $arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
                                 }else{
-                                    $requestPedido = $this->model->updatePedido($idpedido,"","",$estado);
+                                    $requestPedido = $this->model->updatePedido($idpedido,"","",$estado,$user);
                                     if($requestPedido){
                                         $arrResponse = array("status" => true, "msg" => "Datos actualizados correctamente");
                                     }else{
@@ -198,7 +200,7 @@ require_once("Models/TTipoPago.php");
                                 if($idtipopago =="" or $estado == ""){
                                     $arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
                                 }else{
-                                    $requestPedido = $this->model->updatePedido($idpedido,$transaccion,$idtipopago,$estado);
+                                    $requestPedido = $this->model->updatePedido($idpedido,$transaccion,$idtipopago,$estado,$user);
                                     
                                     if($requestPedido){
                                         $arrResponse = array("status" => true, "msg" => "Datos actualizados correctamente");

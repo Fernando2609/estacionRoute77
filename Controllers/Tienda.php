@@ -313,7 +313,7 @@
 
          public function registro()
         {
-            
+         
             if ($_POST) {
                 if(empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmailCliente']) )
 				{
@@ -358,9 +358,71 @@
                         'email' => $strEmail,
                         'password' => $strPassword,
                         'asunto' => 'Bienvenido a tu Tienda en Línea');
-                        $_SESSION['idUser'] = $request_user;
-                        $_SESSION['login'] = true;
-                        $this->login->sessionLogin($request_user);
+                        //$_SESSION['idUser'] = $request_user;
+                        //$_SESSION['login'] = true;
+                        //$this->login->sessionLogin($request_user);
+                        sendEmail($dataUsuario, 'email_bienvenida');
+                    }else if($request_user == false){
+						$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');		
+					}else{
+						$arrResponse = array("status" => false, "msg" => 'No es posible almacenar los datos.');
+					}
+                 }
+                 echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+            }
+            
+            die();
+        }
+        public function registroModal()
+        {
+          
+            if ($_POST) {
+                if(empty($_POST['txtNombreModal']) || empty($_POST['txtApellidoModal']) || empty($_POST['txtTelefonoModal']) || empty($_POST['txtEmailClienteModal']) )
+				{
+					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
+				}else{ 
+                    
+					$strNombre = ucwords(strClean($_POST['txtNombreModal']));
+					$strApellido = ucwords(strClean($_POST['txtApellidoModal']));
+					$strEmail = strtolower(strClean($_POST['txtEmailClienteModal']));
+                    $intTipoId = 2;
+                    $intStatus =1;
+                    $intTelefono = intval(strClean($_POST['txtTelefonoModal']));
+					//$intTipoId = 7;
+				
+                    /* $intNacionalidad = intval(strClean($_POST['listNacionalidadCliente']));
+                    $intGenero = intval(strClean($_POST['listGenero']));
+                    $intEstadoC = intval(strClean($_POST['listEstadoC']));
+                    $intSucursal = 4;
+                     $strFechaNacimiento = strClean($_POST['fechaNacimiento']); */ 
+                    $request_user="";
+                    $strPassword =  passGenerator();
+                    $strPasswordEncrip = hash("SHA256",$strPassword);
+                  
+                    $request_user = $this->insertCliente(
+                                            $strNombre, 
+                                            $strApellido, 
+                                            $strEmail,
+                                            $strPasswordEncrip,
+                                            $intTipoId, 
+                                            $intStatus,
+                                            $intTelefono, 
+                                             );
+                                                                               
+                    
+
+                    
+                    if($request_user > 0 ){
+                        $arrResponse = array("status" => true, "msg" => 'Cliente Guardado Correctamente.');
+                        $nombreUsuario = $strNombre.' '.$strApellido;
+                    $dataUsuario = array(
+                        'nombreUsuario' => $nombreUsuario,
+                        'email' => $strEmail,
+                        'password' => $strPassword,
+                        'asunto' => 'Bienvenido a tu Tienda en Línea');
+                        //$_SESSION['idUser'] = $request_user;
+                        //$_SESSION['login'] = true;
+                        //$this->login->sessionLogin($request_user);
                         sendEmail($dataUsuario, 'email_bienvenida');
                     }else if($request_user == false){
 						$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');		
@@ -653,6 +715,43 @@
                    
 				}else{
 					$arrResponse = array('status' => false, 'msg' => "El email ya fue registrado.");
+				}
+				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+
+			}
+			die(); 
+		}
+        public function contacto(){
+			if($_POST){
+                
+				$nombre = ucwords(strtolower(strClean($_POST['nombreContacto'])));
+				$email  = strtolower(strClean($_POST['emailContacto']));
+                $mensaje  = strClean($_POST['mensaje']);
+                $userAgent=$_SERVER['HTTP_USER_AGENT'];
+                $ip=$_SERVER['REMOTE_ADDR'];
+                $dispositivo="PC";
+                if (preg_match("/mobile/i",$userAgent)) {
+                    $dispositivo="Movil";
+                }else if (preg_match("/tablet/i",$userAgent)) {
+                    $dispositivo="Tablet";
+                }else  if (preg_match("/iPhone/i",$userAgent)) {
+                    $dispositivo="iPhone";
+                }else  if (preg_match("/iPad/i",$userAgent)) {
+                    $dispositivo="iPad";
+                }
+                $userContact = $this->setContacto($nombre,$email,$mensaje,$ip,$dispositivo,$userAgent);
+                
+				if($userContact > 0){
+					$arrResponse = array('status' => true, 'msg' => "Su mensaje fue enviado correctamente.");
+					//Enviar correo
+					$dataUsuario = array('asunto' => "Nueva Usuario en contacto",
+										'email' => EMAIL_EMPRESA,
+										'nombreContacto' => $nombre,
+										'emailContacto' => $email,
+										'mensaje' => $mensaje );
+					sendEmail($dataUsuario,"email_contacto");
+				}else{
+					$arrResponse = array('status' => false, 'msg' => "No es posible enviar el mensaje.");
 				}
 				echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 

@@ -110,7 +110,7 @@ class LoginModel extends Mysql{
             }  
             public function selectProductos(){
 			
-                $sql= 'call CRUD_PRODUCTOS(null,null,null,null,null,null,null,null,null,null,"H",null)';
+                $sql= 'call CRUD_PRODUCTOS(null,null,null,null,null,null,null,null,null,null,null,"H",null)';
                 $request = $this->select_all($sql);
 
 

@@ -39,7 +39,7 @@
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>INICIAR SESIÓN</h3>
           <div class="form-group">
             <label class="control-label">USUARIO</label>
-            <input id="txtEmail" name="txtEmail" class="form-control" type="email" placeholder="Email" autofocus>
+            <input id="txtEmail" name="txtEmail" class="form-control valid validEmail" type="email" placeholder="Email" autofocus>
           </div>
           <div class="form-group">
             <label class="control-label">CONTRASEÑA</label>
@@ -60,7 +60,7 @@
           <h3 class="login-head "><i class="fa fa-lg fa-fw fa-lock"></i>¿Olvidaste tu contraseña?</h3>
           <div class="form-group">
             <label class="control-label">EMAIL</label>
-            <input id="txtEmailReset" name="txtEmailReset" class="form-control" type="text" placeholder="Email">
+            <input id="txtEmailReset" name="txtEmailReset" class="form-control valid validEmail" type="text" placeholder="Email">
           </div>
           <div class="form-group btn-container">
             <button type="submit" class="btn btn-primary btn-block botonLogin"><i class="fa fa-unlock fa-lg fa-fw"></i>REINICIAR</button>
@@ -79,6 +79,7 @@
 <!--     <script src="<?= media(); ?>/js/plugins/popper/popper.min.js"></script>-->
     <script src="<?= media(); ?>/js/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?= media(); ?>/js/main.js"></script>
+    <script src="<?= media(); ?>/js/funtions_admin.js"></script>
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/sweetalert2/sweetalert2.min.js"></script>
     <script src="<?= media(); ?>/js/<?= $data['page_functions_js'] ?>"></script>
     <!-- The javascript plugin to display page loading on top-->

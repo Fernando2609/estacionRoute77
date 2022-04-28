@@ -38,7 +38,7 @@
 			
 			/*$sql = "SELECT idUsuario, dni, nombres, apellidos, telefono, email, status
 					FROM usuarios */
-            $sql = "CALL CRUD_PROVEEDOR(null,null,null,null,null,null,null,null,null,null,null,'V',null)";
+            $sql = "CALL CRUD_PROVEEDOR(null,null,null,null,null,null,null,null,null,null,null,null,'V',null)";
 			//WHERE idRol = 7 and status != 0";
 			    $request = $this->select_all($sql);
 				return $request;

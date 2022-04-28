@@ -34,13 +34,13 @@
 			$return = 0;
 
 			
-			$sql= " CALL CRUD_CLIENTE(null,null,'{$this->strEmail}',null,null,null,null,null,null,'A',null)";
+			$sql= " CALL CRUD_CLIENTE(null,null,'{$this->strEmail}',null,null,null,null,null,null,null,'A',null)";
 			$request = $this->select_all($sql);
            
 			if(empty($request))
 			{
 				
-				$query_insert=" CALL CRUD_CLIENTE(?,?,?,?,?,?,?,?,null,'I',null)";
+				$query_insert=" CALL CRUD_CLIENTE(?,?,?,?,?,?,?,?,null,?,'I',null)";
 				$arrData = array($this->strNombre,
         						$this->strApellido,
         						$this->strEmail,
@@ -48,7 +48,7 @@
                                 $this->intTipoId,
                                 $this->intStatus,
         						$this->intTelefono,
-								$this->intuser);
+								$this->intuser,NOW());
 		
 	        	$request_insert = $this->insert($query_insert,$arrData);
 				$sql = "SELECT last_insert_id()";
@@ -65,7 +65,7 @@
 		{
 			
 			
-            $sql = "CALL CRUD_CLIENTE(null,null,null,null,null,null,null,NULL,NULL,'V',null)";
+            $sql = "CALL CRUD_CLIENTE(null,null,null,null,null,null,null,NULL,NULL,null,'V',null)";
 			
 			    $request = $this->select_all($sql);
 				return $request;
@@ -76,7 +76,7 @@
 		 public function selectCliente(int $idUsuario){
 			$this->intIdUsuario = $idUsuario;
 
-			$sql= "CALL CRUD_CLIENTE(null,null,null,null,null,null,null,null,null,'R',$this->intIdUsuario)";
+			$sql= "CALL CRUD_CLIENTE(null,null,null,null,null,null,null,null,null,null,'R',$this->intIdUsuario)";
 			$request = $this->select($sql);
 			
 			return $request;
@@ -99,7 +99,7 @@
 		 /* $sql = "SELECT * FROM TBL_PERSONAS p
 		LEFT JOIN TBL_CLIENTE c on p.COD_PERSONA=c.COD_PERSONA
 		WHERE p.EMAIL = '{$this->strEmail}' AND p.COD_PERSONA !=$this->intIdUsuario";  */
-		$sql="CALL CRUD_CLIENTE(null,null,'{$this->strEmail}',null,null,null,null,null,null,'B',$this->intIdUsuario)";
+		$sql="CALL CRUD_CLIENTE(null,null,'{$this->strEmail}',null,null,null,null,null,null,null,'B',$this->intIdUsuario)";
 		/* dep($sql);
 		exit;  */
 		$request = $this->select_all($sql);
@@ -108,7 +108,7 @@
 			if ($this->strPassword  != "") {
 				
 				
-				$sql="CALL CRUD_CLIENTE(?,?,?,?,?,?,?,null,?,'U',$this->intIdUsuario)";
+				$sql="CALL CRUD_CLIENTE(?,?,?,?,?,?,?,null,?,?,'U',$this->intIdUsuario)";
 				$arrData = array(
 					$this->strNombre,
 					$this->strApellido,
@@ -117,11 +117,11 @@
 					$this->intTipoId,
 					$this->intStatus,
 					$this->intTelefono,
-					$this->intUser
+					$this->intUser,NOW()
 				);
 				
 			} else {
-				$sql="CALL CRUD_CLIENTE(?,?,?,null,?,?,?,null,?,'S',$this->intIdUsuario)";
+				$sql="CALL CRUD_CLIENTE(?,?,?,null,?,?,?,null,?,?,'S',$this->intIdUsuario)";
 				
 				$arrData = array($this->strNombre,
 								$this->strApellido,
@@ -130,7 +130,7 @@
 								$this->intTipoId,
 								$this->intStatus,
 								$this->intTelefono,
-							    $this->intUser 
+							    $this->intUser,NOW()
 							);
 			}
 			
@@ -149,7 +149,7 @@
 	{
 		$this->intIdUsuario = $intIdUser;
 		
-        $sql="CALL CRUD_CLIENTE(null,null,null,null,null,null,null,null,null,'D',?)";
+        $sql="CALL CRUD_CLIENTE(null,null,null,null,null,null,null,null,null,null,'D',?)";
 		$arrData = array($this->intIdUsuario);
 		$request = $this->update($sql, $arrData);
 		return $request;

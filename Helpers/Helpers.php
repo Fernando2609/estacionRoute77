@@ -153,22 +153,33 @@
             echo "Error en el envío del mensaje: {$mail->ErrorInfo}";
         }
     }
+    function getInfoPage(int $idpagina){
+        require_once("Libraries/Core/Mysql.php");
+        $con = new Mysql();
+        $sql = "SELECT * FROM TBL_POST WHERE COD_POST = $idpagina";
+        $request = $con->select($sql);
+        return $request;
+    }
 
     function getPermisos(int $idmodulo){
         require_once ("Models/PermisosModel.php");
         $objPermisos = new PermisosModel();
+        
         //$idrol = $_SESSION['userData']['Id_Rol'];
-        $idrol = $_SESSION['userData']['COD_ROL'];
-        $arrPermisos = $objPermisos->permisosModulo($idrol);
-        $permisos = '';
-        $PermisosMod = '';
-
-        if(count($arrPermisos) > 0){
-            $permisos = $arrPermisos;
-            $PermisosMod = isset($arrPermisos[$idmodulo]) ? $arrPermisos[$idmodulo] : "";
+        if (!empty($_SESSION['userData'])) {
+            # code...
+            $idrol = $_SESSION['userData']['COD_ROL'];
+            $arrPermisos = $objPermisos->permisosModulo($idrol);
+            $permisos = '';
+            $PermisosMod = '';
+    
+            if(count($arrPermisos) > 0){
+                $permisos = $arrPermisos;
+                $PermisosMod = isset($arrPermisos[$idmodulo]) ? $arrPermisos[$idmodulo] : "";
+            }
+            $_SESSION['permisos'] = $permisos;
+            $_SESSION['permisosMod'] = $PermisosMod;
         }
-        $_SESSION['permisos'] = $permisos;
-        $_SESSION['permisosMod'] = $PermisosMod;
     }
     
     function sessionUser(int $idpersona){
@@ -190,7 +201,16 @@
         $move = move_uploaded_file($url_temp, $destino);
         return $move;
     }
-
+    function getPageRout(string $ruta){
+        require_once("Libraries/Core/Mysql.php");
+        $con = new Mysql();
+        $sql = "SELECT * FROM TBL_POST WHERE RUTA = '$ruta' AND COD_STATUS != 0 ";
+        $request = $con->select($sql);
+        if(!empty($request)){
+            $request['PORTADA'] = $request['PORTADA'] != "" ? media()."/images/uploads/".$request['PORTADA'] : "";
+        }
+        return $request;
+    }
 function deleteFile(string $name){  
     unlink('Assets/images/uploads/'.$name);
  }
@@ -469,5 +489,15 @@ function deleteFile(string $name){
         return $request;
  }
  
-    
+ function viewPage(int $idpagina){
+    require_once("Libraries/Core/Mysql.php");
+    $con = new Mysql();
+    $sql = "SELECT * FROM TBL_POST WHERE COD_POST = $idpagina ";
+    $request = $con->select($sql);
+    if( ($request['COD_STATUS'] == 2 AND isset($_SESSION['permisosMod']) AND $_SESSION['permisosMod']['u'] == true) OR $request['COD_STATUS'] == 1){
+        return true;        
+    }else{
+        return false;
+    }
+ }
 ?>

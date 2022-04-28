@@ -29,7 +29,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="txtApellido">Apellidos<span class="required"> *</span></label>
-              <input type="text" class="form-control valid validText" id="txtApellido" name="txtApellido" required="">
+              <input type="text" class="form-control valid validText" maxlength="10" id="txtApellido" name="txtApellido" required="">
             </div>
           </div>
           <div class="form-row">
@@ -53,7 +53,7 @@
             <div class="form-row">
             <div class="form-group col-md-6">
               <label for="txtPassword">Password<span class="required"> *</span></label>
-              <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+              <input type="password" class="form-control valid ValidContra" id="txtPassword" name="txtPassword">
             </div>
           </div>
           </div>

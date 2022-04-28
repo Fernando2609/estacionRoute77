@@ -1,5 +1,5 @@
 <?php  
-    //Fernando 24/10/2021 Conexcion a la base de datos 
+    
     class Conexion{
     
         private $conect;

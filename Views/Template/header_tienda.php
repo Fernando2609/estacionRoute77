@@ -9,6 +9,9 @@
 			$cantCarrito += $product['cantidad'];
 		}
 	}
+	$tituloPreguntas=!empty(getInfoPage(PPREGUNTAS)) ? getInfoPage(PPREGUNTAS)['TITULO'] : "";
+	$infoPreguntas=!empty(getInfoPage(PPREGUNTAS)) ? getInfoPage(PPREGUNTAS)['CONTENIDO'] : "";
+
 ?>
 <!DOCTYPE html>
 
@@ -34,6 +37,7 @@
 		}
 		 
 	?>
+	<meta name="description" content="La mejor tienda de conveniencia a tu alcance"/>
 	<meta property="og:locale" 		content='es_ES'/>
 	<meta property="og:type"        content="website" />
 	<meta property="og:site_name"	content="<?= $nombreSitio; ?>"/>
@@ -83,23 +87,67 @@
 	<link rel="stylesheet" href="<?= media(); ?>/css/style.css">
 <!--===============================================================================================-->
 </head>
-<body class="animsition">
+<body class="animsition ">
 <div class="modal modal-tienda fade" id="modalAyuda" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content page-content">
       <div class="modal-header">
-        <h5 class="modal-title">Preguntas Frecuentes </h5>
+        <h5 class="modal-title"><?=  $tituloPreguntas  ?></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit minima culpa dolores quaerat aut accusamus placeat libero distinctio veniam saepe nam voluptatem voluptates, nobis rem enim voluptatum animi sit necessitatibus?</p>
-        <br>
-        <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis delectus minus perspiciatis, illo unde voluptas consectetur odio ab mollitia, numquam sed veritatis quis recusandae ex reprehenderit maxime suscipit provident aspernatur.</p>
+       <?=  $infoPreguntas  ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Registro -->
+<div class="modal modal-tienda fade" id="modalRegistro" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #F3DE2E;">
+        <h5 class="modal-title">Registrarse</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="background: #81B031; color: white;">
+	  <form id="formRegisterModal"> 
+		<div class="row">
+			<div class="col col-md-6 form-group">
+				<label for="txtNombre">Nombres</label>
+				<input type="text" class="form-control valid validText" id="txtNombreModal" name="txtNombreModal" required="">
+			</div>
+			<div class="col col-md-6 form-group">
+				<label for="txtApellido">Apellidos</label>
+				<input type="text" class="form-control valid validText" id="txtApellidoModal" name="txtApellidoModal" required="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-md-6 form-group">
+				<label for="txtTelefono">Teléfono</label>
+				<input type="text" class="form-control valid validNumberTel" id="txtTelefonoModal" name="txtTelefonoModal" required="" onkeypress="return controlTag(event);">
+			</div>
+			<div class="col col-md-6 form-group">
+				<label for="txtEmailCliente">Email</label>
+				<input type="email" class="form-control valid validEmail" id="txtEmailClienteModal" name="txtEmailClienteModal" required="">
+			</div>
+		</div>
+
+		<div  class="d-flex justify-content-end">
+			<button type="submit" class="btn-lg btn-info ">Regístrate</button>
+		</div>	
+	</form>
+      </div>
+      <div class="modal-footer d-flex justify-content-between" style="background: #055488;">
+		<p class="text-white">*Se enviará una contraseña a su correo una vez registrado con el que iniciará sesion.</p>
+	  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -142,6 +190,9 @@
 						<?php }else{ ?>
 						<a href="<?= base_url() ?>/login" class="flex-c-m trans-04 p-lr-25">
 							Iniciar Sesión
+						</a>
+						<a href="<?= base_url() ?>" data-toggle="modal" data-target="#modalRegistro" class="flex-c-m trans-04 p-lr-25">
+							Registrarse
 						</a>
 						<?php } ?>
 					</div>
@@ -193,6 +244,9 @@
 							</li>
 							<li>
 								<a href="<?= base_url(); ?>/nosotros">Nosotros</a>
+							</li>
+							<li>
+								<a href="<?= base_url(); ?>/sucursales">Sucursales</a>
 							</li>
 
 							<li>
@@ -286,6 +340,9 @@
 						<a href="<?= base_url() ?>/login" class="flex-c-m trans-04 p-lr-25">
 							Iniciar Sesión
 						</a>
+						<a href="<?= base_url() ?>" data-toggle="modal" data-target="#modalRegistro" class="flex-c-m trans-04 p-lr-25">
+							Registrarse
+						</a>
 						<?php } ?>
 					</div>
 				</li>
@@ -307,6 +364,9 @@
 				</li>
 				<li>
 					<a href="<?= base_url(); ?>/nosotros">Nosotros</a>
+				</li>
+				<li>
+					<a href="<?= base_url(); ?>/sucursales">Sucursales</a>
 				</li>
 
 				<li>

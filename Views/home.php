@@ -7,6 +7,10 @@
 	$arrBanner = $data['banner'];
 	/* dep($arrBanner); */
 	$arrProductos = $data['productos'];
+	$contentPage="";
+	if (!empty($data['page'])) {
+		$contentPage=$data['page']['CONTENIDO'];
+	}
 	/* dep($arrProductos); */
 ?>
 	<!-- Slider -->
@@ -164,6 +168,7 @@
 		 //dep($_SESSION['arrCarrito']);
 		 //exit;
 		?> -->
+		<?=  $contentPage  ?>
 	</section>
 	
 <?php

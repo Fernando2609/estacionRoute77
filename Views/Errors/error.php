@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>notFound</title>
-</head>
-<body>
-    <h1>Pagina No encontrada</h1>
-</body>
-</html>
+<?php 
+    headerTienda($data);
+?>
+<script>
+  document.querySelector('header').classList.add('header-v4');
+</script>
+<div class="container text-center">
+	
+       
+    <!-- Main content -->
+    <section class="content">
+      <div class="error-page">
+        <h2 class="headline text-warning">Error 404</h2>
+
+        <div class="error-content">
+        <?= $data['page']['CONTENIDO']; ?>
+         
+        </div>
+        <!-- /.error-content -->
+      </div>
+      <!-- /.error-page -->
+      <p><a class="btn btn-dark" href="javascript:window.history.back();">Regresar</a></p>
+    </section>
+</div>
+<?php footerTienda($data); ?>
+

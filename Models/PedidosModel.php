@@ -67,7 +67,7 @@
                    
                     if (!empty($requestPedido)) {
                         $idpersona = $requestPedido['COD_PERSONA'];
-                        $sql_cliente = "CALL CRUD_CLIENTE(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'C',$idpersona)";
+                        $sql_cliente = "CALL CRUD_CLIENTE(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'C',$idpersona)";
                         /* $sql_cliente = "SELECT tp.COD_PERSONA,
                                                     tp.NOMBRES,
                                                     tp.APELLIDOS,
@@ -83,7 +83,7 @@
                                         INNER JOIN TBL_PRODUCTOS p
                                         ON d.COD_PRODUCTO = p.COD_PRODUCTO
                                         WHERE d.COD_PEDIDO = $idpedido"; */
-                        $sql_detalle = "CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'G',$idpedido)";
+                        $sql_detalle = "CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'G',$idpedido)";
                         $requestProductos = $this->select_all($sql_detalle);
                         $request = array('cliente'=> $requestcliente,
                                         'orden'=> $requestPedido,
@@ -116,9 +116,11 @@
 		}
     public function reembolsoPaypal(string $idtransaccion, string $observacion){
             $response = false;
-            $sql="CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,NULL,$idtransaccion,NULL,NULL,'C',null)";
+            $sql="CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,NULL,'$idtransaccion',NULL,NULL,NULL,'C',null)";
+           
             //$sql= "SELECT COD_PEDIDO, DATOS_PAYPAL FROM TBL_PEDIDO  WHERE COD_TRANSACCION_PAYPAL = '{$idtransaccion}' ";
             $requestData= $this-> select($sql);
+            
             if(!empty($requestData)){
                 $objData= json_decode($requestData['DATOS_PAYPAL']);
                 //INGRESAR AL HREF DEL METODO LINKS CON EL METODO GET
@@ -153,7 +155,7 @@
 			    $request_insert = $request_ID['last_insert_id()'];
                 if($request_insert>0){
                    /*  $updatePedido=" UPDATE TBL_PEDIDO SET COD_ESTADO = ? WHERE COD_PEDIDO = $idpedido"; */
-                    $updatePedido="CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,?,NULL,NULL,NULL,'A',$idpedido)";
+                    $updatePedido="CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,?,NULL,NULL,NULL,NULL,'A',$idpedido)";
                     $arrPedido= array(4);
                     $request=$this->update($updatePedido, $arrPedido);
                     $response=true;
@@ -163,17 +165,17 @@
             }
         }  
         
-        public function updatePedido(int $idpedido, $transaccion = NULL, $idtipopago = NULL,int $estado){
+        public function updatePedido(int $idpedido, $transaccion = NULL, $idtipopago = NULL,int $estado,int $user){
 			if($transaccion == NULL){
 				/* $query_insert  = "UPDATE TBL_PEDIDO SET COD_ESTADO = ?  WHERE COD_PEDIDO = $idpedido "; */
-                $query_insert="CALL CRUD_PEDIDO(NULL,NULL,NULL,NULL,NULL,?,NULL,NULL,NULL,'A',$idpedido)";
-	        	$arrData = array($estado);
+                $query_insert="CALL CRUD_PEDIDO($user,NULL,NULL,NULL,NULL,?,NULL,NULL,NULL,?,'A',$idpedido)";
+	        	$arrData = array($estado,NOW());
 			}else{
 				/* $query_insert  = "UPDATE TBL_PEDIDO SET REFERENCIA_COBRO = ?, COD_TIPO_PAGO = ?,COD_ESTADO = ? WHERE COD_PEDIDO = $idpedido"; */
-                $query_insert="CALL CRUD_PEDIDO(NULL,NULL,NULL,?,NULL,?,?,NULL,NULL,'B',$idpedido)";
+                $query_insert="CALL CRUD_PEDIDO($user,NULL,NULL,?,NULL,?,?,NULL,NULL,?,'B',$idpedido)";
 	        	$arrData = array($idtipopago,
 	    						$estado,
-                                $transaccion
+                                $transaccion,NOW()
 	    					);
 			}
 			$request_insert = $this->update($query_insert,$arrData);

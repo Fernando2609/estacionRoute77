@@ -83,11 +83,11 @@ getModal('modalInventario', $data);
                                             <th>Acción</th>
                                         </tr>
                                         <tr>
-                                            <td><input class="w-100" type="text" name="idProducto" id="idProducto"></td>
+                                            <td><input class="w-100 form-control valid validNumber" type="text" name="idProducto" id="idProducto" onkeypress="return controlTag(event);"></td>
                                             <td id="nombre">-</td>
                                             <td id="txtCategoria">-</td>
-                                            <td><input type="text" class="w-100" name="txtCantidad" id="txtCantidad" value="0" min="1" disabled></td>
-                                            <td><input type="text" class="w-100" name="txtPrecio" id="txtPrecio" value="0" min="1" disabled></td>
+                                            <td><input type="text" class="w-100  form-control validNumber " name="txtCantidad" id="txtCantidad" value="0" min="1" disabled  onkeypress="return controlTagPrecio(event);"></td>
+                                            <td><input type="text" class="w-100  form-control valid validNumberPrecio" name="txtPrecio" id="txtPrecio" value="0" min="1" disabled  onkeypress="return controlTagPrecio(event);"></td>
                                             <td id="txtPrecioTotal">0.00</td>
                                             <td ><a class="notBlock" id="add_product_Compra" class="link_add"><i class="fa fa-plus"></i>Agregar</a></td>
                                         </tr>
